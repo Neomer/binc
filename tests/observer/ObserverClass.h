@@ -6,7 +6,8 @@
 
 class ObserverClass : IObserver
 {
-	
+public:
+	ObserverClass();
 }
 
 #endif
