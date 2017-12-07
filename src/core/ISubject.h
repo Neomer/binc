@@ -10,7 +10,7 @@ public:
 	ISubject();
 	~ISubject();
 	void subscribe(IObserver *observer);
-	virtual void unsubscribe(IObserver *observer) = 0;
+	void unsubscribe(IObserver *observer);
 	
 private:
 	QList<IObserver *> _list;
