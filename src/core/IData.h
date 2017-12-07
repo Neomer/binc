@@ -1,0 +1,8 @@
+#IFNDEF	_IDATA_H_
+#DEFINE	_IDATA_H_
+
+class IData
+{
+}
+
+#ENDIF
