@@ -3,6 +3,7 @@
 
 class IData
 {
+	virtual void *getData() = 0;
 }
 
 #ENDIF
