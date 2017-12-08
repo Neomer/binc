@@ -2,12 +2,12 @@
 
 ISubject::ISubject()
 {
-	_list.Clear();
+    _list.clear();
 }
 
 ISubject::~ISubject()
 {
-	_list.Clear();
+    _list.clear();
 }
 
 void ISubject::subscribe(IObserver *observer)
@@ -17,6 +17,6 @@ void ISubject::subscribe(IObserver *observer)
 
 void ISubject::unsubscribe(IObserver *observer)
 {
-	_list.takeOne(observer);
+    _list.removeOne(observer);
 }
 

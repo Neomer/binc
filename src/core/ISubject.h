@@ -1,5 +1,5 @@
-#IFNDEF	_ISUBJECT_H_
-#DEFINE	_ISUBJECT_H_
+#ifndef	_ISUBJECT_H_
+#define	_ISUBJECT_H_
 
 #include <QList>
 #include <core/IObserver.h>
@@ -14,6 +14,6 @@ public:
 	
 private:
 	QList<IObserver *> _list;
-}
+};
 
-#ENDIF
+#endif
