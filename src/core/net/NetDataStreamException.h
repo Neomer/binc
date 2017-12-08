@@ -10,6 +10,7 @@ public:
     {
         enNDSE_HostNotAvailable,
         enNDSE_Timeout,
+        enNDSE_PortIsBusy
     };
 
     NetDataStreamException(ExceptionType type, const char * message);
