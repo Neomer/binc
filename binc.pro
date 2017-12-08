@@ -13,7 +13,10 @@ SOURCES += src/main.cpp \
     src/core/net/NetDataStream.cpp \
     src/core/net/PortMapping.cpp \
     src/core/IDataStream.cpp \
-    src/core/net/NetDataStreamException.cpp
+    src/core/net/NetDataStreamException.cpp \
+    src/core/net/HTTPClient.cpp \
+    src/core/net/HTTPResponse.cpp \
+    src/core/net/IHTTPRequest.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -22,7 +25,10 @@ HEADERS += \
     src/core/net/NetDataStream.h \
     src/core/net/PortMapping.h \
     src/core/IDataStream.h \
-    src/core/net/NetDataStreamException.h
+    src/core/net/NetDataStreamException.h \
+    src/core/net/HTTPClient.h \
+    src/core/net/HTTPResponse.h \
+    src/core/net/IHTTPRequest.h
 
 
 INCLUDEPATH += $$PWD/src
