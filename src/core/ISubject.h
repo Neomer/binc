@@ -2,7 +2,8 @@
 #define	_ISUBJECT_H_
 
 #include <QList>
-#include <core/IObserver.h>
+#include <QVariant>
+#include "IObserver.h"
 
 class ISubject
 {
@@ -11,6 +12,7 @@ public:
 	~ISubject();
 	void subscribe(IObserver *observer);
 	void unsubscribe(IObserver *observer);
+    void update(QVariant data);
 	
 private:
 	QList<IObserver *> _list;

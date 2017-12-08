@@ -8,6 +8,6 @@ class SubjectClass : ISubject
 {
 public:
 	SubjectClass();
-}
+};
 
 #endif

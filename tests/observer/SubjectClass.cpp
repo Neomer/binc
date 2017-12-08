@@ -1,5 +1,6 @@
 #include "SubjectClass.h"
 
-SubjectClass::SubjectClass()
+SubjectClass::SubjectClass() :
+    ISubject()
 {
 }
