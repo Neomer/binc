@@ -8,7 +8,8 @@ class NetDataStreamException : public std::exception
 public:
     enum ExceptionType
     {
-        enNDSE_HostNotAvailable
+        enNDSE_HostNotAvailable,
+        enNDSE_Timeout,
     };
 
     NetDataStreamException(ExceptionType type, const char * message);
