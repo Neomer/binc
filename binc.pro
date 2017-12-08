@@ -16,7 +16,8 @@ SOURCES += src/main.cpp \
     src/core/net/NetDataStreamException.cpp \
     src/core/net/HTTPClient.cpp \
     src/core/net/HTTPResponse.cpp \
-    src/core/net/IHTTPRequest.cpp
+    src/core/net/IHTTPRequest.cpp \
+    src/core/net/HTTPgetRequest.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -28,7 +29,8 @@ HEADERS += \
     src/core/net/NetDataStreamException.h \
     src/core/net/HTTPClient.h \
     src/core/net/HTTPResponse.h \
-    src/core/net/IHTTPRequest.h
+    src/core/net/IHTTPRequest.h \
+    src/core/net/HTTPgetRequest.h
 
 
 INCLUDEPATH += $$PWD/src

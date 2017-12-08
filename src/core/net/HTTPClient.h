@@ -19,7 +19,7 @@ public:
     /// \param url Адрес
     /// \return
     ///
-    static HTTPResponse get(QUrl &url);
+    static HTTPResponse get(QUrl url);
 };
 
 #endif // HTTPCLIENT_H

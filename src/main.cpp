@@ -2,6 +2,8 @@
 #include <QCoreApplication>
 #include <core/net/PortMapping.h>
 #include <core/net/NetDataStreamException.h>
+#include <core/net/HTTPgetRequest.h>
+#include <core/net/HTTPClient.h>
 
 int main(int argc, char ** argv)
 {
@@ -20,6 +22,8 @@ int main(int argc, char ** argv)
     {
         qDebug() << ex.what();
     }
+
+    HTTPResponse resp = HTTPClient::get(QUrl("http://yandex.ru"));
 
     return a.exec();
 }
