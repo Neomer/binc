@@ -24,13 +24,30 @@ public:
     /// \return
     ///
     QString statusMessage() { return _statusMessage; }
+    ///
+    /// \brief header Возвращает заголовок с указанным именем из HTTP-ответа
+    /// \param name
+    /// \return
+    ///
+    QString header(QString name);
+    ///
+    /// \brief content возвращает тело из HTTP-ответа
+    /// \return
+    ///
+    QString content() { return _content; }
+
 
 private:
+    ///
+    /// \brief parse Разбирает HTTP-запрос на составляющие
+    ///
     void parse();
 
     IHTTPRequest *_request;
     QString _raw, _version, _statusMessage;
     int _status;
+    QMap<QString, QString> _headers;
+    QString _content;
 };
 
 #endif // HTTPRESPONSE_H

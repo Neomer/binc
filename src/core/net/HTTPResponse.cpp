@@ -8,6 +8,18 @@ HTTPResponse::HTTPResponse(IHTTPRequest *request, QByteArray reply)
     parse();
 }
 
+QString HTTPResponse::header(QString name)
+{
+    if (_headers.keys().contains(name))
+    {
+        return _headers[name];
+    }
+    else
+    {
+        return QString();
+    }
+}
+
 void HTTPResponse::parse()
 {
     QString row;
