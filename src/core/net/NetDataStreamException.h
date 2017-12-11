@@ -11,7 +11,8 @@ public:
         enNDSE_HostNotAvailable,
         enNDSE_Timeout,
         enNDSE_PortIsBusy,
-        enNDSE_TransferError
+        enNDSE_TransferError,
+        enNDSE_DataFormatError,
     };
 
     NetDataStreamException(ExceptionType type, const char * message);

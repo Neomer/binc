@@ -2,6 +2,7 @@
 #include <QCoreApplication>
 #include <core/net/PortMapping.h>
 #include <core/net/NetDataStreamException.h>
+#include <core/net/HTTPParsingException.h>
 #include <core/net/HTTPgetRequest.h>
 #include <core/net/HTTPClient.h>
 
@@ -31,10 +32,10 @@ int main(int argc, char ** argv)
             qDebug() << resp.statusMessage();
         }
     }
-    catch (NetDataStreamException &ex)
+    catch (HTTPParsingException &ex)
     {
 
-        qDebug() << ex.what();
+        qDebug() << "Error line" << ex.line() << ex.what();
     }
 
     return a.exec();

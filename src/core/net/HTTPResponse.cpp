@@ -1,5 +1,5 @@
 #include "HTTPResponse.h"
-#include "NetDataStreamException.h"
+#include "HTTPParsingException.h"
 
 HTTPResponse::HTTPResponse(IHTTPRequest *request, QByteArray reply)
 {
@@ -23,29 +23,26 @@ QString HTTPResponse::header(QString name)
 void HTTPResponse::parse()
 {
     QString row;
-    int rownum = 0;
     int tmp;
     bool ok;
 
+    int rownum = 0;
     row = _raw.left(_raw.indexOf('\n')).trimmed();
-    if (rownum == 0)
+    if (row.left(4) != "HTTP")
     {
-        if (row.left(4) != "HTTP")
-        {
-            throw NetDataStreamException(NetDataStreamException::enNDSE_TransferError, "Неизвестный формат сообщения!");
-        }
-        tmp = row.indexOf(' ');
-        _version = row.mid(5, tmp - 5);
-        _status = row.mid(tmp + 1, 3).toInt(&ok);
-        if (!ok)
-        {
-            throw NetDataStreamException(NetDataStreamException::enNDSE_TransferError, "Неизвестный формат сообщения!");
-        }
-        _statusMessage = row.mid(tmp + 5);
+        throw HTTPParsingException(1, "Неизвестный формат сообщения!");
     }
-    else
+    tmp = row.indexOf(' ');
+    _version = row.mid(5, tmp - 5);
+    _status = row.mid(tmp + 1, 3).toInt(&ok);
+    if (!ok)
     {
-
+        throw HTTPParsingException(1, "Неизвестный формат сообщения!");
     }
-    rownum++;
+    _statusMessage = row.mid(tmp + 5);
+    do
+    {
+        rownum++;
+    }
+    while (true);
 }
