@@ -23,7 +23,19 @@ int main(int argc, char ** argv)
         qDebug() << ex.what();
     }
 
-    HTTPResponse resp = HTTPClient::get(QUrl("http://yandex.ru"));
+    try
+    {
+        HTTPResponse resp = HTTPClient::get(QUrl("http://yandex.ru"));
+        if (resp.status() != 200)
+        {
+            qDebug() << resp.statusMessage();
+        }
+    }
+    catch (NetDataStreamException &ex)
+    {
+
+        qDebug() << ex.what();
+    }
 
     return a.exec();
 }
