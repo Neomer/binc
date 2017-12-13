@@ -2,6 +2,7 @@
 #define HTTPRESPONSE_H
 
 #include "IHTTPRequest.h"
+#include <QStringList>
 
 class HTTPResponse
 {
@@ -30,6 +31,11 @@ public:
     /// \return
     ///
     QString header(QString name);
+    ///
+    /// \brief headers возвращает все имена заголовоков в ответе
+    /// \return
+    ///
+    QStringList headers() { return _headers.keys(); }
     ///
     /// \brief content возвращает тело из HTTP-ответа
     /// \return
