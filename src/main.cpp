@@ -3,8 +3,10 @@
 #include <core/net/PortMapping.h>
 #include <core/net/NetDataStreamException.h>
 #include <core/net/HTTPParsingException.h>
-#include <core/net/HTTPgetRequest.h>
+#include <core/net/HTTPResponse.h>
 #include <core/net/HTTPClient.h>
+#include <core/net/SSDPProvider.h>
+
 
 int main(int argc, char ** argv)
 {
@@ -35,8 +37,10 @@ int main(int argc, char ** argv)
     catch (HTTPParsingException &ex)
     {
 
-        qDebug() << "Error line" << ex.line() << ex.what();
+        qDebug() << "Error: line" << ex.line() << ex.what();
     }
+
+    SSDPProvider::registerPort(1567);
 
     return a.exec();
 }
