@@ -26,7 +26,7 @@ public:
     QString statusMessage() { return _statusMessage; }
     ///
     /// \brief header Возвращает заголовок с указанным именем из HTTP-ответа
-    /// \param name
+    /// \param name Имя заголовка в нижнем регистре
     /// \return
     ///
     QString header(QString name);
@@ -42,6 +42,12 @@ private:
     /// \brief parse Разбирает HTTP-запрос на составляющие
     ///
     void parse();
+    ///
+    /// \brief formatHeaderValue Удаляет из значений заголовков ненужные символы
+    /// \param text
+    /// \return
+    ///
+    QString formatHeaderValue(QString text);
 
     IHTTPRequest *_request;
     QString _raw, _version, _statusMessage;
