@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-typedef quint64 dbkey;
+
 
 class IDatabaseObject
 {

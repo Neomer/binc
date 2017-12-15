@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QLockFile>
 #include "IDatabaseObject.h"
+#include "DatabaseGeneral.h"
 
 ///
 /// \brief The Database class класс для работы с базой данных

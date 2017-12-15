@@ -24,7 +24,9 @@ SOURCES += src/main.cpp \
     src/core/net/SSDPProvider.cpp \
     src/database/Database.cpp \
     src/database/IDatabaseObject.cpp \
-    src/database/DatabaseException.cpp
+    src/database/DatabaseException.cpp \
+    src/database/IDatabaseIndex.cpp \
+    src/database/IDatabaseIndexResult.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -44,7 +46,10 @@ HEADERS += \
     src/core/net/SSDPProvider.h \
     src/database/Database.h \
     src/database/IDatabaseObject.h \
-    src/database/DatabaseException.h
+    src/database/DatabaseException.h \
+    src/database/IDatabaseIndex.h \
+    src/database/DatabaseGeneral.h \
+    src/database/IDatabaseIndexResult.h
 
 
 INCLUDEPATH += $$PWD/src
