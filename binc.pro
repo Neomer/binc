@@ -21,7 +21,9 @@ SOURCES += src/main.cpp \
     src/core/net/HTTPParsingException.cpp \
     src/core/net/HTTPUdpClient.cpp \
     src/core/net/SSDPRequest.cpp \
-    src/core/net/SSDPProvider.cpp
+    src/core/net/SSDPProvider.cpp \
+    src/database/Database.cpp \
+    src/database/IDatabaseObject.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -38,7 +40,9 @@ HEADERS += \
     src/core/net/HTTPParsingException.h \
     src/core/net/HTTPUdpClient.h \
     src/core/net/SSDPRequest.h \
-    src/core/net/SSDPProvider.h
+    src/core/net/SSDPProvider.h \
+    src/database/Database.h \
+    src/database/IDatabaseObject.h
 
 
 INCLUDEPATH += $$PWD/src
