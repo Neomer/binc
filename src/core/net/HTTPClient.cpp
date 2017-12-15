@@ -30,6 +30,8 @@ HTTPResponse HTTPClient::get(QUrl url)
     {
         throw NetDataStreamException(NetDataStreamException::enNDSE_TransferError, "Response timeout!");
     }
+    QByteArray data = socket->readAll();
+    delete socket;
 
-    return HTTPResponse(&req, socket->readAll());
+    return HTTPResponse(&req, data);
 }
