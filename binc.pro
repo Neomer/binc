@@ -23,7 +23,8 @@ SOURCES += src/main.cpp \
     src/core/net/SSDPRequest.cpp \
     src/core/net/SSDPProvider.cpp \
     src/database/Database.cpp \
-    src/database/IDatabaseObject.cpp
+    src/database/IDatabaseObject.cpp \
+    src/database/DatabaseException.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -42,7 +43,8 @@ HEADERS += \
     src/core/net/SSDPRequest.h \
     src/core/net/SSDPProvider.h \
     src/database/Database.h \
-    src/database/IDatabaseObject.h
+    src/database/IDatabaseObject.h \
+    src/database/DatabaseException.h
 
 
 INCLUDEPATH += $$PWD/src

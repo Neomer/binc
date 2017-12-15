@@ -35,6 +35,9 @@ public:
     /// \param object объект
     ///
     void write(dbkey key, IDatabaseObject object);
+
+private:
+    QString _databasePath;
 };
 
 #endif // DATABASE_H
