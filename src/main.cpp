@@ -6,6 +6,7 @@
 #include <core/net/HTTPResponse.h>
 #include <core/net/HTTPClient.h>
 #include <core/net/SSDPProvider.h>
+#include <database/Database.h>
 
 
 int main(int argc, char ** argv)
@@ -41,6 +42,12 @@ int main(int argc, char ** argv)
     }
 
     SSDPProvider::registerPort(1567);
+
+    Database db;
+    if (!db.open())
+    {
+        qDebug() << "Error: database unavailable!";
+    }
 
     return a.exec();
 }

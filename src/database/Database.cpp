@@ -2,10 +2,17 @@
 #include <QStandardPaths>
 #include <QFile>
 #include <QDir>
+#include "DatabaseException.h"
 
 Database::Database()
 {
     _databasePath = QDir(QStandardPaths::displayName(QStandardPaths::DataLocation)).absoluteFilePath("db");
+    _lockFile = new QLockFile(QDir(_databasePath).absoluteFilePath(".LOCK"));
+}
+
+Database::~Database()
+{
+    delete _lockFile;
 }
 
 /* Проверяем наличие директорий, системных файлов.
@@ -17,17 +24,21 @@ bool Database::open()
     QDir dir(_databasePath);
     if (!dir.exists())
     {
-        if (dir.mkpath(_databasePath))
+        if (!dir.mkpath(_databasePath))
         {
-            return false;
+            throw DatabaseException("Database path creation failed!");
         }
+    }
+    if (!_lockFile->tryLock(3000))
+    {
+        return false;
     }
     return true;
 }
 
 void Database::close()
 {
-
+    _lockFile->unlock();
 }
 
 IDatabaseObject Database::read(dbkey key)

@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include <QFile>
+#include <QLockFile>
 #include "IDatabaseObject.h"
 
 ///
@@ -11,6 +12,7 @@ class Database
 {
 public:
     Database();
+    ~Database();
 
     ///
     /// \brief open пытается открыть соединение с базой данных, в случае успеха,
@@ -38,6 +40,9 @@ public:
 
 private:
     QString _databasePath;
+    QLockFile *_lockFile;
 };
+
+
 
 #endif // DATABASE_H
