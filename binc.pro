@@ -18,7 +18,10 @@ SOURCES += src/main.cpp \
     src/core/net/HTTPResponse.cpp \
     src/core/net/IHTTPRequest.cpp \
     src/core/net/HTTPgetRequest.cpp \
-    src/core/net/HTTPParsingException.cpp
+    src/core/net/HTTPParsingException.cpp \
+    src/core/net/HTTPUdpClient.cpp \
+    src/core/net/SSDPRequest.cpp \
+    src/core/net/SSDPProvider.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -32,7 +35,10 @@ HEADERS += \
     src/core/net/HTTPResponse.h \
     src/core/net/IHTTPRequest.h \
     src/core/net/HTTPgetRequest.h \
-    src/core/net/HTTPParsingException.h
+    src/core/net/HTTPParsingException.h \
+    src/core/net/HTTPUdpClient.h \
+    src/core/net/SSDPRequest.h \
+    src/core/net/SSDPProvider.h
 
 
 INCLUDEPATH += $$PWD/src
