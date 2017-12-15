@@ -26,7 +26,14 @@ SOURCES += src/main.cpp \
     src/database/IDatabaseObject.cpp \
     src/database/DatabaseException.cpp \
     src/database/IDatabaseIndex.cpp \
-    src/database/IDatabaseIndexResult.cpp
+    src/database/IDatabaseIndexResult.cpp \
+    src/database/DatabaseBinaryTreeIndex.cpp \
+    src/core/Context.cpp \
+    src/database/DatabaseBinaryTreeIndexRoot.cpp \
+    src/database/DatabaseFile.cpp \
+    src/database/DatabaseFileException.cpp \
+    src/database/DatabaseDataFile.cpp \
+    src/database/DatabaseIndexFile.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -49,7 +56,14 @@ HEADERS += \
     src/database/DatabaseException.h \
     src/database/IDatabaseIndex.h \
     src/database/DatabaseGeneral.h \
-    src/database/IDatabaseIndexResult.h
+    src/database/IDatabaseIndexResult.h \
+    src/database/DatabaseBinaryTreeIndex.h \
+    src/core/Context.h \
+    src/database/DatabaseBinaryTreeIndexRoot.h \
+    src/database/DatabaseFile.h \
+    src/database/DatabaseFileException.h \
+    src/database/DatabaseDataFile.h \
+    src/database/DatabaseIndexFile.h
 
 
 INCLUDEPATH += $$PWD/src

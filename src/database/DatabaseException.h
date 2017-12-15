@@ -7,13 +7,12 @@ class DatabaseException : public std::exception
 {
 public:
     DatabaseException(const char * message);
-    DatabaseException(QString message);
 
 public:
-    char const* what() const throw() { return _message.toUtf8().constData(); }
+    char const* what() const throw() { return _message; }
 
 private:
-    QString _message;
+    const char *  _message;
 };
 
 #endif // DATABASEEXCEPTION_H

@@ -11,6 +11,10 @@ class IDatabaseIndex
 {
 public:
     ///
+    /// \brief init инициализирует индекс
+    ///
+    virtual void init() = 0;
+    ///
     /// \brief find Ищет ключ в индексе
     /// \param key Ключ
     /// \param result Записывает результат поиска
@@ -19,9 +23,10 @@ public:
     ///
     /// \brief write записывает информацию о новом блоке в индекс
     /// \param key Ключ
+    /// \param offset Смещение от начала файла
     /// \param result информация о новом объекте
     ///
-    virtual void write(dbkey key, IDatabaseIndexResult *result) = 0;
+    virtual void write(void *data, IDatabaseIndexResult *result) = 0;
 };
 
 #endif // IDATABASEINDEX_H
