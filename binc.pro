@@ -25,7 +25,8 @@ SOURCES += src/main.cpp \
     src/core/net/UdpStream.cpp \
     src/core/DataStreamException.cpp \
     src/core/net/UdpStreamException.cpp \
-    src/core/IDataBlock.cpp
+    src/core/IDataBlock.cpp \
+    src/core/net/UdpDataBlock.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -46,7 +47,8 @@ HEADERS += \
     src/core/net/UdpStream.h \
     src/core/DataStreamException.h \
     src/core/net/UdpStreamException.h \
-    src/core/IDataBlock.h
+    src/core/IDataBlock.h \
+    src/core/net/UdpDataBlock.h
 
 
 INCLUDEPATH += $$PWD/src

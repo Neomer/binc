@@ -2,14 +2,18 @@
 #define UDPSTREAM_H
 
 #include <core/IDataStream.h>
+#include <core/ISubject.h>
 #include <QUdpSocket>
 #include <QHostAddress>
+#include "UdpDataBlock.h"
 #include "UdpStreamException.h"
+
+#define UDP_BUFFER_SIZE         1024
 
 ///
 /// \brief The UdpStream class реализует функционал обмена информацией с помощью широковещательных запросов
 ///
-class UdpStream : public IDataStream
+class UdpStream : public QObject, public IDataStream, public ISubject
 {
     Q_OBJECT
 
@@ -22,18 +26,17 @@ public:
     //IDataStream interface
     void close() override;
     void open() override;
-
-    // QIODevice interface
-protected:
-    qint64 readData(char *data, qint64 maxlen) override;
-    qint64 writeData(const char *data, qint64 len) override;
+    qint64 write(const char *data, qint64 len) override;
 
 private slots:
     void readDatagram();
 
 private:
+    void read(IDataBlock *data) override;
+
     QUdpSocket *_socket;
     quint16 _port;
+    char _data_buffer[UDP_BUFFER_SIZE];
 };
 
 #endif // UDPSTREAM_H

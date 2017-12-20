@@ -32,12 +32,13 @@ void NetDataStream::close()
     _socket->close();
 }
 
-qint64 NetDataStream::readData(char *data, qint64 maxlen)
+void NetDataStream::read(IDataBlock *data)
 {
-    return _socket->read(data, maxlen);
+    data = 0;
+    _socket->read(0, 0);
 }
 
-qint64 NetDataStream::writeData(const char *data, qint64 len)
+qint64 NetDataStream::write(const char *data, qint64 len)
 {
     return _socket->write(data, len);
 }

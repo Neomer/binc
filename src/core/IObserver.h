@@ -7,7 +7,7 @@
 class IObserver
 {
 public:
-    virtual void update(QVariant data) = 0;
+    virtual void update(void *data) = 0;
 };
 
 #endif

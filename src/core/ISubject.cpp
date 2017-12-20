@@ -20,7 +20,7 @@ void ISubject::unsubscribe(IObserver *observer)
     _list.removeOne(observer);
 }
 
-void ISubject::update(QVariant data)
+void ISubject::update(void *data)
 {
     foreach (IObserver *o, _list)
     {

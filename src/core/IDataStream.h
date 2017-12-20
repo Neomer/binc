@@ -5,19 +5,15 @@
 #include <QIODevice>
 #include "IDataBlock.h"
 
-class IDataStream : public QIODevice
+class IDataStream
 {
-    Q_OBJECT
-
 public:
     IDataStream();
 
     virtual void open() = 0;
     virtual void close() = 0;
-
-signals:
-    void blockReady(IDataBlock);
-
+    virtual void read(IDataBlock *data) = 0;
+    virtual qint64 write(const char *data, qint64 len) = 0;
 };
 
 #endif // IDATASTREAM_H

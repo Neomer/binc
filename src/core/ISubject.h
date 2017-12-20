@@ -12,7 +12,7 @@ public:
 	~ISubject();
 	void subscribe(IObserver *observer);
 	void unsubscribe(IObserver *observer);
-    void update(QVariant data);
+    void update(void *data);
 	
 private:
 	QList<IObserver *> _list;
