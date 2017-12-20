@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QIODevice>
+#include "IDataBlock.h"
 
 class IDataStream : public QIODevice
 {
@@ -11,6 +12,11 @@ class IDataStream : public QIODevice
 public:
     IDataStream();
 
+    virtual void open() = 0;
+    virtual void close() = 0;
+
+signals:
+    void blockReady(IDataBlock);
 
 };
 

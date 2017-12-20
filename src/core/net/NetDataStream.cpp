@@ -18,13 +18,9 @@ NetDataStream::~NetDataStream()
 
 }
 
-void NetDataStream::open(quint16 port)
+void NetDataStream::open()
 {
-    if (port == 0)
-        port = _port;
-    else
-        _port = port;
-    _socket->connectToHost(_remoteHost, port);
+    _socket->connectToHost(_remoteHost, _port);
     if (!_socket->waitForConnected(3000))
     {
         throw NetDataStreamException(NetDataStreamException::enNDSE_HostNotAvailable, "Host is unavailable!");

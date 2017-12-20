@@ -15,7 +15,9 @@ public:
     NetDataStream(QTcpSocket *socket);
     ~NetDataStream();
 
-    void open(quint16 port = 0);
+    void setPort(quint16 value) { _port = value; }
+
+    void open();
     void close();
 
 protected:
