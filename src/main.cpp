@@ -8,7 +8,6 @@
 #include <core/net/HTTPClient.h>
 #include <core/net/SSDPProvider.h>
 #include <core/net/UdpStream.h>
-#include <Chat.h>
 #include <core/types/Guid.h>
 
 int main(int argc, char ** argv)
