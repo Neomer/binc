@@ -8,7 +8,8 @@
 #include <core/net/HTTPClient.h>
 #include <core/net/SSDPProvider.h>
 #include <core/net/UdpStream.h>
-
+#include <Chat.h>
+#include <core/types/Guid.h>
 
 int main(int argc, char ** argv)
 {
@@ -18,7 +19,7 @@ int main(int argc, char ** argv)
     {
         qDebug("%s", argv[i]);
     }
-    Context::Instance().init();
+    Context::Instance().load();
 
     quint16 port = 0;
     try
@@ -44,9 +45,12 @@ int main(int argc, char ** argv)
         qDebug() << "Error: line" << ex.line() << ex.what();
     }
 
-    //SSDPProvider::registerPort(1567);
+    Guid id = Guid::randomGuid(), id2 = id;
 
+    //SSDPProvider::registerPort(1567);
     int ret = a.exec();
+
+    Context::Instance().unload();
 
     return ret;
 }
