@@ -38,7 +38,7 @@ void NetDataStream::read(IDataBlock *data)
     _socket->read(0, 0);
 }
 
-qint64 NetDataStream::write(const char *data, qint64 len)
+void NetDataStream::write(IDataBlock *data)
 {
-    return _socket->write(data, len);
+    _socket->write(data->data().constData(), data->size());
 }

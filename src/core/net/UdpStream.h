@@ -26,14 +26,13 @@ public:
     //IDataStream interface
     void close() override;
     void open() override;
-    qint64 write(const char *data, qint64 len) override;
+    void read(IDataBlock *data) override;
+    void write(IDataBlock *data) override;
 
 private slots:
     void readDatagram();
 
 private:
-    void read(IDataBlock *data) override;
-
     QUdpSocket *_socket;
     quint16 _port;
     char _data_buffer[UDP_BUFFER_SIZE];

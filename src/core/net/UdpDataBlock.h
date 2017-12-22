@@ -1,10 +1,11 @@
 #ifndef UDPDATABLOCK_H
 #define UDPDATABLOCK_H
 
-#include <core/IDataBlock.h>
+#include <core/IHashedDataBlock.h>.h>
 #include <QHostAddress>
+#include <QCryptographicHash>
 
-class UdpDataBlock : public IDataBlock
+class UdpDataBlock : public IHashedDataBlock
 {
 public:
     UdpDataBlock();

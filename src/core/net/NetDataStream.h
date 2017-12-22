@@ -20,7 +20,7 @@ public:
     void open() override;
     void close() override;
     void read(IDataBlock *data) override;
-    qint64 write(const char *data, qint64 len) override;
+    void write(IDataBlock *data) override;
 
 private:
     QTcpSocket *_socket;

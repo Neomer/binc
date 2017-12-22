@@ -39,16 +39,25 @@ void UdpStream::read(IDataBlock *data)
         memset(_data_buffer, 0, UDP_BUFFER_SIZE);
         len = _socket->readDatagram(_data_buffer, UDP_BUFFER_SIZE, &addr, &port);
         if (len <= 0) break;
-        udpBlock->setData(QByteArray(_data_buffer, len));
+        udpBlock->append(QByteArray(_data_buffer, len));
         udpBlock->setRemoteAddress(addr);
         udpBlock->setRemotePort(port);
     }
     while (len > 0);
+    try
+    {
+        udpBlock->parse();
+    }
+    catch (DataStreamException &)
+    {
+
+    }
 }
 
-qint64 UdpStream::write(const char *data, qint64 len)
+void UdpStream::write(IDataBlock *data)
 {
-    return _socket->writeDatagram(data, len, QHostAddress::Broadcast, _port);
+    auto ba = ((UdpDataBlock *)data)->compiled();
+    _socket->writeDatagram(ba.constData(), ba.size(), QHostAddress::Broadcast, _port);
 }
 
 void UdpStream::readDatagram()
@@ -58,5 +67,4 @@ void UdpStream::readDatagram()
     qDebug() << "UdpStream::readDatagram() - From:" << block.remoteAddress().toString() << "Received:" << block.size() << "byte(s) Message:" << QString::fromUtf8(block.data());
 
     update(&block);
-
 }

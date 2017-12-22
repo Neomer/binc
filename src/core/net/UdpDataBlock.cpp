@@ -1,13 +1,13 @@
 #include "UdpDataBlock.h"
 
 UdpDataBlock::UdpDataBlock() :
-    IDataBlock()
+    IHashedDataBlock()
 {
 
 }
 
 UdpDataBlock::UdpDataBlock(QByteArray data) :
-    IDataBlock(data)
+    IHashedDataBlock(data)
 {
 
 }
