@@ -27,7 +27,8 @@ SOURCES += src/main.cpp \
     src/core/net/UdpStreamException.cpp \
     src/core/IDataBlock.cpp \
     src/core/net/UdpDataBlock.cpp \
-    src/core/IHashedDataBlock.cpp
+    src/core/IHashedDataBlock.cpp \
+    src/core/Context.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -50,7 +51,8 @@ HEADERS += \
     src/core/net/UdpStreamException.h \
     src/core/IDataBlock.h \
     src/core/net/UdpDataBlock.h \
-    src/core/IHashedDataBlock.h
+    src/core/IHashedDataBlock.h \
+    src/core/Context.h
 
 
 INCLUDEPATH += $$PWD/src
