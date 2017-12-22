@@ -46,5 +46,7 @@ int main(int argc, char ** argv)
 
     //SSDPProvider::registerPort(1567);
 
-    return a.exec();
+    int ret = a.exec();
+
+    return ret;
 }

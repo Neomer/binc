@@ -24,7 +24,7 @@ void ISubject::update(void *data)
 {
     foreach (IObserver *o, _list)
     {
-        o->update(data);
+        o->update(this, data);
     }
 }
 
