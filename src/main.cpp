@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <QCoreApplication>
+#include <core/Context.h>
 #include <core/net/PortMapping.h>
 #include <core/net/NetDataStreamException.h>
 #include <core/net/HTTPParsingException.h>
@@ -17,6 +18,7 @@ int main(int argc, char ** argv)
     {
         qDebug("%s", argv[i]);
     }
+    Context::Instance().init();
 
     quint16 port = 0;
     try
