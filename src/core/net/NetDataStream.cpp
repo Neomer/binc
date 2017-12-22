@@ -18,13 +18,9 @@ NetDataStream::~NetDataStream()
 
 }
 
-void NetDataStream::open(quint16 port)
+void NetDataStream::open()
 {
-    if (port == 0)
-        port = _port;
-    else
-        _port = port;
-    _socket->connectToHost(_remoteHost, port);
+    _socket->connectToHost(_remoteHost, _port);
     if (!_socket->waitForConnected(3000))
     {
         throw NetDataStreamException(NetDataStreamException::enNDSE_HostNotAvailable, "Host is unavailable!");
@@ -36,12 +32,13 @@ void NetDataStream::close()
     _socket->close();
 }
 
-qint64 NetDataStream::readData(char *data, qint64 maxlen)
+void NetDataStream::read(IDataBlock *data)
 {
-    return _socket->read(data, maxlen);
+    data = 0;
+    _socket->read(0, 0);
 }
 
-qint64 NetDataStream::writeData(const char *data, qint64 len)
+void NetDataStream::write(IDataBlock *data)
 {
-    return _socket->write(data, len);
+    _socket->write(data->data().constData(), data->size());
 }

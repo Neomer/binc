@@ -6,6 +6,7 @@
 #include <core/net/HTTPResponse.h>
 #include <core/net/HTTPClient.h>
 #include <core/net/SSDPProvider.h>
+#include <core/net/UdpStream.h>
 
 
 int main(int argc, char ** argv)
@@ -16,6 +17,7 @@ int main(int argc, char ** argv)
     {
         qDebug("%s", argv[i]);
     }
+    /*
     quint16 port = 0;
     try
     {
@@ -40,7 +42,11 @@ int main(int argc, char ** argv)
         qDebug() << "Error: line" << ex.line() << ex.what();
     }
 
-    SSDPProvider::registerPort(1567);
+    //SSDPProvider::registerPort(1567);
+    */
+    UdpStream stream;
+    stream.open();
+    stream.write("ddfdf", 5);
 
     return a.exec();
 }
