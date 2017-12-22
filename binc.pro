@@ -30,7 +30,8 @@ SOURCES += src/main.cpp \
     src/core/IHashedDataBlock.cpp \
     src/core/Context.cpp \
     src/core/ConsoleInput.cpp \
-    src/core/ConsoleInputException.cpp
+    src/core/ConsoleInputException.cpp \
+    src/core/types/Guid.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -56,7 +57,8 @@ HEADERS += \
     src/core/IHashedDataBlock.h \
     src/core/Context.h \
     src/core/ConsoleInput.h \
-    src/core/ConsoleInputException.h
+    src/core/ConsoleInputException.h \
+    src/core/types/Guid.h
 
 
 INCLUDEPATH += $$PWD/src

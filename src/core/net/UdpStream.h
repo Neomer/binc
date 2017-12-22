@@ -5,6 +5,7 @@
 #include <core/ISubject.h>
 #include <QUdpSocket>
 #include <QHostAddress>
+#include <QThread>
 #include "UdpDataBlock.h"
 #include "UdpStreamException.h"
 

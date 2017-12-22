@@ -14,8 +14,10 @@ public:
         static Context i;
         return i;
     }
+    ConsoleInput * consoleInput() const { return _consoleInput; }
 
-    void init();
+    void load();
+    void unload();
 
 private:
     Context();

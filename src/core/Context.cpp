@@ -1,9 +1,14 @@
 #include "Context.h"
 
-void Context::init()
+void Context::load()
 {
     _consoleInput = new ConsoleInput();
     _consoleInput->start();
+}
+
+void Context::unload()
+{
+    _consoleInput->terminate();
 }
 
 Context::Context()

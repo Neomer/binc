@@ -2,6 +2,7 @@
 
 ISubject::ISubject()
 {
+    _guid = Guid::randomGuid();
     _list.clear();
 }
 
@@ -24,7 +25,7 @@ void ISubject::update(void *data)
 {
     foreach (IObserver *o, _list)
     {
-        o->update(this, data);
+        o->update(_guid, data);
     }
 }
 

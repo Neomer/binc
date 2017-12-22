@@ -3,11 +3,12 @@
 
 
 UdpStream::UdpStream() :
+    QObject(),
     ISubject(),
     _port(16789)
 {
     _socket = new QUdpSocket(this);
-    connect(_socket, SIGNAL(readyRead()), this, SLOT(readDatagram()));
+    connect(_socket, SIGNAL(readyRead()), this, SLOT(readDatagram()), Qt::DirectConnection);
 }
 
 UdpStream::~UdpStream()
@@ -64,7 +65,6 @@ void UdpStream::readDatagram()
 {
     UdpDataBlock block;
     read(&block);
-    qDebug() << "UdpStream::readDatagram() - From:" << block.remoteAddress().toString() << "Received:" << block.size() << "byte(s) Message:" << QString::fromUtf8(block.data());
-
     update(&block);
 }
+
