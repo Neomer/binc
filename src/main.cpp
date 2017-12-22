@@ -44,7 +44,6 @@ int main(int argc, char ** argv)
         qDebug() << "Error: line" << ex.line() << ex.what();
     }
 
-    Guid id = Guid::randomGuid(), id2 = id;
 
     //SSDPProvider::registerPort(1567);
     int ret = a.exec();
