@@ -2,8 +2,11 @@
 #define DATABASE_H
 
 #include <QFile>
+#include <QDir>
 #include <QLockFile>
 #include "IDatabaseObject.h"
+#include "DatabaseGeneral.h"
+#include "IDatabaseIndex.h"
 
 ///
 /// \brief The Database class класс для работы с базой данных
@@ -37,10 +40,22 @@ public:
     /// \param object объект
     ///
     void write(dbkey key, IDatabaseObject object);
+    ///
+    /// \brief databasePath путь, по которому располагается база данных
+    /// \return
+    ///
+    QString databasePath() { return _databasePath; }
+    ///
+    /// \brief databaseDir директория, в которой располагается база данных
+    /// \return
+    ///
+    QDir databaseDir() { return _databaseDir; }
 
 private:
     QString _databasePath;
     QLockFile *_lockFile;
+    QDir _databaseDir;
+    IDatabaseIndex *_index;
 };
 
 

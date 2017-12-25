@@ -1,5 +1,8 @@
 #include <QDebug>
 #include <QCoreApplication>
+#include <QDir>
+#include <QDateTime>
+#include <core/Context.h>
 #include <core/net/PortMapping.h>
 #include <core/net/NetDataStreamException.h>
 #include <core/net/HTTPParsingException.h>
@@ -17,6 +20,22 @@ int main(int argc, char ** argv)
     {
         qDebug("%s", argv[i]);
     }
+    srand(QDateTime::currentDateTime().toMSecsSinceEpoch());
+    Context::Instance().init(QDir(a.applicationDirPath()).absoluteFilePath("binc.conf"));
+    QDateTime start = QDateTime::currentDateTime();
+    for (int i = 0; i < 100; i++)
+    {
+        try
+        {
+            Context::Instance().database()->write(rand(), IDatabaseObject());
+        }
+        catch (DatabaseException &)
+        {
+        }
+    }
+    qDebug() << "Time elapsed:" << start.msecsTo(QDateTime::currentDateTime()) * 0.001;
+
+
     quint16 port = 0;
     try
     {
@@ -42,12 +61,6 @@ int main(int argc, char ** argv)
     }
 
     SSDPProvider::registerPort(1567);
-
-    Database db;
-    if (!db.open())
-    {
-        qDebug() << "Error: database unavailable!";
-    }
 
     return a.exec();
 }
