@@ -116,6 +116,12 @@ void DatabaseFile::insert(quint64 offset, void **data, int count)
     QFile::write((const char *)data, size);
 }
 
+void DatabaseFile::append(void *data)
+{
+    toEnd();
+    write((const char *)data, recordSize());
+}
+
 void DatabaseFile::toEnd()
 {
     seek(bytesUsed());

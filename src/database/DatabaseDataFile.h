@@ -2,23 +2,26 @@
 #define DATABASEDATAFILE_H
 
 #include "DatabaseFile.h"
+#include "DatabaseGeneral.h"
 
 class DatabaseDataFile : public DatabaseFile
 {
 public:
+    struct DatabaseDataFileRecord
+    {
+        dbkey Key;
+        int Data;
+    };
+
     DatabaseDataFile();
 
-    // DatabaseFile interface
-protected:
-    quint16 headerSize() override { return sizeof(DatabaseDataFileHeader); }
+public:
+    quint16 recordSize() override { return sizeof(DatabaseDataFileRecord); }
 
-private:
-    struct DatabaseDataFileHeader
-    {
-        qint64 _bytesUsed;
-        qint64 _records;
-    };
-    DatabaseDataFileHeader _header;
+protected:
+    quint16 headerSize() override { return 0; }
+    void writeHeader(void *data) override;
+    void readHeader(void *data) override;
 };
 
 #endif // DATABASEDATAFILE_H

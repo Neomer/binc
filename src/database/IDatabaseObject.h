@@ -9,6 +9,9 @@ class IDatabaseObject
 {
 public:
     IDatabaseObject();
+
+protected:
+
 };
 
 #endif // IDATABASEOBJECT_H

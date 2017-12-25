@@ -39,6 +39,11 @@ public:
     ///
     void insert(quint64 offset, void **data, int count);
     ///
+    /// \brief append дописывает в конец блок данных
+    /// \param data
+    ///
+    void append(void *data);
+    ///
     /// \brief toBegin перемещает каретку на первый байт следующий за заголовком
     ///
     void toBegin();
