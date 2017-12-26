@@ -16,7 +16,7 @@ public:
 public:
     void serialize(QDataStream &out) override;
     void deserialize(QDataStream &in) override;
-    quint64 blockSize() override;
+    static quint64 blockSize();
 
     void setCreationDate(QDateTime value) { _creationDate = value; }
     void setBody(QString value) { _body = value; }

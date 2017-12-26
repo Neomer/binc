@@ -1,19 +1,8 @@
 #include "DatabaseIndexFile.h"
 
-DatabaseIndexFile::DatabaseIndexFile()
+
+DatabaseIndexFile::DatabaseIndexFile() :
+    IDatabaseRandomAccessFile(new DatabaseIndexHeader(), 1)
 {
 
 }
-
-void DatabaseIndexFile::writeHeader(void *data)
-{
-    Q_UNUSED(data);
-
-}
-
-void DatabaseIndexFile::readHeader(void *data)
-{
-    Q_UNUSED(data);
-
-}
-

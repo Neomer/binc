@@ -8,7 +8,12 @@ IDatabaseSequentialAccessFile::IDatabaseSequentialAccessFile(HeaderDataBlock *he
 
 void IDatabaseSequentialAccessFile::toBegin()
 {
-    QFile::seek(header()->blockSize());
+    QFile::seek(static_cast<HeaderDataBlock *>(header())->blockSize());
+}
+
+void IDatabaseSequentialAccessFile::toEnd()
+{
+    QFile::seek(static_cast<HeaderDataBlock *>(header())->bytesUsed());
 }
 
 void IDatabaseSequentialAccessFile::write(IDatabaseDataBlock *block)

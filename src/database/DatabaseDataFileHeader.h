@@ -13,7 +13,7 @@ public:
 
 // IDatabaseDataBlock interface
 public:
-    quint64 blockSize() override;
+    static quint64 blockSize();
     void serialize(QDataStream &out) override;
     void deserialize(QDataStream &in) override;
 

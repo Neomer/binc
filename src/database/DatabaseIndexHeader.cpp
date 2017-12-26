@@ -1,6 +1,7 @@
 #include "DatabaseIndexHeader.h"
 
-DatabaseIndexHeader::DatabaseIndexHeader()
+DatabaseIndexHeader::DatabaseIndexHeader() :
+    HeaderDataBlock()
 {
 
 }

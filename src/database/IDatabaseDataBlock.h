@@ -25,7 +25,7 @@ public:
     /// \brief blockSize размер блока с данными
     /// \return
     ///
-    virtual quint64 blockSize() = 0;
+    static quint64 blockSize();
 };
 
 #endif // IDATABASEDATABLOCK_H

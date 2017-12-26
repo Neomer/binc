@@ -20,7 +20,7 @@ private:
 public:
     void serialize(QDataStream &out) override;
     void deserialize(QDataStream &in) override;
-    quint64 blockSize() override;
+    static quint64 blockSize();
 };
 
 #endif // HEADERDATABLOCK_H

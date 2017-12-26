@@ -2,11 +2,12 @@
 #define DATABASEINDEXHEADER_H
 
 #include "IDatabaseDataBlock.h"
+#include "HeaderDataBlock.h"
 
 ///
 /// \brief The DatabaseIndexHeader class Заголовок индексного файла
 ///
-class DatabaseIndexHeader : public IDatabaseDataBlock
+class DatabaseIndexHeader : public HeaderDataBlock
 {
 public:
     DatabaseIndexHeader();

@@ -15,6 +15,7 @@ public:
 // IDatabaseFile interface
 public:
     void toBegin() override;
+    void toEnd() override;
     void write(IDatabaseDataBlock *block) override;
 };
 
