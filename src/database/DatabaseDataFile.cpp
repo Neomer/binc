@@ -2,7 +2,15 @@
 #include "DatabaseDataFileHeader.h"
 
 DatabaseDataFile::DatabaseDataFile() :
-    IDatabaseFile(new DatabaseDataFileHeader())
+    IDatabaseSequentialAccessFile(new DatabaseDataFileHeader())
 {
 
+}
+
+void DatabaseDataFile::write(IDatabaseDataBlock *block)
+{
+    IDatabaseSequentialAccessFile::write(block);
+    static_cast<DatabaseDataFileHeader *>(header())->addBytesUsed(static_cast<DatabaseDataFileRecord *>(block)->blockSize());
+    QFile::seek(0);
+    header()->serialize(_stream);
 }

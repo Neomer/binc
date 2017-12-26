@@ -17,6 +17,13 @@ public:
     void toBegin() override;
     void toEnd() override;
     void write(IDatabaseDataBlock *block) override;
+    void read(IDatabaseDataBlock *block) override;
+    ///
+    /// \brief seek указывается смещение в байтах
+    /// фигня какая-то...
+    /// \param index
+    ///
+    void seek(quint64 index) override;
 };
 
 #endif // IDATABASESEQUENTIALACCESSFILE_H

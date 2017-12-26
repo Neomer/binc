@@ -10,6 +10,7 @@
 #include <database/Database.h>
 
 #include "database/DatabaseIndexFile.h"
+#include "database/DatabaseDataFile.h"
 #include <core/net/UdpStream.h>
 #include <core/types/Guid.h>
 
@@ -23,22 +24,16 @@ int main(int argc, char ** argv)
     }
     Context::Instance().load();
 
-    DatabaseIndexFile file;
+    DatabaseDataFile file;
     file.setFileName("test.data");
     file.open(QIODevice::ReadWrite);
 
-    DatabaseIndexRecord rec, rec2;
-    file.seek(0);
-    rec.setIsDeleted(false);
-    rec.setLength(156);
-    rec.setOffset(15);
+    DatabaseDataFileRecord rec, rec2;
+    rec.setData("asdfgh");
     file.write(&rec);
 
-//    file.seek(1);
-//    rec.setIsDeleted(false);
-//    rec.setLength(56);
-//    rec.setOffset(25);
-//    file.write(&rec);
+    rec.setData("asdfgh3efsdfbdfb");
+    file.write(&rec);
 
     file.seek(0);
     file.read(&rec2);

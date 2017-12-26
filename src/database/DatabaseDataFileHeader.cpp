@@ -1,6 +1,8 @@
 #include "DatabaseDataFileHeader.h"
 
-DatabaseDataFileHeader::DatabaseDataFileHeader()
+DatabaseDataFileHeader::DatabaseDataFileHeader() :
+    HeaderDataBlock(),
+    _records(0)
 {
 
 }
