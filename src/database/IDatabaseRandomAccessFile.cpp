@@ -1,7 +1,7 @@
 #include "IDatabaseRandomAccessFile.h"
 
-IDatabaseRandomAccessFile::IDatabaseRandomAccessFile(IDatabaseDataBlock *header) :
-    HeaderDataBlock(header)
+IDatabaseRandomAccessFile::IDatabaseRandomAccessFile(HeaderDataBlock *header) :
+    IDatabaseFile(header)
 {
 
 }
