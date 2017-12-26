@@ -1,7 +1,7 @@
 #include "DatabaseDataFile.h"
 
 DatabaseDataFile::DatabaseDataFile() :
-    IDatabaseFile()
+    DatabaseFile()
 {
 
 }

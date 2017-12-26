@@ -12,13 +12,13 @@
 ///  - Блочное выделения памяти
 ///  - Создание, ведение, контроль заголовка (системная информация файла)
 ///
-class IDatabaseFile : public QFile
+class DatabaseFile : public QFile
 {
     Q_OBJECT
 
 public:
-    IDatabaseFile();
-    IDatabaseFile(QString filename);
+    DatabaseFile();
+    DatabaseFile(QString filename);
 
     ///
     /// \brief open открывает файл, читает заголовок файла
