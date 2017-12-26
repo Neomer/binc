@@ -2,13 +2,12 @@
 #define CONTEXT_H
 
 #include <database/Database.h>
-
+#include "ConsoleInput.h"
 
 ///
 /// \brief The Context class хранит глобальные ресурсы используемые разными модулями программы.
 /// Класс реализован в виде singleton'а. Чтобы получить экземпляр класса необходимо исопльзовать
 /// метод Context::Instance()
-///
 class Context
 {
 public:
@@ -22,15 +21,11 @@ public:
         return s;
     }
 
-    ///
-    /// \brief init инициализирует контекст, загружает файл настроек
-    /// \param filename имя файла конфигурации
-    ///
-    void init(QString filename);
-
-    bool isInit() { return _isInit; }
-
     Database *database() { return _database; }
+    ConsoleInput * consoleInput() const { return _consoleInput; }
+
+    void load();
+    void unload();
 
 private:
     Context();
@@ -39,6 +34,7 @@ private:
 
     Database *_database;
     bool _isInit;
+    ConsoleInput *_consoleInput;
 };
 
 #endif // CONTEXT_H

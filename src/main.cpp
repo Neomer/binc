@@ -1,7 +1,5 @@
 #include <QDebug>
 #include <QCoreApplication>
-#include <QDir>
-#include <QDateTime>
 #include <core/Context.h>
 #include <core/net/PortMapping.h>
 #include <core/net/NetDataStreamException.h>
@@ -12,6 +10,8 @@
 #include <database/Database.h>
 
 #include "database/DatabaseIndexFile.h"
+#include <core/net/UdpStream.h>
+#include <core/types/Guid.h>
 
 int main(int argc, char ** argv)
 {
@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
     {
         qDebug("%s", argv[i]);
     }
-    Context::Instance().init(QDir(a.applicationDirPath()).absoluteFilePath("binc.conf"));
+    Context::Instance().load();
 
     DatabaseIndexFile file;
     file.open(QIODevice::WriteOnly);
@@ -41,7 +41,6 @@ int main(int argc, char ** argv)
         }
     }
     qDebug() << "Time elapsed:" << start.msecsTo(QDateTime::currentDateTime()) * 0.001;
-
 
     quint16 port = 0;
     try
@@ -67,9 +66,11 @@ int main(int argc, char ** argv)
         qDebug() << "Error: line" << ex.line() << ex.what();
     }
 
-    SSDPProvider::registerPort(1567);
 
+    //SSDPProvider::registerPort(1567);
+    int ret = a.exec();
 
+    Context::Instance().unload();
 
-    return a.exec();
+    return ret;
 }

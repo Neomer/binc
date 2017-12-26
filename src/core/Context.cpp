@@ -1,27 +1,22 @@
 #include "Context.h"
-#include <database/DatabaseException.h>
 
-void Context::init(QString filename)
+void Context::load()
 {
-    Q_UNUSED(filename);
-    try
-    {
-        _database->open();
-    }
-    catch (DatabaseException &ex)
-    {
-        throw std::runtime_error(ex.what());
-    }
-    _isInit = true;
+    _consoleInput = new ConsoleInput();
+    _consoleInput->start();
 }
 
-Context::Context() :
-    _isInit(false)
+void Context::unload()
 {
-    _database = new Database();
+    _consoleInput->terminate();
+}
+
+Context::Context()
+{
+
 }
 
 Context::~Context()
 {
-    delete _database;
+    _consoleInput->terminate();
 }

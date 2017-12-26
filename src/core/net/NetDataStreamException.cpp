@@ -3,8 +3,7 @@
 using namespace std;
 
 NetDataStreamException::NetDataStreamException(NetDataStreamException::ExceptionType type, const char *message) :
-    exception()
+    DataStreamException(message)
 {
-    _message = message;
     _type = type;
 }

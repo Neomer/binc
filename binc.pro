@@ -28,7 +28,6 @@ SOURCES += src/main.cpp \
     src/database/IDatabaseIndex.cpp \
     src/database/IDatabaseIndexResult.cpp \
     src/database/DatabaseBinaryTreeIndex.cpp \
-    src/core/Context.cpp \
     src/database/DatabaseFile.cpp \
     src/database/DatabaseFileException.cpp \
     src/database/DatabaseDataFile.cpp \
@@ -43,6 +42,15 @@ SOURCES += src/main.cpp \
     src/database/IDatabaseSequentialAccessFile.cpp \
     src/database/IDatabaseRandomAccessFile.cpp \
     src/database/HeaderDataBlock.cpp
+    src/core/net/UdpStream.cpp \
+    src/core/DataStreamException.cpp \
+    src/core/net/UdpStreamException.cpp \
+    src/core/IDataBlock.cpp \
+    src/core/net/UdpDataBlock.cpp \
+    src/core/IHashedDataBlock.cpp \
+    src/core/ConsoleInput.cpp \
+    src/core/ConsoleInputException.cpp \
+    src/core/types/Guid.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -67,7 +75,6 @@ HEADERS += \
     src/database/DatabaseGeneral.h \
     src/database/IDatabaseIndexResult.h \
     src/database/DatabaseBinaryTreeIndex.h \
-    src/core/Context.h \
     src/database/DatabaseFile.h \
     src/database/DatabaseFileException.h \
     src/database/DatabaseDataFile.h \
@@ -82,6 +89,16 @@ HEADERS += \
     src/database/IDatabaseSequentialAccessFile.h \
     src/database/IDatabaseRandomAccessFile.h \
     src/database/HeaderDataBlock.h
+    src/core/net/UdpStream.h \
+    src/core/DataStreamException.h \
+    src/core/net/UdpStreamException.h \
+    src/core/IDataBlock.h \
+    src/core/net/UdpDataBlock.h \
+    src/core/IHashedDataBlock.h \
+    src/core/Context.h \
+    src/core/ConsoleInput.h \
+    src/core/ConsoleInputException.h \
+    src/core/types/Guid.h
 
 
 INCLUDEPATH += $$PWD/src

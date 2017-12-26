@@ -93,14 +93,14 @@ bool PortMapping::tryMapPort(quint16 internalPort, quint16 *mappedPort)
 
     s.writeDatagram(data, QHostAddress("192.168.18.1"), PMPPORT);
     qint64 len = 0;
-    //while (len < sizeof(PMPResponse))
+    while (len < sizeof(PMPResponse))
     {
         if (!s.waitForReadyRead(1000))
         {
             throw NetDataStreamException(NetDataStreamException::enNDSE_Timeout, "Response timeout!");
         }
-        len = s.pendingDatagramSize();
     }
+    len = s.pendingDatagramSize();
     data.resize(sizeof(PMPResponse));
     data.clear();
     qint64 read = s.readDatagram(data.data(), data.size());
