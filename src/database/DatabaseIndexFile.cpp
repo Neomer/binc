@@ -2,7 +2,7 @@
 
 
 DatabaseIndexFile::DatabaseIndexFile() :
-    IDatabaseRandomAccessFile(new DatabaseIndexHeader(), 1)
+    IDatabaseRandomAccessFile(new DatabaseIndexHeader(), DatabaseIndexHeader::blockSize())
 {
 
 }

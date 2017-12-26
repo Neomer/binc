@@ -4,6 +4,7 @@
 #include "DatabaseGeneral.h"
 #include "IDatabaseRandomAccessFile.h"
 #include "DatabaseIndexHeader.h"
+#include "DatabaseIndexRecord.h"
 
 class DatabaseIndexFile : public IDatabaseRandomAccessFile
 {
