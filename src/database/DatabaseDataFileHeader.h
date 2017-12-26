@@ -1,12 +1,12 @@
 #ifndef DATABASEDATAFILEHEADER_H
 #define DATABASEDATAFILEHEADER_H
 
-#include "IDatabaseDataBlock.h"
+#include "HeaderDataBlock.h"
 
 ///
 /// \brief The DatabaseDataFileHeader class Заголовок файла с данными
 ///
-class DatabaseDataFileHeader : public IDatabaseDataBlock
+class DatabaseDataFileHeader : public HeaderDataBlock
 {
 public:
     DatabaseDataFileHeader();
@@ -17,12 +17,12 @@ public:
     void serialize(QDataStream &out) override;
     void deserialize(QDataStream &in) override;
 
-    void setBytesUsed(quint64 value) { _bytesUsed = value; }
-    void addBytesUsed(quint64 value) { _bytesUsed += value; }
-    qint64 bytesUsed() { return _bytesUsed; }
+    void setRecords(quint64 value) { _records = value; }
+    void addRecords(quint64 value) { _records += value; }
+    qint64 records() { return _records; }
 
 private:
-    quint64 _bytesUsed;
+    quint64 _records;
 };
 
 #endif // DATABASEDATAFILEHEADER_H

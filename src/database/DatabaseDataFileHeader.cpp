@@ -7,15 +7,17 @@ DatabaseDataFileHeader::DatabaseDataFileHeader()
 
 quint64 DatabaseDataFileHeader::blockSize()
 {
-    return sizeof(_bytesUsed);
+    return HeaderDataBlock::blockSize() + sizeof(_records);
 }
 
 void DatabaseDataFileHeader::serialize(QDataStream &out)
 {
-    out << (quint64)_bytesUsed;
+    HeaderDataBlock::serialize(out);
+    out << (quint64) _records;
 }
 
 void DatabaseDataFileHeader::deserialize(QDataStream &in)
 {
-    in >> _bytesUsed;
+    HeaderDataBlock::deserialize(in);
+    in >> _records;
 }

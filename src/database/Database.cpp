@@ -56,18 +56,4 @@ void Database::write(dbkey key, IDatabaseObject object)
 {
     Q_UNUSED(object);
 
-    DatabaseDataFile file;
-    file.setFileName(".DATA");
-    if (!file.open(QIODevice::ReadWrite))
-    {
-        throw DatabaseException("File not found!");
-    }
-
-    DatabaseIndexFile::DatabaseIndexFileRecord record;
-    memset(&record, 0, sizeof(DatabaseIndexFile::DatabaseIndexFileRecord));
-    strcpy(record.Filename, ".DATA");
-    record.Key = key;
-    record.Offset = file.bytesUsed();
-    record.Size = 0;
-    _index->write(&record, 0);
 }
