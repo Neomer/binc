@@ -19,14 +19,14 @@ public:
     /// \param key Ключ
     /// \param result Записывает результат поиска
     ///
-    virtual void find(dbkey key, DatabaseIndexRecord *result) = 0;
+    virtual bool find(dbkey key, DatabaseIndexRecord *result) = 0;
     ///
     /// \brief write записывает информацию о новом блоке в индекс
     /// \param key Ключ
     /// \param offset Смещение от начала файла
     /// \param result информация о новом объекте
     ///
-    virtual void write(void *data, DatabaseIndexRecord *data) = 0;
+    virtual void write(dbkey key, DatabaseIndexRecord *data) = 0;
 };
 
 #endif // IDATABASEINDEX_H

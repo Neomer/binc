@@ -57,6 +57,7 @@ private:
     QLockFile *_lockFile;
     QDir _databaseDir;
     IDatabaseIndex *_index;
+    IDatabaseData *_data;
 };
 
 

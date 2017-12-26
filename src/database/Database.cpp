@@ -12,6 +12,7 @@ Database::Database()
     _databaseDir = QDir(_databasePath);
     _lockFile = new QLockFile(_databaseDir.absoluteFilePath(".LOCK"));
     _index = new DatabaseBinaryTreeIndex();
+    _data = new IDatabaseData();
 }
 
 Database::~Database()
@@ -54,4 +55,10 @@ void Database::read(dbkey key, DatabaseDataFileRecord *data)
 void Database::write(dbkey key, DatabaseDataFileRecord *data)
 {
     Q_UNUSED(key); Q_UNUSED(data);
+    DatabaseIndexRecord index_result;
+    if (!_index->find(key, &index_result))
+    {
+        data = 0;
+        return;
+    }
 }

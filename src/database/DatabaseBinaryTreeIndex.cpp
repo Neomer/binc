@@ -2,11 +2,13 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <core/Context.h>
+#include "DatabaseFileException.h"
 #include "DatabaseDataFile.h"
 #include "DatabaseIndexFile.h"
 #include "DatabaseException.h"
 
-DatabaseBinaryTreeIndex::DatabaseBinaryTreeIndex()
+DatabaseBinaryTreeIndex::DatabaseBinaryTreeIndex() :
+    IDatabaseIndex()
 {
 
 }
@@ -19,13 +21,22 @@ void DatabaseBinaryTreeIndex::init()
 {
 }
 
-void DatabaseBinaryTreeIndex::find(dbkey key, IDatabaseIndexResult *result)
+void DatabaseBinaryTreeIndex::write(dbkey key, DatabaseIndexRecord *result)
 {
     Q_UNUSED(key); Q_UNUSED(result);
 }
 
-void DatabaseBinaryTreeIndex::write(void *data, IDatabaseIndexResult *result)
+bool DatabaseBinaryTreeIndex::find(dbkey key, DatabaseIndexRecord *result)
 {
-    Q_UNUSED(result);
+    Q_UNUSED(key); Q_UNUSED(result);
+
+    _file.setFileName(".INDEX");
+    if (!_file.open(QIODevice::ReadOnly))
+    {
+        throw DatabaseFileException(_file.fileName(), "Index file access failed!");
+    }
+    _file.read(result);
+    return true;
 }
+
 
