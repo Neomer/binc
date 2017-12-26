@@ -1,7 +1,7 @@
 #ifndef UDPDATABLOCK_H
 #define UDPDATABLOCK_H
 
-#include <core/IHashedDataBlock.h>.h>
+#include <core/IHashedDataBlock.h>
 #include <QHostAddress>
 #include <QCryptographicHash>
 

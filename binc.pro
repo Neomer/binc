@@ -7,9 +7,10 @@ CONFIG -= app_bundle
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-SOURCES += src/main.cpp \
-            src/core/IObserver.cpp \
-            src/core/ISubject.cpp \
+SOURCES += \
+    src/main.cpp \
+    src/core/IObserver.cpp \
+    src/core/ISubject.cpp \
     src/core/net/NetDataStream.cpp \
     src/core/net/PortMapping.cpp \
     src/core/IDataStream.cpp \
@@ -41,7 +42,7 @@ SOURCES += src/main.cpp \
     src/database/IDatabaseFile.cpp \
     src/database/IDatabaseSequentialAccessFile.cpp \
     src/database/IDatabaseRandomAccessFile.cpp \
-    src/database/HeaderDataBlock.cpp
+    src/database/HeaderDataBlock.cpp \
     src/core/net/UdpStream.cpp \
     src/core/DataStreamException.cpp \
     src/core/net/UdpStreamException.cpp \
@@ -53,9 +54,9 @@ SOURCES += src/main.cpp \
     src/core/types/Guid.cpp
 
 HEADERS += \
-            src/core/IData.h \
-            src/core/IObserver.h \
-            src/core/ISubject.h \
+    src/core/IData.h \
+    src/core/IObserver.h \
+    src/core/ISubject.h \
     src/core/net/NetDataStream.h \
     src/core/net/PortMapping.h \
     src/core/IDataStream.h \
@@ -88,7 +89,7 @@ HEADERS += \
     src/database/IDatabaseFile.h \
     src/database/IDatabaseSequentialAccessFile.h \
     src/database/IDatabaseRandomAccessFile.h \
-    src/database/HeaderDataBlock.h
+    src/database/HeaderDataBlock.h \
     src/core/net/UdpStream.h \
     src/core/DataStreamException.h \
     src/core/net/UdpStreamException.h \

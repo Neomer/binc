@@ -23,25 +23,6 @@ int main(int argc, char ** argv)
     }
     Context::Instance().load();
 
-    DatabaseIndexFile file;
-    file.open(QIODevice::WriteOnly);
-    DatabaseIndexRecord rec;
-    file.write();
-
-    srand(QDateTime::currentDateTime().toMSecsSinceEpoch());
-    QDateTime start = QDateTime::currentDateTime();
-    for (int i = 0; i < 100; i++)
-    {
-        try
-        {
-            Context::Instance().database()->write(rand(), IDatabaseObject());
-        }
-        catch (DatabaseException &)
-        {
-        }
-    }
-    qDebug() << "Time elapsed:" << start.msecsTo(QDateTime::currentDateTime()) * 0.001;
-
     quint16 port = 0;
     try
     {
