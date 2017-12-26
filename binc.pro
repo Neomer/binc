@@ -44,6 +44,7 @@ SOURCES += \
     src/database/IDatabaseRandomAccessFile.cpp \
     src/database/HeaderDataBlock.cpp \
     src/core/net/UdpStream.cpp \
+    src/core/Context.cpp \
     src/core/DataStreamException.cpp \
     src/core/net/UdpStreamException.cpp \
     src/core/IDataBlock.cpp \
