@@ -29,11 +29,20 @@ SOURCES += src/main.cpp \
     src/database/IDatabaseIndexResult.cpp \
     src/database/DatabaseBinaryTreeIndex.cpp \
     src/core/Context.cpp \
-    src/database/DatabaseBinaryTreeIndexRoot.cpp \
     src/database/DatabaseFile.cpp \
     src/database/DatabaseFileException.cpp \
     src/database/DatabaseDataFile.cpp \
-    src/database/DatabaseIndexFile.cpp
+    src/database/DatabaseIndexFile.cpp \
+    src/database/IDatabaseFileCollection.cpp \
+    src/database/IDatabaseDataBlock.cpp \
+    src/database/DatabaseIndexHeader.cpp \
+    src/database/DatabaseIndexRecord.cpp \
+    src/database/DatabaseDataFileHeader.cpp \
+    src/database/DatabaseDataFileRecord.cpp \
+    src/database/IDatabaseFile.cpp \
+    src/database/IDatabaseSequentialAccessFile.cpp \
+    src/database/IDatabaseRandomAccessFile.cpp \
+    src/database/HeaderDataBlock.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -59,11 +68,20 @@ HEADERS += \
     src/database/IDatabaseIndexResult.h \
     src/database/DatabaseBinaryTreeIndex.h \
     src/core/Context.h \
-    src/database/DatabaseBinaryTreeIndexRoot.h \
     src/database/DatabaseFile.h \
     src/database/DatabaseFileException.h \
     src/database/DatabaseDataFile.h \
-    src/database/DatabaseIndexFile.h
+    src/database/DatabaseIndexFile.h \
+    src/database/IDatabaseFileCollection.h \
+    src/database/IDatabaseDataBlock.h \
+    src/database/DatabaseIndexHeader.h \
+    src/database/DatabaseIndexRecord.h \
+    src/database/DatabaseDataFileHeader.h \
+    src/database/DatabaseDataFileRecord.h \
+    src/database/IDatabaseFile.h \
+    src/database/IDatabaseSequentialAccessFile.h \
+    src/database/IDatabaseRandomAccessFile.h \
+    src/database/HeaderDataBlock.h
 
 
 INCLUDEPATH += $$PWD/src

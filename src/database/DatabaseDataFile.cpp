@@ -1,17 +1,8 @@
 #include "DatabaseDataFile.h"
+#include "DatabaseDataFileHeader.h"
 
 DatabaseDataFile::DatabaseDataFile() :
-    DatabaseFile()
+    IDatabaseFile(new DatabaseDataFileHeader())
 {
 
-}
-
-void DatabaseDataFile::writeHeader(void *data)
-{
-    Q_UNUSED(data);
-}
-
-void DatabaseDataFile::readHeader(void *data)
-{
-    Q_UNUSED(data);
 }

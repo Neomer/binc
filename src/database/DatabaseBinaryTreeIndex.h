@@ -4,7 +4,6 @@
 #include <QFile>
 #include "DatabaseGeneral.h"
 #include "IDatabaseIndex.h"
-#include "DatabaseBinaryTreeIndexRoot.h"
 
 
 class DatabaseBinaryTreeIndex : public IDatabaseIndex

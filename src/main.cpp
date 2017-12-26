@@ -11,6 +11,7 @@
 #include <core/net/SSDPProvider.h>
 #include <database/Database.h>
 
+#include "database/DatabaseIndexFile.h"
 
 int main(int argc, char ** argv)
 {
@@ -20,8 +21,14 @@ int main(int argc, char ** argv)
     {
         qDebug("%s", argv[i]);
     }
-    srand(QDateTime::currentDateTime().toMSecsSinceEpoch());
     Context::Instance().init(QDir(a.applicationDirPath()).absoluteFilePath("binc.conf"));
+
+    DatabaseIndexFile file;
+    file.open(QIODevice::WriteOnly);
+    DatabaseIndexRecord rec;
+    file.write();
+
+    srand(QDateTime::currentDateTime().toMSecsSinceEpoch());
     QDateTime start = QDateTime::currentDateTime();
     for (int i = 0; i < 100; i++)
     {
@@ -61,6 +68,8 @@ int main(int argc, char ** argv)
     }
 
     SSDPProvider::registerPort(1567);
+
+
 
     return a.exec();
 }

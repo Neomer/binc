@@ -5,7 +5,7 @@
 #include "IDatabaseIndexResult.h"
 
 ///
-/// \brief The IDatabaseIndex class интерфейс для поддержки индексов базы данных
+/// \brief The IDatabaseIndex class Интерфейс для работы с индексом БД
 ///
 class IDatabaseIndex
 {
