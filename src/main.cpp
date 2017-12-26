@@ -23,6 +23,17 @@ int main(int argc, char ** argv)
     }
     Context::Instance().load();
 
+    DatabaseIndexFile file;
+    file.setFileName("test.data");
+    file.open(QIODevice::ReadWrite);
+
+    DatabaseIndexRecord rec;
+    rec.setBlockNumber(156);
+    file.write(&rec);
+
+    file.close();
+
+
     quint16 port = 0;
     try
     {

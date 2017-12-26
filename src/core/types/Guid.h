@@ -2,6 +2,7 @@
 #define GUID_H
 
 #include <QString>
+#include <QDataStream>
 
 ///
 /// \brief The Guid class класс для работы с уникальными идентификаторами
@@ -29,6 +30,10 @@ public:
     bool operator ==(const Guid &other);
     Guid &operator =(const Guid &other);
 
+    friend QDataStream &operator <<(QDataStream &stream, const Guid &object);
+    friend QDataStream &operator >>(QDataStream &stream, Guid &object);
+
+
 private:
     struct GuidStructure
     {
@@ -39,6 +44,29 @@ private:
         quint32 Data5;
     };
     GuidStructure _data;
+
+    friend class QDataStream;
 };
+
+inline QDataStream &operator <<(QDataStream &stream, const Guid &object)
+{
+    stream << object._data.Data1;
+    stream << object._data.Data2;
+    stream << object._data.Data3;
+    stream << object._data.Data4;
+    stream << object._data.Data5;
+    return stream;
+}
+
+inline QDataStream &operator >>(QDataStream &stream, Guid &object)
+{
+    stream >> object._data.Data1;
+    stream >> object._data.Data2;
+    stream >> object._data.Data3;
+    stream >> object._data.Data4;
+    stream >> object._data.Data5;
+    return stream;
+}
+
 
 #endif // GUID_H

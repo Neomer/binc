@@ -50,3 +50,4 @@ Guid &Guid::operator =(const Guid &other)
 {
     memcpy(&_data, &(other._data), sizeof(GuidStructure));
 }
+
