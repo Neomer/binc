@@ -14,8 +14,8 @@ public:
     // IDatabaseFile interface
 public:
     void write(IDatabaseDataBlock *block) override;
-
-
+    void toBegin() override;
+    void toEnd() override;
 };
 
 #endif // DATABASEDATAFILE_H
