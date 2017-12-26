@@ -46,14 +46,12 @@ void Database::close()
     _lockFile->unlock();
 }
 
-IDatabaseObject Database::read(dbkey key)
+void Database::read(dbkey key, DatabaseDataFileRecord *data)
 {
-    Q_UNUSED(key);
-    return IDatabaseObject();
+    Q_UNUSED(key); Q_UNUSED(data);
 }
 
-void Database::write(dbkey key, IDatabaseObject object)
+void Database::write(dbkey key, DatabaseDataFileRecord *data)
 {
-    Q_UNUSED(object);
-
+    Q_UNUSED(key); Q_UNUSED(data);
 }

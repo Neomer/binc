@@ -32,7 +32,7 @@ int main(int argc, char ** argv)
     rec.setData("asdfgh");
     file.write(&rec);
 
-    rec.setData("asdfgh3efsdfbdfb");
+    rec.setData("asdfgh3eуык пйц4ей34пыаим ыкепй емкуп34й  4пывпыпва фfsdfbdfb");
     file.write(&rec);
 
     file.seek(0);

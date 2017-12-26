@@ -2,11 +2,12 @@
 #define DATABASEGENERAL_H
 
 #include <QObject>
+#include <core/types/Guid.h>
 #include "DatabaseException.h"
 
 
 #define FILENAME_LENGTH         15
 
-typedef quint64 dbkey;
+typedef Guid dbkey;
 
 #endif // DATABASEGENERAL_H
