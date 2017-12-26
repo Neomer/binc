@@ -22,13 +22,32 @@ SOURCES += src/main.cpp \
     src/core/net/HTTPUdpClient.cpp \
     src/core/net/SSDPRequest.cpp \
     src/core/net/SSDPProvider.cpp \
+    src/database/Database.cpp \
+    src/database/IDatabaseObject.cpp \
+    src/database/DatabaseException.cpp \
+    src/database/IDatabaseIndex.cpp \
+    src/database/IDatabaseIndexResult.cpp \
+    src/database/DatabaseBinaryTreeIndex.cpp \
+    src/database/DatabaseFile.cpp \
+    src/database/DatabaseFileException.cpp \
+    src/database/DatabaseDataFile.cpp \
+    src/database/DatabaseIndexFile.cpp \
+    src/database/IDatabaseFileCollection.cpp \
+    src/database/IDatabaseDataBlock.cpp \
+    src/database/DatabaseIndexHeader.cpp \
+    src/database/DatabaseIndexRecord.cpp \
+    src/database/DatabaseDataFileHeader.cpp \
+    src/database/DatabaseDataFileRecord.cpp \
+    src/database/IDatabaseFile.cpp \
+    src/database/IDatabaseSequentialAccessFile.cpp \
+    src/database/IDatabaseRandomAccessFile.cpp \
+    src/database/HeaderDataBlock.cpp
     src/core/net/UdpStream.cpp \
     src/core/DataStreamException.cpp \
     src/core/net/UdpStreamException.cpp \
     src/core/IDataBlock.cpp \
     src/core/net/UdpDataBlock.cpp \
     src/core/IHashedDataBlock.cpp \
-    src/core/Context.cpp \
     src/core/ConsoleInput.cpp \
     src/core/ConsoleInputException.cpp \
     src/core/types/Guid.cpp
@@ -49,6 +68,27 @@ HEADERS += \
     src/core/net/HTTPUdpClient.h \
     src/core/net/SSDPRequest.h \
     src/core/net/SSDPProvider.h \
+    src/database/Database.h \
+    src/database/IDatabaseObject.h \
+    src/database/DatabaseException.h \
+    src/database/IDatabaseIndex.h \
+    src/database/DatabaseGeneral.h \
+    src/database/IDatabaseIndexResult.h \
+    src/database/DatabaseBinaryTreeIndex.h \
+    src/database/DatabaseFile.h \
+    src/database/DatabaseFileException.h \
+    src/database/DatabaseDataFile.h \
+    src/database/DatabaseIndexFile.h \
+    src/database/IDatabaseFileCollection.h \
+    src/database/IDatabaseDataBlock.h \
+    src/database/DatabaseIndexHeader.h \
+    src/database/DatabaseIndexRecord.h \
+    src/database/DatabaseDataFileHeader.h \
+    src/database/DatabaseDataFileRecord.h \
+    src/database/IDatabaseFile.h \
+    src/database/IDatabaseSequentialAccessFile.h \
+    src/database/IDatabaseRandomAccessFile.h \
+    src/database/HeaderDataBlock.h
     src/core/net/UdpStream.h \
     src/core/DataStreamException.h \
     src/core/net/UdpStreamException.h \
