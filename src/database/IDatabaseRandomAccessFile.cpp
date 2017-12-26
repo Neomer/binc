@@ -24,6 +24,9 @@ void IDatabaseRandomAccessFile::seek(quint64 index)
 void IDatabaseRandomAccessFile::write(IDatabaseDataBlock *block)
 {
     block->serialize(_stream);
+    static_cast<HeaderDataBlock *>(header())->addBytesUsed(_block_size);
+    QFile::seek(0);
+    header()->serialize(_stream);
 }
 
 void IDatabaseRandomAccessFile::read(IDatabaseDataBlock *block)

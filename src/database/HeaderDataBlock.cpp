@@ -1,13 +1,14 @@
 #include "HeaderDataBlock.h"
 
-HeaderDataBlock::HeaderDataBlock()
+HeaderDataBlock::HeaderDataBlock() :
+    _bytesUsed(0)
 {
 
 }
 
 void HeaderDataBlock::serialize(QDataStream &out)
 {
-    out << _bytesUsed;
+    out << (quint64)_bytesUsed;
 }
 
 void HeaderDataBlock::deserialize(QDataStream &in)
