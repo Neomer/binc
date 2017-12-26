@@ -24,10 +24,8 @@ SOURCES += \
     src/core/net/SSDPRequest.cpp \
     src/core/net/SSDPProvider.cpp \
     src/database/Database.cpp \
-    src/database/IDatabaseObject.cpp \
     src/database/DatabaseException.cpp \
     src/database/IDatabaseIndex.cpp \
-    src/database/IDatabaseIndexResult.cpp \
     src/database/DatabaseBinaryTreeIndex.cpp \
     src/database/DatabaseFile.cpp \
     src/database/DatabaseFileException.cpp \
@@ -72,11 +70,9 @@ HEADERS += \
     src/core/net/SSDPRequest.h \
     src/core/net/SSDPProvider.h \
     src/database/Database.h \
-    src/database/IDatabaseObject.h \
     src/database/DatabaseException.h \
     src/database/IDatabaseIndex.h \
     src/database/DatabaseGeneral.h \
-    src/database/IDatabaseIndexResult.h \
     src/database/DatabaseBinaryTreeIndex.h \
     src/database/DatabaseFile.h \
     src/database/DatabaseFileException.h \

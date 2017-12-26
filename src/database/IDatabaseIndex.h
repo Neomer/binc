@@ -2,7 +2,7 @@
 #define IDATABASEINDEX_H
 
 #include "DatabaseGeneral.h"
-#include "IDatabaseIndexResult.h"
+#include "DatabaseIndexRecord.h"
 
 ///
 /// \brief The IDatabaseIndex class Интерфейс для работы с индексом БД
@@ -19,14 +19,14 @@ public:
     /// \param key Ключ
     /// \param result Записывает результат поиска
     ///
-    virtual void find(dbkey key, IDatabaseIndexResult *result) = 0;
+    virtual void find(dbkey key, DatabaseIndexRecord *result) = 0;
     ///
     /// \brief write записывает информацию о новом блоке в индекс
     /// \param key Ключ
     /// \param offset Смещение от начала файла
     /// \param result информация о новом объекте
     ///
-    virtual void write(void *data, IDatabaseIndexResult *result) = 0;
+    virtual void write(void *data, DatabaseIndexRecord *data) = 0;
 };
 
 #endif // IDATABASEINDEX_H

@@ -27,6 +27,5 @@ void DatabaseBinaryTreeIndex::find(dbkey key, IDatabaseIndexResult *result)
 void DatabaseBinaryTreeIndex::write(void *data, IDatabaseIndexResult *result)
 {
     Q_UNUSED(result);
-
 }
 
