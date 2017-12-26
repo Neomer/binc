@@ -18,8 +18,7 @@ void IDatabaseRandomAccessFile::toEnd()
 
 void IDatabaseRandomAccessFile::seek(quint64 index)
 {
-    //QFile::seek(static_cast<HeaderDataBlock *>(header())->blockSize() + index * _block_size);
-    QFile::seek(index);
+    QFile::seek(static_cast<HeaderDataBlock *>(header())->blockSize() + index * _block_size);
 }
 
 void IDatabaseRandomAccessFile::write(IDatabaseDataBlock *block)

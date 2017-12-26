@@ -34,6 +34,12 @@ int main(int argc, char ** argv)
     rec.setOffset(15);
     file.write(&rec);
 
+    file.seek(1);
+    rec.setIsDeleted(false);
+    rec.setLength(56);
+    rec.setOffset(25);
+    file.write(&rec);
+
     file.seek(0);
     file.read(&rec2);
 
