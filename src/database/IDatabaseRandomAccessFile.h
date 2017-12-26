@@ -18,6 +18,7 @@ public:
     void toEnd() override;
     void seek(quint64 index) override;
     void write(IDatabaseDataBlock *block) override;
+    void read(IDatabaseDataBlock *block) override;
 
 private:
     quint64 _block_size;

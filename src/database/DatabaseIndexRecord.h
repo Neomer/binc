@@ -19,15 +19,22 @@ public:
     void deserialize(QDataStream &in) override;
     static quint64 blockSize();
 
+    void setGuid(Guid value) { _guid = value; }
     Guid guid() { return _guid; }
-    QDateTime creationDate() { return _creationDate; }
-    quint64 blockNumber(){ return _number; }
-    void setBlockNumber(quint64 value) { _number = value; }
+
+    void setIsDeleted(bool value) { _is_deleted = value; }
+    bool isDeleted() { return _is_deleted; }
+
+    void setOffset(quint64 value) { _offset = value; }
+    quint64 offset() { return _offset; }
+
+    void setLength(quint64 value) { _length = value; }
+    quint64 length() { return _length; }
 
 private:
     Guid _guid;
-    quint64 _number;
-    QDateTime _creationDate;
+    bool _is_deleted;
+    quint64 _offset, _length;
 };
 
 #endif // DATABASEINDEXRECORD_H

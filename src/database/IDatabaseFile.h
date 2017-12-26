@@ -43,6 +43,11 @@ public:
     /// \param block
     ///
     virtual void write(IDatabaseDataBlock *block) = 0;
+    ///
+    /// \brief read читает из файла блок данных
+    /// \param block
+    ///
+    virtual void read(IDatabaseDataBlock *block) = 0;
 
 private:
     IDatabaseDataBlock *_header;

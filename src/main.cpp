@@ -27,9 +27,15 @@ int main(int argc, char ** argv)
     file.setFileName("test.data");
     file.open(QIODevice::ReadWrite);
 
-    DatabaseIndexRecord rec;
-    rec.setBlockNumber(156);
+    DatabaseIndexRecord rec, rec2;
+    file.seek(0);
+    rec.setIsDeleted(false);
+    rec.setLength(156);
+    rec.setOffset(15);
     file.write(&rec);
+
+    file.seek(0);
+    file.read(&rec2);
 
     file.close();
 
