@@ -33,7 +33,14 @@ SOURCES += src/main.cpp \
     src/database/DatabaseFile.cpp \
     src/database/DatabaseFileException.cpp \
     src/database/DatabaseDataFile.cpp \
-    src/database/DatabaseIndexFile.cpp
+    src/database/DatabaseIndexFile.cpp \
+    src/database/IDatabaseData.cpp \
+    src/database/IDatabaseFileCollection.cpp \
+    src/database/IDatabaseDataBlock.cpp \
+    src/database/DatabaseIndexHeader.cpp \
+    src/database/DatabaseIndexRecord.cpp \
+    src/database/DatabaseDataFileHeader.cpp \
+    src/database/DatabaseDataFileRecord.cpp
 
 HEADERS += \
             src/core/IData.h \
@@ -63,7 +70,14 @@ HEADERS += \
     src/database/DatabaseFile.h \
     src/database/DatabaseFileException.h \
     src/database/DatabaseDataFile.h \
-    src/database/DatabaseIndexFile.h
+    src/database/DatabaseIndexFile.h \
+    src/database/IDatabaseData.h \
+    src/database/IDatabaseFileCollection.h \
+    src/database/IDatabaseDataBlock.h \
+    src/database/DatabaseIndexHeader.h \
+    src/database/DatabaseIndexRecord.h \
+    src/database/DatabaseDataFileHeader.h \
+    src/database/DatabaseDataFileRecord.h
 
 
 INCLUDEPATH += $$PWD/src

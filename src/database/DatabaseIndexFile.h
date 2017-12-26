@@ -4,7 +4,7 @@
 #include "DatabaseFile.h"
 #include "DatabaseGeneral.h"
 
-class DatabaseIndexFile : public DatabaseFile
+class DatabaseIndexFile : public IDatabaseFile
 {
 public:
     struct DatabaseIndexFileRecord

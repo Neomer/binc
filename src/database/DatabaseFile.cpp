@@ -3,17 +3,17 @@
 #include <QCryptographicHash>
 #include <QDebug>
 
-DatabaseFile::DatabaseFile() :
+IDatabaseFile::IDatabaseFile() :
     QFile()
 {
 }
 
-DatabaseFile::DatabaseFile(QString filename) :
+IDatabaseFile::IDatabaseFile(QString filename) :
     QFile(filename)
 {
 }
 
-bool DatabaseFile::open(QIODevice::OpenMode flags)
+bool IDatabaseFile::open(QIODevice::OpenMode flags)
 {
     bool ex = exists();
     bool ret = QFile::open(flags);
@@ -40,7 +40,7 @@ bool DatabaseFile::open(QIODevice::OpenMode flags)
     return ret;
 }
 
-void DatabaseFile::insert(quint64 offset, void *data)
+void IDatabaseFile::insert(quint64 offset, void *data)
 {
     toEnd();
 
@@ -77,7 +77,7 @@ void DatabaseFile::insert(quint64 offset, void *data)
     QFile::write((const char *)data, recordSize());
 }
 
-void DatabaseFile::insert(quint64 offset, void **data, int count)
+void IDatabaseFile::insert(quint64 offset, void **data, int count)
 {
     toEnd();
 
@@ -116,45 +116,45 @@ void DatabaseFile::insert(quint64 offset, void **data, int count)
     QFile::write((const char *)data, size);
 }
 
-void DatabaseFile::append(void *data)
+void IDatabaseFile::append(void *data)
 {
     toEnd();
     write((const char *)data, recordSize());
 }
 
-void DatabaseFile::toEnd()
+void IDatabaseFile::toEnd()
 {
     seek(bytesUsed());
 }
 
-void DatabaseFile::moveTo(quint64 index)
+void IDatabaseFile::moveTo(quint64 index)
 {
     seek(index * recordSize());
 }
 
-bool DatabaseFile::seek(qint64 offset)
+bool IDatabaseFile::seek(qint64 offset)
 {
     return QFile::seek(offset + headerSize() + sizeof(DatabaseFileHeader));
 }
 
-void DatabaseFile::toBegin()
+void IDatabaseFile::toBegin()
 {
     seek(0);
 }
 
-QString DatabaseFile::fileName()
+QString IDatabaseFile::fileName()
 {
     QString name = QFile::fileName();
     name = name.right(name.length() - name.lastIndexOf('/') - 1);
     return name;
 }
 
-bool DatabaseFile::isValid()
+bool IDatabaseFile::isValid()
 {
     return false;
 }
 
-void DatabaseFile::setUsedBytes(qint64 value)
+void IDatabaseFile::setUsedBytes(qint64 value)
 {
     _header.BytesUsed = value;
     QFile::seek(0);
@@ -164,12 +164,12 @@ void DatabaseFile::setUsedBytes(qint64 value)
     }
 }
 
-quint64 DatabaseFile::bytesOffsetByIndex(int index)
+quint64 IDatabaseFile::bytesOffsetByIndex(int index)
 {
     return index * recordSize() + headerSize();
 }
 
-void DatabaseFile::get(void *buffer)
+void IDatabaseFile::get(void *buffer)
 {
     if (QFile::read((char *)buffer, recordSize()) != recordSize())
     {
@@ -177,7 +177,7 @@ void DatabaseFile::get(void *buffer)
     }
 }
 
-void DatabaseFile::get(void **buffer, int count)
+void IDatabaseFile::get(void **buffer, int count)
 {
     for (int i = 0; i < count; i++)
     {
@@ -188,12 +188,12 @@ void DatabaseFile::get(void **buffer, int count)
     }
 }
 
-void DatabaseFile::close()
+void IDatabaseFile::close()
 {
     QFile::close();
 }
 
-int DatabaseFile::write(const char *data, qint64 len)
+int IDatabaseFile::write(const char *data, qint64 len)
 {
     if (QFile::write(data, len) != len)
     {

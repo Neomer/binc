@@ -7,18 +7,18 @@
 #define PAGE_SIZE       10240 // Размер считываемого за цикл блока при добавлении записи в серердину файла
 
 ///
-/// \brief The DatabaseFile class добавляет некоторый функционал к стандартному классу работы с файлами.
+/// \brief IDatabaseFile class добавляет некоторый функционал к стандартному классу работы с файлами.
 /// Поддерживаются функции:
 ///  - Блочное выделения памяти
 ///  - Создание, ведение, контроль заголовка (системная информация файла)
 ///
-class DatabaseFile : public QFile
+class IDatabaseFile : public QFile
 {
     Q_OBJECT
 
 public:
-    DatabaseFile();
-    DatabaseFile(QString filename);
+    IDatabaseFile();
+    IDatabaseFile(QString filename);
 
     ///
     /// \brief open открывает файл, читает заголовок файла
