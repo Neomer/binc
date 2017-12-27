@@ -12,7 +12,9 @@ Database::Database()
     _databaseDir = QDir(_databasePath);
     _lockFile = new QLockFile(_databaseDir.absoluteFilePath(".LOCK"));
     _index = new DatabaseBinaryTreeIndex();
+
     _data = new IDatabaseData();
+    _data->setFileName(".DATA");
 }
 
 Database::~Database()
@@ -55,10 +57,17 @@ void Database::read(dbkey key, DatabaseDataFileRecord *data)
 void Database::write(dbkey key, DatabaseDataFileRecord *data)
 {
     Q_UNUSED(key); Q_UNUSED(data);
-    DatabaseIndexRecord index_result;
-    if (!_index->find(key, &index_result))
-    {
-        data = 0;
-        return;
-    }
+
+    _data->open(QIODevice::ReadWrite);
+    quint64 offset = _data->write(data);
+    _data->flush();
+    _data->close();
+
+    DatabaseIndexRecord index_record;
+    index_record.setGuid(data->guid());
+    index_record.setIsDeleted(false);
+    index_record.setLength(data->blockSize());
+    index_record.setOffset(offset);
+    _index->write(key, &index_record);
+
 }

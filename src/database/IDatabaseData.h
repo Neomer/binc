@@ -3,11 +3,12 @@
 
 #include "IDatabaseFileCollection.h"
 #include "DatabaseDataFileRecord.h"
+#include "DatabaseDataFile.h"
 
 ///
 /// \brief The IDatabaseData class Интерфейс для работы с данными БД
 ///
-class IDatabaseData
+class IDatabaseData : public DatabaseDataFile
 {
 public:
     IDatabaseData();

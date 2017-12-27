@@ -51,3 +51,13 @@ Guid &Guid::operator =(const Guid &other)
     memcpy(&_data, &(other._data), sizeof(GuidStructure));
 }
 
+bool Guid::operator <(const Guid &other)
+{
+    return memcmp(&_data, &(other._data), sizeof(GuidStructure)) < 0;
+}
+
+bool Guid::operator >(const Guid &other)
+{
+    return memcmp(&_data, &(other._data), sizeof(GuidStructure)) > 0;
+}
+

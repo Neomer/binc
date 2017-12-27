@@ -10,6 +10,10 @@ class DatabaseIndexFile : public IDatabaseRandomAccessFile
 {
 public:
     DatabaseIndexFile();
+
+    // IDatabaseFile interface
+public:
+    quint64 write(IDatabaseDataBlock *block) override;
 };
 
 #endif // DATABASEINDEXFILE_H

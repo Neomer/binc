@@ -13,7 +13,7 @@ public:
 
     // IDatabaseFile interface
 public:
-    void write(IDatabaseDataBlock *block) override;
+    quint64 write(IDatabaseDataBlock *block) override;
     void toBegin() override;
     void toEnd() override;
 };

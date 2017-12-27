@@ -34,7 +34,6 @@ void NetDataStream::close()
 
 void NetDataStream::read(IDataBlock *data)
 {
-    data = 0;
     _socket->read(0, 0);
 }
 

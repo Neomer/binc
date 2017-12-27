@@ -41,8 +41,9 @@ public:
     ///
     /// \brief write записывает в файл блок данных
     /// \param block
+    /// \return возвращает смещение в байтах от начала файла записи
     ///
-    virtual void write(IDatabaseDataBlock *block) = 0;
+    virtual quint64 write(IDatabaseDataBlock *block) = 0;
     ///
     /// \brief read читает из файла блок данных
     /// \param block

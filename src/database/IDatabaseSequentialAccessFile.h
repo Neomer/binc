@@ -14,7 +14,7 @@ public:
 
 // IDatabaseFile interface
 public:
-    void write(IDatabaseDataBlock *block) override;
+    quint64 write(IDatabaseDataBlock *block) override;
     void read(IDatabaseDataBlock *block) override;
     ///
     /// \brief seek указывается смещение в байтах

@@ -24,22 +24,17 @@ int main(int argc, char ** argv)
     }
     Context::Instance().load();
 
-    DatabaseDataFile file;
-    file.setFileName("test.data");
-    file.open(QIODevice::ReadWrite);
-
-    DatabaseDataFileRecord rec, rec2;
-    rec.setData("asdfgh");
-    file.write(&rec);
-
-    rec.setData("asdfgh3eуык пйц4ей34пыаим ыкепй емкуп34й  4пывпыпва фfsdfbdfb");
-    file.write(&rec);
-
-    file.seek(0);
-    file.read(&rec2);
-
-    file.close();
-
+    DatabaseDataFileRecord rec;
+    QDateTime start = QDateTime::currentDateTime();
+    for (int i = 0; i < 1000; i++)
+    {
+        int n = rand();
+        rec.setGuid(Guid::randomGuid());
+        rec.setBlockNumber(n);
+        rec.setData("test data");
+        Context::Instance().database()->write(rec.guid(), &rec);
+    }
+    qDebug() << "Elapsed:" << start.msecsTo(QDateTime::currentDateTime()) * 0.001;
 
     quint16 port = 0;
     try

@@ -30,6 +30,9 @@ public:
     bool operator ==(const Guid &other);
     Guid &operator =(const Guid &other);
 
+    bool operator <(const Guid &other);
+    bool operator >(const Guid &other);
+
     friend QDataStream &operator <<(QDataStream &stream, const Guid &object);
     friend QDataStream &operator >>(QDataStream &stream, Guid &object);
 

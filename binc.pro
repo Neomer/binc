@@ -51,7 +51,9 @@ SOURCES += \
     src/core/ConsoleInput.cpp \
     src/core/ConsoleInputException.cpp \
     src/core/types/Guid.cpp \
-    src/database/IDatabaseData.cpp
+    src/database/IDatabaseData.cpp \
+    src/database/DatabaseIndexProvider.cpp \
+    src/database/DatabaseDataProvider.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -98,7 +100,9 @@ HEADERS += \
     src/core/ConsoleInput.h \
     src/core/ConsoleInputException.h \
     src/core/types/Guid.h \
-    src/database/IDatabaseData.h
+    src/database/IDatabaseData.h \
+    src/database/DatabaseIndexProvider.h \
+    src/database/DatabaseDataProvider.h
 
 
 INCLUDEPATH += $$PWD/src

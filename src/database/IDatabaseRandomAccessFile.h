@@ -17,7 +17,7 @@ public:
     void toBegin() override;
     void toEnd() override;
     void seek(quint64 index) override;
-    void write(IDatabaseDataBlock *block) override;
+    quint64 write(IDatabaseDataBlock *block) override;
     void read(IDatabaseDataBlock *block) override;
 
 private:

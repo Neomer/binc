@@ -7,10 +7,12 @@ IDatabaseSequentialAccessFile::IDatabaseSequentialAccessFile(HeaderDataBlock *he
 
 }
 
-void IDatabaseSequentialAccessFile::write(IDatabaseDataBlock *block)
+quint64 IDatabaseSequentialAccessFile::write(IDatabaseDataBlock *block)
 {
+    quint64 ret = static_cast<HeaderDataBlock *>(header())->bytesUsed();
     toEnd();
     block->serialize(_stream);
+    return ret;
 }
 
 void IDatabaseSequentialAccessFile::read(IDatabaseDataBlock *block)
