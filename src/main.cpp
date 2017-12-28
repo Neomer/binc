@@ -24,9 +24,10 @@ int main(int argc, char ** argv)
     }
     Context::Instance().load();
 
+
     DatabaseDataFileRecord rec;
     QDateTime start = QDateTime::currentDateTime();
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 10000; i++)
     {
         int n = rand();
         rec.setGuid(Guid::randomGuid());

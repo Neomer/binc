@@ -27,3 +27,8 @@ void DatabaseDataFile::toEnd()
 {
     QFile::seek(static_cast<HeaderDataBlock *>(header())->blockSize() + static_cast<HeaderDataBlock *>(header())->bytesUsed());
 }
+
+void DatabaseDataFile::readHeader()
+{
+    static_cast<DatabaseDataFileHeader *>(header())->deserialize(_stream);
+}

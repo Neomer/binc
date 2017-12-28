@@ -13,7 +13,6 @@ class IDatabaseData : public DatabaseDataFile
 public:
     IDatabaseData();
 
-
 };
 
 #endif // IDATABASEDATA_H

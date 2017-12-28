@@ -16,6 +16,10 @@ public:
     quint64 write(IDatabaseDataBlock *block) override;
     void toBegin() override;
     void toEnd() override;
+
+    // IDatabaseFile interface
+protected:
+    void readHeader() override;
 };
 
 #endif // DATABASEDATAFILE_H

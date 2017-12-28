@@ -11,9 +11,12 @@ class DatabaseIndexFile : public IDatabaseRandomAccessFile
 public:
     DatabaseIndexFile();
 
-    // IDatabaseFile interface
 public:
-    quint64 write(IDatabaseDataBlock *block) override;
+    quint64 write(IDatabaseDataBlock *block);
+
+// IDatabaseFile interface
+protected:
+    void readHeader() override;
 };
 
 #endif // DATABASEINDEXFILE_H

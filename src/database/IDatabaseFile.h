@@ -55,6 +55,7 @@ private:
 
 protected:
     IDatabaseDataBlock *header() { return _header; }
+    virtual void readHeader() = 0;
 
     QDataStream _stream;
 };

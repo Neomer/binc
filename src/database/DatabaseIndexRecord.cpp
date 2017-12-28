@@ -13,20 +13,21 @@ DatabaseIndexRecord::DatabaseIndexRecord() :
 void DatabaseIndexRecord::serialize(QDataStream &out)
 {
     out << _guid;
-    out << _is_deleted;
-    out << _length;
-    out << _offset;
+    //out << _is_deleted;
+    //out << _length;
+    //out << _offset;
 }
 
 void DatabaseIndexRecord::deserialize(QDataStream &in)
 {
     in >> _guid;
-    in >> _is_deleted;
-    in >> _length;
-    in >> _offset;
+    //in >> _is_deleted;
+    //in >> _length;
+    //in >> _offset;
 }
 
 quint64 DatabaseIndexRecord::blockSize()
 {
-    return 33;
+    //return 33;
+    return 16;
 }

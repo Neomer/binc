@@ -8,7 +8,9 @@ IDatabaseFile::IDatabaseFile(IDatabaseDataBlock *header) :
 
 bool IDatabaseFile::open(QIODevice::OpenMode flags)
 {
-    return QFile::open(flags);
+    bool ret = QFile::open(flags);
+    if (ret) readHeader();
+    return ret;
 }
 
 void IDatabaseFile::close()

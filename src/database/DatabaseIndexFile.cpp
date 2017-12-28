@@ -19,6 +19,11 @@ quint64 DatabaseIndexFile::write(IDatabaseDataBlock *block)
         read(&r);
         (r.guid() > static_cast<DatabaseIndexRecord *>(block)->guid()) ? c = b : a = b;
     }
-    seek(c);
-    return IDatabaseRandomAccessFile::write(block);
+    return IDatabaseRandomAccessFile::write(c, block);
+}
+
+void DatabaseIndexFile::readHeader()
+{
+    QFile::seek(0);
+     static_cast<DatabaseIndexHeader *>(header())->deserialize(_stream);
 }
