@@ -6,9 +6,18 @@ IDatabaseFile::IDatabaseFile(IDatabaseDataBlock *header) :
     _header = header;
 }
 
+IDatabaseFile::~IDatabaseFile()
+{
+    delete _header;
+}
+
 bool IDatabaseFile::open(QIODevice::OpenMode flags)
 {
-    return QFile::open(flags);
+    bool ex = QFile::exists();
+    if (ex) flags |= QIODevice::ReadOnly;
+    bool ret = QFile::open(flags);
+    if (ret && ex) readHeader();
+    return ret;
 }
 
 void IDatabaseFile::close()

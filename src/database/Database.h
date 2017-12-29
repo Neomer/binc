@@ -4,9 +4,10 @@
 #include <QFile>
 #include <QDir>
 #include <QLockFile>
-#include "IDatabaseObject.h"
 #include "DatabaseGeneral.h"
+
 #include "IDatabaseIndex.h"
+#include "IDatabaseData.h"
 
 ///
 /// \brief The Database class класс для работы с базой данных
@@ -33,13 +34,13 @@ public:
     /// \param key ключ
     /// \return
     ///
-    IDatabaseObject read(dbkey key);
+    bool read(dbkey key, DatabaseDataFileRecord *data);
     ///
     /// \brief write записывает объект в базу данных
     /// \param key ключ
     /// \param object объект
     ///
-    void write(dbkey key, IDatabaseObject object);
+    void write(dbkey key, DatabaseDataFileRecord *data);
     ///
     /// \brief databasePath путь, по которому располагается база данных
     /// \return
@@ -56,6 +57,7 @@ private:
     QLockFile *_lockFile;
     QDir _databaseDir;
     IDatabaseIndex *_index;
+    IDatabaseData *_data;
 };
 
 

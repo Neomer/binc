@@ -12,6 +12,7 @@ class IDatabaseFile : public QFile
 {
 public:
     IDatabaseFile(IDatabaseDataBlock *header);
+    ~IDatabaseFile();
 
     ///
     /// \brief open открывает файл для чтения или записи в зависимости от значения flags
@@ -41,14 +42,22 @@ public:
     ///
     /// \brief write записывает в файл блок данных
     /// \param block
+    /// \return возвращает смещение в байтах от начала файла записи
     ///
-    virtual void write(IDatabaseDataBlock *block) = 0;
+    virtual quint64 write(IDatabaseDataBlock *block) = 0;
+    ///
+    /// \brief read читает из файла блок данных
+    /// \param block
+    ///
+    virtual void read(IDatabaseDataBlock *block) = 0;
+
+    IDatabaseDataBlock *header() { return _header; }
 
 private:
     IDatabaseDataBlock *_header;
 
 protected:
-    IDatabaseDataBlock *header() { return _header; }
+    virtual void readHeader() = 0;
 
     QDataStream _stream;
 };

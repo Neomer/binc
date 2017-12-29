@@ -1,25 +1,31 @@
 #include "DatabaseDataFileRecord.h"
 
-DatabaseDataFileRecord::DatabaseDataFileRecord()
+DatabaseDataFileRecord::DatabaseDataFileRecord() :
+    IDatabaseDataBlock(),
+    _creationDate(QDateTime::currentDateTime()),
+    _guid(Guid::randomGuid()),
+    _number(0)
 {
-    _creationDate = QDateTime::currentDateTime();
+
 }
 
 void DatabaseDataFileRecord::serialize(QDataStream &out)
 {
+    out << _guid;
     out << (quint64) _number;
     out << _creationDate;
-    out << _body;
+    out << _data;
 }
 
 void DatabaseDataFileRecord::deserialize(QDataStream &in)
 {
+    in >> _guid;
     in >> _number;
     in >> _creationDate;
-    in >> _body;
+    in >> _data;
 }
 
 quint64 DatabaseDataFileRecord::blockSize()
 {
-    return 0;
+    return 41 + _data.length();
 }

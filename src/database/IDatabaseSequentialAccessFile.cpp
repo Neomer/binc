@@ -1,4 +1,5 @@
 #include "IDatabaseSequentialAccessFile.h"
+#include <QDebug>
 
 IDatabaseSequentialAccessFile::IDatabaseSequentialAccessFile(HeaderDataBlock *header) :
     IDatabaseFile(header)
@@ -6,18 +7,20 @@ IDatabaseSequentialAccessFile::IDatabaseSequentialAccessFile(HeaderDataBlock *he
 
 }
 
-void IDatabaseSequentialAccessFile::toBegin()
+quint64 IDatabaseSequentialAccessFile::write(IDatabaseDataBlock *block)
 {
-    QFile::seek(static_cast<HeaderDataBlock *>(header())->blockSize());
-}
-
-void IDatabaseSequentialAccessFile::toEnd()
-{
-    QFile::seek(static_cast<HeaderDataBlock *>(header())->bytesUsed());
-}
-
-void IDatabaseSequentialAccessFile::write(IDatabaseDataBlock *block)
-{
+    quint64 ret = static_cast<HeaderDataBlock *>(header())->bytesUsed();
     toEnd();
     block->serialize(_stream);
+    return ret;
+}
+
+void IDatabaseSequentialAccessFile::read(IDatabaseDataBlock *block)
+{
+    block->deserialize(_stream);
+}
+
+void IDatabaseSequentialAccessFile::seek(quint64 index)
+{
+    QFile::seek(static_cast<HeaderDataBlock *>(header())->blockSize() + index);
 }

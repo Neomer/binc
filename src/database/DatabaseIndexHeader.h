@@ -11,6 +11,7 @@ class DatabaseIndexHeader : public HeaderDataBlock
 {
 public:
     DatabaseIndexHeader();
+
 };
 
 #endif // DATABASEINDEXHEADER_H

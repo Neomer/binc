@@ -56,12 +56,12 @@ void DatabaseFile::insert(quint64 offset, void *data)
             l = qMin((quint64)PAGE_SIZE, carrier);
             carrier -= l;
             seek(carrier);
-            if (QFile::read(buf, l) != l)
+            if ((quint64)QFile::read(buf, l) != l)
             {
                 throw DatabaseFileException(fileName(), "File reading error!");
             }
             seek(carrier + recordSize());
-            if (QFile::write(buf, l) != l)
+            if ((quint64)QFile::write(buf, l) != l)
             {
                 throw DatabaseFileException(fileName(), "File writing error!");
             }
@@ -95,12 +95,12 @@ void DatabaseFile::insert(quint64 offset, void **data, int count)
             l = qMin((quint64)PAGE_SIZE, carrier);
             carrier -= l;
             seek(carrier);
-            if (QFile::read(buf, l) != l)
+            if ((quint64)QFile::read(buf, l) != l)
             {
                 throw DatabaseFileException(fileName(), "File reading error!");
             }
             seek(carrier + size);
-            if (QFile::write(buf, l) != l)
+            if ((quint64)QFile::write(buf, l) != l)
             {
                 throw DatabaseFileException(fileName(), "File writing error!");
             }

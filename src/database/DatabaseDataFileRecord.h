@@ -3,6 +3,7 @@
 
 #include "IDatabaseDataBlock.h"
 #include <QDateTime>
+#include <core/types/Guid.h>
 
 ///
 /// \brief The DatabaseDataFileRecord class Блок данных файла с данными
@@ -16,16 +17,22 @@ public:
 public:
     void serialize(QDataStream &out) override;
     void deserialize(QDataStream &in) override;
-    static quint64 blockSize();
+    quint64 blockSize();
 
-    void setCreationDate(QDateTime value) { _creationDate = value; }
-    void setBody(QString value) { _body = value; }
-    void setNumber(quint64 value) { _number = value; }
+    void setGuid(Guid value) { _guid = value; }
+    Guid guid() { return _guid; }
+
+    void setBlockNumber(quint64 value) { _number = value; }
+    quint64 blockNumber() { return _number; }
+
+    void setData(QString value) { _data = value; }
+    QString data() { return _data; }
 
 private:
-    QDateTime _creationDate;
-    QString _body;
+    Guid _guid;
     quint64 _number;
+    QString _data;
+    QDateTime _creationDate;
 };
 
 #endif // DATABASEDATAFILERECORD_H

@@ -10,6 +10,7 @@
 #include <database/Database.h>
 
 #include "database/DatabaseIndexFile.h"
+#include "database/DatabaseDataFile.h"
 #include <core/net/UdpStream.h>
 #include <core/types/Guid.h>
 
@@ -22,6 +23,30 @@ int main(int argc, char ** argv)
         qDebug("%s", argv[i]);
     }
     Context::Instance().load();
+
+    DatabaseDataFileRecord rec;
+/*
+    rec.setData("|dfgdsfgdf");
+    rec.setBlockNumber(3464);
+
+    DatabaseDataFile file;
+    file.setFileName("test.data");
+    file.open(QIODevice::ReadWrite);
+    file.write(&rec);
+    file.close();
+*/
+    /*
+    QDateTime start = QDateTime::currentDateTime();
+    for (int i = 0; i < 100; i++)
+    {
+        int n = rand();
+        rec.setGuid(Guid::randomGuid());
+        rec.setBlockNumber(n);
+        rec.setData("test data");
+        Context::Instance().database()->write(rec.guid(), &rec);
+    }
+    qDebug() << "Elapsed:" << start.msecsTo(QDateTime::currentDateTime()) * 0.001;
+    */
 
     quint16 port = 0;
     try

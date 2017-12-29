@@ -24,10 +24,8 @@ SOURCES += \
     src/core/net/SSDPRequest.cpp \
     src/core/net/SSDPProvider.cpp \
     src/database/Database.cpp \
-    src/database/IDatabaseObject.cpp \
     src/database/DatabaseException.cpp \
     src/database/IDatabaseIndex.cpp \
-    src/database/IDatabaseIndexResult.cpp \
     src/database/DatabaseBinaryTreeIndex.cpp \
     src/database/DatabaseFile.cpp \
     src/database/DatabaseFileException.cpp \
@@ -52,7 +50,10 @@ SOURCES += \
     src/core/IHashedDataBlock.cpp \
     src/core/ConsoleInput.cpp \
     src/core/ConsoleInputException.cpp \
-    src/core/types/Guid.cpp
+    src/core/types/Guid.cpp \
+    src/database/IDatabaseData.cpp \
+    src/database/DatabaseIndexProvider.cpp \
+    src/database/DatabaseDataProvider.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -71,11 +72,9 @@ HEADERS += \
     src/core/net/SSDPRequest.h \
     src/core/net/SSDPProvider.h \
     src/database/Database.h \
-    src/database/IDatabaseObject.h \
     src/database/DatabaseException.h \
     src/database/IDatabaseIndex.h \
     src/database/DatabaseGeneral.h \
-    src/database/IDatabaseIndexResult.h \
     src/database/DatabaseBinaryTreeIndex.h \
     src/database/DatabaseFile.h \
     src/database/DatabaseFileException.h \
@@ -100,7 +99,10 @@ HEADERS += \
     src/core/Context.h \
     src/core/ConsoleInput.h \
     src/core/ConsoleInputException.h \
-    src/core/types/Guid.h
+    src/core/types/Guid.h \
+    src/database/IDatabaseData.h \
+    src/database/DatabaseIndexProvider.h \
+    src/database/DatabaseDataProvider.h
 
 
 INCLUDEPATH += $$PWD/src
