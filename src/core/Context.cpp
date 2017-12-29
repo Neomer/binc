@@ -1,7 +1,8 @@
 #include "Context.h"
 
-void Context::load()
+void Context::load(QString settings)
 {
+    _sets.load(settings);
     _consoleInput = new ConsoleInput();
     _consoleInput->start();
     _database = new Database();

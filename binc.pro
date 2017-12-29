@@ -55,7 +55,9 @@ SOURCES += \
     src/database/DatabaseIndexProvider.cpp \
     src/database/DatabaseDataProvider.cpp \
     tests/chat/Chat.cpp \
-    src/core/IBinarySerializable.cpp
+    src/core/IBinarySerializable.cpp \
+    src/core/Settings.cpp \
+    src/core/ContextException.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -106,7 +108,9 @@ HEADERS += \
     src/database/DatabaseIndexProvider.h \
     src/database/DatabaseDataProvider.h \
     tests/chat/Chat.h \
-    src/core/IBinarySerializable.h
+    src/core/IBinarySerializable.h \
+    src/core/Settings.h \
+    src/core/ContextException.h
 
 
 INCLUDEPATH += $$PWD/src

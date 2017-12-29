@@ -12,7 +12,7 @@ int main(int argc, char ** argv)
     {
         qDebug("%s", argv[i]);
     }
-    Context::Instance().load();
+    Context::Instance().load("binc.conf");
 
     Chat chat;
     chat.run();
