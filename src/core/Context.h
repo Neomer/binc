@@ -1,8 +1,11 @@
 #ifndef CONTEXT_H
 #define CONTEXT_H
 
+#include "ContextException.h"
+
 #include <database/Database.h>
 #include "ConsoleInput.h"
+#include "Settings.h"
 
 ///
 /// \brief The Context class хранит глобальные ресурсы используемые разными модулями программы.
@@ -23,8 +26,13 @@ public:
 
     Database *database() { return _database; }
     ConsoleInput * consoleInput() const { return _consoleInput; }
+    Settings *settings() { return &_sets; }
 
-    void load();
+    ///
+    /// \brief load загружает среду выполнения приложения, настройки и пр.
+    /// \param settings Файл конфигурации
+    ///
+    void load(QString settings);
     void unload();
 
 private:
@@ -35,6 +43,8 @@ private:
     Database *_database;
     bool _isInit;
     ConsoleInput *_consoleInput;
+    Settings _sets;
 };
+
 
 #endif // CONTEXT_H
