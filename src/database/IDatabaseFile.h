@@ -12,6 +12,7 @@ class IDatabaseFile : public QFile
 {
 public:
     IDatabaseFile(IDatabaseDataBlock *header);
+    ~IDatabaseFile();
 
     ///
     /// \brief open открывает файл для чтения или записи в зависимости от значения flags
@@ -50,11 +51,12 @@ public:
     ///
     virtual void read(IDatabaseDataBlock *block) = 0;
 
+    IDatabaseDataBlock *header() { return _header; }
+
 private:
     IDatabaseDataBlock *_header;
 
 protected:
-    IDatabaseDataBlock *header() { return _header; }
     virtual void readHeader() = 0;
 
     QDataStream _stream;

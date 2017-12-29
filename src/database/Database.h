@@ -34,7 +34,7 @@ public:
     /// \param key ключ
     /// \return
     ///
-    void read(dbkey key, DatabaseDataFileRecord *data);
+    bool read(dbkey key, DatabaseDataFileRecord *data);
     ///
     /// \brief write записывает объект в базу данных
     /// \param key ключ

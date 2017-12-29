@@ -13,6 +13,7 @@ public:
 
 public:
     quint64 write(IDatabaseDataBlock *block);
+    void read(IDatabaseDataBlock *block) override;
 
 // IDatabaseFile interface
 protected:

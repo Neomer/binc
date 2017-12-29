@@ -16,10 +16,15 @@ quint64 DatabaseIndexFile::write(IDatabaseDataBlock *block)
     {
         b = a + (c - a) * 0.5;
         seek(b);
-        read(&r);
+        IDatabaseRandomAccessFile::read(&r);
         (r.guid() > static_cast<DatabaseIndexRecord *>(block)->guid()) ? c = b : a = b;
     }
     return IDatabaseRandomAccessFile::write(c, block);
+}
+
+void DatabaseIndexFile::read(IDatabaseDataBlock *block)
+{
+    return IDatabaseRandomAccessFile::read(block);
 }
 
 void DatabaseIndexFile::readHeader()

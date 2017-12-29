@@ -19,7 +19,7 @@ Database::Database()
 
 Database::~Database()
 {
-    delete _index;
+    //delete _index;
     delete _lockFile;
 }
 
@@ -49,18 +49,30 @@ void Database::close()
     _lockFile->unlock();
 }
 
-void Database::read(dbkey key, DatabaseDataFileRecord *data)
+bool Database::read(dbkey key, DatabaseDataFileRecord *data)
 {
-    Q_UNUSED(key); Q_UNUSED(data);
+    DatabaseIndexRecord index_record;
+    if (!_index->find(key, &index_record))
+    {
+        return false;
+    }
+    if (!_data->open(QIODevice::ReadWrite))
+    {
+        throw DatabaseFileException(_data->fileName(), "File access failed!");
+    }
+    _data->seek(index_record.offset());
+    _data->read(data);
+    _data->close();
+    return true;
 }
 
 void Database::write(dbkey key, DatabaseDataFileRecord *data)
 {
-    Q_UNUSED(key); Q_UNUSED(data);
-
-    _data->open(QIODevice::ReadWrite);
+    if (!_data->open(QIODevice::ReadWrite))
+    {
+        throw DatabaseFileException(_data->fileName(), "File access failed!");
+    }
     quint64 offset = _data->write(data);
-    _data->flush();
     _data->close();
 
     DatabaseIndexRecord index_record;
