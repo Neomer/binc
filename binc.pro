@@ -53,7 +53,8 @@ SOURCES += \
     src/core/types/Guid.cpp \
     src/database/IDatabaseData.cpp \
     src/database/DatabaseIndexProvider.cpp \
-    src/database/DatabaseDataProvider.cpp
+    src/database/DatabaseDataProvider.cpp \
+    tests/chat/Chat.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -102,7 +103,8 @@ HEADERS += \
     src/core/types/Guid.h \
     src/database/IDatabaseData.h \
     src/database/DatabaseIndexProvider.h \
-    src/database/DatabaseDataProvider.h
+    src/database/DatabaseDataProvider.h \
+    tests/chat/Chat.h
 
 
 INCLUDEPATH += $$PWD/src

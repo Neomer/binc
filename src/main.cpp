@@ -1,18 +1,8 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <core/Context.h>
-#include <core/net/PortMapping.h>
-#include <core/net/NetDataStreamException.h>
-#include <core/net/HTTPParsingException.h>
-#include <core/net/HTTPResponse.h>
-#include <core/net/HTTPClient.h>
-#include <core/net/SSDPProvider.h>
-#include <database/Database.h>
 
-#include "database/DatabaseIndexFile.h"
-#include "database/DatabaseDataFile.h"
-#include <core/net/UdpStream.h>
-#include <core/types/Guid.h>
+#include "../tests/chat/Chat.h"
 
 int main(int argc, char ** argv)
 {
@@ -23,6 +13,9 @@ int main(int argc, char ** argv)
         qDebug("%s", argv[i]);
     }
     Context::Instance().load();
+
+    Chat chat;
+    chat.run();
 
     int ret = a.exec();
 
