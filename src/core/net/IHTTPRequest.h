@@ -23,11 +23,6 @@ public:
     ///
     virtual QString compile() = 0;
     ///
-    /// \brief parse Функция парсит полученный HTTP-запрос
-    /// \param data
-    ///
-    void parse(QByteArray data);
-    ///
     /// \brief setUrl устанавливает url для запроса
     /// \param value url запроса
     ///

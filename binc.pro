@@ -59,7 +59,8 @@ SOURCES += \
     src/core/Settings.cpp \
     src/core/ContextException.cpp \
     src/core/net/RPCServer.cpp \
-    src/core/net/RPCCommunicationThread.cpp
+    src/core/net/RPCCommunicationThread.cpp \
+    src/core/net/AbstractHTTPRequest.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -114,7 +115,8 @@ HEADERS += \
     src/core/Settings.h \
     src/core/ContextException.h \
     src/core/net/RPCServer.h \
-    src/core/net/RPCCommunicationThread.h
+    src/core/net/RPCCommunicationThread.h \
+    src/core/net/AbstractHTTPRequest.h
 
 
 INCLUDEPATH += $$PWD/src

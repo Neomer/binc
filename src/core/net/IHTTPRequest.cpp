@@ -1,15 +1,5 @@
 #include "IHTTPRequest.h"
 
-void IHTTPRequest::parse(QByteArray data)
-{
-    QString sData = QString::fromUtf8(data).trimmed();
-    QRegExp httpReqValidator("(POST|GET|DELETE|PUT)\\s+((\\/?[\\w\\.\\-\\+]+)|(\\/))(\\?([\\w\\d]+\\=[\\w\\d]+\\&)*([\\w\\d]+\\=[\\w\\d]+)?)?\\s+HTTP\\/1\\.1");
-    if (!httpReqValidator.exactMatch(sData.left(sData.indexOf('\n'))))
-    {
-        throw HTTPParsingException(0, "Unknown format!");
-    }
-}
-
 void IHTTPRequest::setUrl(QUrl value)
 {
     _url = value;
