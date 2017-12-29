@@ -4,9 +4,10 @@
 #include <QString>
 #include <QUrl>
 #include <QMap>
+#include "HTTPParsingException.h"
 
 ///
-/// \brief The IHTTPRequest class Интерфейс для создания HTTP-запроса
+/// \brief The IHTTPRequest class Интерфейс для создания и обработки HTTP-запроса
 ///
 class IHTTPRequest
 {
@@ -21,6 +22,11 @@ public:
     /// \return
     ///
     virtual QString compile() = 0;
+    ///
+    /// \brief parse Функция парсит полученный HTTP-запрос
+    /// \param data
+    ///
+    void parse(QByteArray data);
     ///
     /// \brief setUrl устанавливает url для запроса
     /// \param value url запроса

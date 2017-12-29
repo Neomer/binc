@@ -28,6 +28,7 @@ public:
     ConsoleInput * consoleInput() const { return _consoleInput; }
     Settings *settings() { return &_sets; }
 
+
     ///
     /// \brief load загружает среду выполнения приложения, настройки и пр.
     /// \param settings Файл конфигурации

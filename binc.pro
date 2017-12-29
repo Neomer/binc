@@ -57,7 +57,9 @@ SOURCES += \
     tests/chat/Chat.cpp \
     src/core/IBinarySerializable.cpp \
     src/core/Settings.cpp \
-    src/core/ContextException.cpp
+    src/core/ContextException.cpp \
+    src/core/net/RPCServer.cpp \
+    src/core/net/RPCCommunicationThread.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -110,7 +112,9 @@ HEADERS += \
     tests/chat/Chat.h \
     src/core/IBinarySerializable.h \
     src/core/Settings.h \
-    src/core/ContextException.h
+    src/core/ContextException.h \
+    src/core/net/RPCServer.h \
+    src/core/net/RPCCommunicationThread.h
 
 
 INCLUDEPATH += $$PWD/src
