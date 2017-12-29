@@ -11,6 +11,7 @@ void Context::load()
 void Context::unload()
 {
     _consoleInput->terminate();
+    _database->close();
 }
 
 Context::Context()
