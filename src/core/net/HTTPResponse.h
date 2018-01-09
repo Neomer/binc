@@ -8,18 +8,30 @@ class HTTPResponse
 {
 public:
     HTTPResponse(IHTTPRequest *request, QByteArray reply);
+    HTTPResponse(IHTTPRequest *request);
     IHTTPRequest *request() { return _request; }
 
     ///
-    /// \brief status Статус HTTP запроса
+    /// \brief status Статус HTTP ответа
     /// \return
     ///
     int status() { return _status; }
+    ///
+    /// \brief setStatus устанавливает статус ответа
+    /// \param value
+    ///
+    void setStatus(int value) { _status = value; }
+
     ///
     /// \brief version Версия протокола HTTP
     /// \return
     ///
     QString version() { return _version; }
+    ///
+    /// \brief setVersion устанавливает версию протокола HTTP
+    /// \param value
+    ///
+    void setVersion(QString value) { _version = value; }
     ///
     /// \brief statusMessage статусное сообщение
     /// \return

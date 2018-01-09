@@ -39,13 +39,19 @@ void RPCCommunicationThread::run()
         }
         QString action = req.action();
         qDebug() << "Action:" << action;
-        QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection);
+        HTTPResponse resp(&req);
+        if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("request", &req)))
+        {
+            //TODO:
+        }
 
     }
     emit finish(this);
 }
 
-void RPCCommunicationThread::nodes()
+void RPCCommunicationThread::nodes(HTTPResponse *request)
 {
+    Q_UNUSED(request);
+
 
 }

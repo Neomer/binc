@@ -8,6 +8,13 @@ HTTPResponse::HTTPResponse(IHTTPRequest *request, QByteArray reply)
     parse();
 }
 
+HTTPResponse::HTTPResponse(IHTTPRequest *request) :
+    _version("1.1"),
+    _status(200)
+{
+    _request = request;
+}
+
 QString HTTPResponse::header(QString name)
 {
     if (_headers.keys().contains(name))
