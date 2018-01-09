@@ -2,6 +2,7 @@
 #define ABSTRACTHTTPREQUEST_H
 
 #include "IHTTPRequest.h"
+#include <QMap>
 
 ///
 /// \brief The AbstractHTTPRequest class класс для парсинга входящих HTTP-запросов
@@ -20,7 +21,7 @@ public:
     // IHTTPRequest interface
 public:
     QString methodName() override { return _method; }
-    QString compile() override {}
+    QString compile() override { return ""; }
 
 private:
     QString _method;

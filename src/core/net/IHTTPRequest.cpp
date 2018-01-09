@@ -15,6 +15,13 @@ void IHTTPRequest::setHeader(QString name, QString value)
     _headers[name] = value;
 }
 
+QString IHTTPRequest::getHeader(QString name)
+{
+    if (!_headers.contains(name)) return QString();
+    return _headers[name];
+
+}
+
 IHTTPRequest::IHTTPRequest()
 {
 

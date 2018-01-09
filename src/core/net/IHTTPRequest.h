@@ -48,6 +48,12 @@ public:
     /// \param value значение заголовка
     ///
     void setHeader(QString name, QString value);
+    ///
+    /// \brief getHeader возвращает значение заголовка, или NULL, если заголовка нет
+    /// \param name
+    /// \return
+    ///
+    QString getHeader(QString name);
 
 protected:
     IHTTPRequest();

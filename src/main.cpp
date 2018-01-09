@@ -18,8 +18,8 @@ int main(int argc, char ** argv)
     RPCServer server;
     server.start();
 
-    Chat chat;
-    chat.run();
+//    Chat chat;
+//    chat.run();
 
     int ret = a.exec();
 

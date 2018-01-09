@@ -13,13 +13,30 @@ void RPCCommunicationThread::run()
     bool run = true;
     while (run)
     {
+        // Kill thread by timeout
         if (!_socket->waitForReadyRead(10000))
         {
+            qDebug() << "Timeout! Killing thread...";
             run = false;
-            break;
+            continue;
         }
         AbstractHTTPRequest req;
-        req.parse(_socket->readAll());
+        try
+        {
+            req.parse(_socket->readAll());
+        }
+        catch (HTTPParsingException &ex)
+        {
+            qDebug() << "Parsing error at line" << ex.line() << ex.what();
+            run = false;
+            continue;
+        }
+        catch (std::exception &ex)
+        {
+            qDebug() << ex.what();
+            run = false;
+            continue;
+        }
     }
     emit finish(this);
 }

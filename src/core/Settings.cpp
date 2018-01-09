@@ -17,7 +17,15 @@ void Settings::load(QString filename)
     QFile file(filename);
     if (!file.exists())
     {
-        throw ContextException("Configuration file not found!");
+        //throw ContextException("Configuration file not found!");
+        // creating default configuration file
+        if (!file.open(QIODevice::WriteOnly))
+        {
+            throw ContextException("Configuration file access failed!");
+        }
+        _stream.setDevice(&file);
+        save();
+        file.close();
     }
     if (!file.open(QIODevice::ReadWrite))
     {

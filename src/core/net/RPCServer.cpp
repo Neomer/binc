@@ -26,9 +26,11 @@ void RPCServer::acceptConnection()
 {
     while (QTcpSocket *socket = _srv->nextPendingConnection())
     {
+        socket->setParent(0);
         auto rpc = new RPCCommunicationThread(socket, this);
         connect(rpc, SIGNAL(finish(RPCCommunicationThread*)), this, SLOT(threadFinished(RPCCommunicationThread*)));
         rpc->start();
+        socket->moveToThread(rpc);
         _threads.append(rpc);
     }
 }
