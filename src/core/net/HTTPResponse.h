@@ -38,6 +38,11 @@ public:
     ///
     QString statusMessage() { return _statusMessage; }
     ///
+    /// \brief setStatusMessage устанавливает статусное сообщение
+    /// \param value
+    ///
+    void setStatusMessage(QString value) { _statusMessage = value; }
+    ///
     /// \brief header Возвращает заголовок с указанным именем из HTTP-ответа
     /// \param name Имя заголовка в нижнем регистре
     /// \return

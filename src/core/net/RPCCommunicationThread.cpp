@@ -42,7 +42,8 @@ void RPCCommunicationThread::run()
         HTTPResponse resp(&req);
         if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("request", &req)))
         {
-            //TODO:
+            resp.setStatus(404);
+            resp.setStatusMessage("Unknown command!");
         }
 
     }
