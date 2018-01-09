@@ -1,5 +1,4 @@
 #include "RPCCommunicationThread.h"
-#include "AbstractHTTPRequest.h"
 
 RPCCommunicationThread::RPCCommunicationThread(QTcpSocket *socket, QObject *parent) :
     QThread(parent),
@@ -20,7 +19,7 @@ void RPCCommunicationThread::run()
             run = false;
             continue;
         }
-        AbstractHTTPRequest req;
+        RPCRequest req;
         try
         {
             req.parse(_socket->readAll());
@@ -37,6 +36,13 @@ void RPCCommunicationThread::run()
             run = false;
             continue;
         }
+        QString action = req.action();
+        qDebug() << "Action:" << action;
     }
     emit finish(this);
+}
+
+void RPCCommunicationThread::nodes(RPCRequest *request)
+{
+
 }

@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QThread>
 #include <QTcpSocket>
+#include "RPCRequest.h"
+
 
 ///
 /// \brief The RPCCommunicationThread class
@@ -21,6 +23,13 @@ signals:
     // QThread interface
 protected:
     void run() override;
+
+// Функции доступные для RPC вызовов
+private slots:
+    ///
+    /// \brief nodes функция возвращает список известных нодов
+    ///
+    void nodes(RPCRequest *request);
 
 private:
     QTcpSocket *_socket;

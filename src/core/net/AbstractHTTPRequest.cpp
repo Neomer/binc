@@ -10,7 +10,7 @@ AbstractHTTPRequest::AbstractHTTPRequest() :
 void AbstractHTTPRequest::parse(QByteArray data)
 {
     QString sData = QString::fromUtf8(data).trimmed();
-    QRegExp httpReqValidator("(POST|GET|DELETE|PUT)\\s+((\\/?[\\w\\.\\-\\+]+)|(\\/))(\\?([\\w\\d]+\\=[\\w\\d]+\\&)*([\\w\\d]+\\=[\\w\\d]+)?)?\\s+HTTP\\/1\\.1");
+    QRegExp httpReqValidator("(POST|GET|DELETE|PUT)\\s+((\\/?[\\w\\.\\-\\+]+)*\\/|(\\/))(\\?([\\w\\d]+\\=[\\w\\d]+\\&)*([\\w\\d]+\\=[\\w\\d]+)?)?\\s+HTTP\\/1\\.1");
     if (httpReqValidator.indexIn(sData.left(sData.indexOf('\n'))) == -1)
     {
         throw HTTPParsingException(0, "Data is not valid HTTP request!");
@@ -45,3 +45,4 @@ void AbstractHTTPRequest::parse(QByteArray data)
     setUrl(QUrl("http://" + host + path));
     setContent(sData.mid(space));
 }
+
