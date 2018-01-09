@@ -1,4 +1,5 @@
 #include "RPCCommunicationThread.h"
+#include <QMetaObject>
 
 RPCCommunicationThread::RPCCommunicationThread(QTcpSocket *socket, QObject *parent) :
     QThread(parent),
@@ -38,11 +39,13 @@ void RPCCommunicationThread::run()
         }
         QString action = req.action();
         qDebug() << "Action:" << action;
+        QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection);
+
     }
     emit finish(this);
 }
 
-void RPCCommunicationThread::nodes(RPCRequest *request)
+void RPCCommunicationThread::nodes()
 {
 
 }

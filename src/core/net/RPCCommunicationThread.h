@@ -29,7 +29,7 @@ private slots:
     ///
     /// \brief nodes функция возвращает список известных нодов
     ///
-    void nodes(RPCRequest *request);
+    void nodes();
 
 private:
     QTcpSocket *_socket;
