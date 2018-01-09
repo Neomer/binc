@@ -31,7 +31,10 @@ QString HTTPResponse::header(QString name)
 QByteArray HTTPResponse::compile()
 {
     QString ret;
-
+    ret = "HTTP/1.1 " + QString::number(_status) + " " + _statusMessage + "\r\n"
+            + compileHeaders()
+            + "\r\n";
+    return ret.toUtf8();
 }
 
 void HTTPResponse::parse()
@@ -77,4 +80,17 @@ void HTTPResponse::parse()
 QString HTTPResponse::formatHeaderValue(QString text)
 {
     return text.trimmed().replace(QRegExp("[\r\n]"), "");
+}
+
+QString HTTPResponse::compileHeaders()
+{
+    QString ret;
+
+    foreach (QString k, _headers.keys())
+    {
+        ret += k + ":" + _headers[k] + "\r\n";
+    }
+
+    return ret;
+
 }

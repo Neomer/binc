@@ -75,6 +75,7 @@ private:
     /// \return
     ///
     QString formatHeaderValue(QString text);
+    QString compileHeaders();
 
     IHTTPRequest *_request;
     QString _raw, _version, _statusMessage;
