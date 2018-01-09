@@ -62,7 +62,8 @@ SOURCES += \
     src/core/net/RPCCommunicationThread.cpp \
     src/core/net/AbstractHTTPRequest.cpp \
     src/core/StringUtils.cpp \
-    src/core/net/RPCRequest.cpp
+    src/core/net/RPCRequest.cpp \
+    src/core/types/Version.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -120,7 +121,8 @@ HEADERS += \
     src/core/net/RPCCommunicationThread.h \
     src/core/net/AbstractHTTPRequest.h \
     src/core/StringUtils.h \
-    src/core/net/RPCRequest.h
+    src/core/net/RPCRequest.h \
+    src/core/types/Version.h
 
 
 INCLUDEPATH += $$PWD/src

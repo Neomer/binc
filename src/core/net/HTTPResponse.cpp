@@ -30,6 +30,7 @@ QString HTTPResponse::header(QString name)
 
 QByteArray HTTPResponse::compile()
 {
+    QString ret;
 
 }
 

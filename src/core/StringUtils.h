@@ -16,6 +16,12 @@ public:
     ///
     static bool IsNullOrEmpty(QString value);
     ///
+    /// \brief IsVersion Возвращает TRUE, если строка value может быть перобразована в тип Version
+    /// \param value
+    /// \return
+    ///
+    static bool IsVersion(QString value);
+    ///
     /// \brief TrimEx Удаляет из начала и конца строки символы [\s,\r,\t,\n]
     /// \param value
     /// \return
