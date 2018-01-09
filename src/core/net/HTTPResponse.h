@@ -58,7 +58,11 @@ public:
     /// \return
     ///
     QString content() { return _content; }
-
+    ///
+    /// \brief compile Компилирует HTTP ответ для отправки с помощью сокетов
+    /// \return
+    ///
+    QByteArray compile();
 
 private:
     ///

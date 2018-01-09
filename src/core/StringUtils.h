@@ -21,6 +21,11 @@ public:
     /// \return
     ///
     static QString TrimEx(QString value);
+    ///
+    /// \brief EmptyString Возвращает пустую строку
+    /// \return
+    ///
+    static QString EmptyString();
 
 private:
     StringUtils();

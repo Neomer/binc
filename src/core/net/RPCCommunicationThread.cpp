@@ -40,12 +40,11 @@ void RPCCommunicationThread::run()
         QString action = req.action();
         qDebug() << "Action:" << action;
         HTTPResponse resp(&req);
-        if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("request", &req)))
+        if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("request", &resp)))
         {
             resp.setStatus(404);
             resp.setStatusMessage("Unknown command!");
         }
-
     }
     emit finish(this);
 }

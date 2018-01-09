@@ -1,4 +1,5 @@
 #include "IHTTPRequest.h"
+#include <core/StringUtils.h>
 
 void IHTTPRequest::setUrl(QUrl value)
 {
@@ -17,7 +18,7 @@ void IHTTPRequest::setHeader(QString name, QString value)
 
 QString IHTTPRequest::getHeader(QString name)
 {
-    if (!_headers.contains(name)) return QString();
+    if (!_headers.contains(name)) return StringUtils::EmptyString();
     return _headers[name];
 
 }

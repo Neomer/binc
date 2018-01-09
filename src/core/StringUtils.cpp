@@ -12,6 +12,11 @@ QString StringUtils::TrimEx(QString value)
     return value.mid(st, en - st + 1);
 }
 
+QString StringUtils::EmptyString()
+{
+    return QString();
+}
+
 StringUtils::StringUtils()
 {
 

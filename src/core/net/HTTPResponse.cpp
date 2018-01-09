@@ -1,5 +1,6 @@
 #include "HTTPResponse.h"
 #include "HTTPParsingException.h"
+#include <core/StringUtils.h>
 
 HTTPResponse::HTTPResponse(IHTTPRequest *request, QByteArray reply)
 {
@@ -23,8 +24,13 @@ QString HTTPResponse::header(QString name)
     }
     else
     {
-        return QString();
+        return StringUtils::EmptyString();
     }
+}
+
+QByteArray HTTPResponse::compile()
+{
+
 }
 
 void HTTPResponse::parse()
