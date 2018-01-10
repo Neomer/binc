@@ -5,7 +5,7 @@
 #include <QThread>
 #include <QTcpSocket>
 #include "RPCRequest.h"
-#include <core/net/http/HTTPResponse.h>
+#include "RPCResponse.h"
 
 ///
 /// \brief The RPCCommunicationThread class
@@ -29,7 +29,7 @@ private slots:
     ///
     /// \brief nodes функция возвращает список известных нодов
     ///
-    void nodes(HTTPResponse *request);
+    void nodes(HTTPResponse *);
 
 private:
     QTcpSocket *_socket;

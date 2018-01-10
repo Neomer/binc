@@ -38,7 +38,7 @@ void RPCCommunicationThread::run()
             continue;
         }
         QString action = req.action();
-        HTTPResponse resp(&req);
+        RPCResponse resp(&req);
         resp.setHeader("Server", "RPC-Server");
         resp.setHeader("Connection", "close");
         if (action.isEmpty())
@@ -57,9 +57,6 @@ void RPCCommunicationThread::run()
     emit finish(this);
 }
 
-void RPCCommunicationThread::nodes(HTTPResponse *request)
+void RPCCommunicationThread::nodes(HTTPResponse *response)
 {
-    Q_UNUSED(request);
-
-
 }
