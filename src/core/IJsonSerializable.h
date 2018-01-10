@@ -3,6 +3,7 @@
 
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QJsonDocument>
 
 class IJsonSerializable
 {
@@ -17,6 +18,12 @@ public:
     /// \param data
     ///
     virtual void deserialize(QJsonObject &in) = 0;
+    ///
+    /// \brief toString преобразует Json-объект в строку
+    /// \param object
+    /// \return
+    ///
+    static QString toString(IJsonSerializable *object);
 };
 
 #endif // IJSONSERIALIZABLE_H

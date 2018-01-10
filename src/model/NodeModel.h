@@ -8,6 +8,7 @@ class NodeModel : public IJsonSerializable
 {
 public:
     NodeModel();
+    NodeModel(QHostAddress address, quint16 port);
 
     QHostAddress getAddress() { _address; }
     void setAddress(QHostAddress value) { _address = value; }
