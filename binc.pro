@@ -58,7 +58,6 @@ SOURCES += \
     src/core/ContextException.cpp \
     src/core/net/RPCServer.cpp \
     src/core/net/RPCCommunicationThread.cpp \
-    src/core/net/http/AbstractHTTPRequest.cpp \
     src/core/StringUtils.cpp \
     src/core/net/RPCRequest.cpp \
     src/core/types/Version.cpp \
@@ -118,7 +117,6 @@ HEADERS += \
     src/core/ContextException.h \
     src/core/net/RPCServer.h \
     src/core/net/RPCCommunicationThread.h \
-    src/core/net/http/AbstractHTTPRequest.h \
     src/core/StringUtils.h \
     src/core/net/RPCRequest.h \
     src/core/types/Version.h \
