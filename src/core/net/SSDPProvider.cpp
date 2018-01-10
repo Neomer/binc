@@ -1,8 +1,8 @@
 #include "SSDPProvider.h"
 #include "SSDPRequest.h"
-#include "HTTPUdpClient.h"
+#include <core/net/http/HTTPUdpClient.h>
+#include <core/net/http/HTTPParsingException.h>
 #include "NetDataStreamException.h"
-#include "HTTPParsingException.h"
 
 SSDPProvider::SSDPProvider()
 {

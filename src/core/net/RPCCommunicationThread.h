@@ -5,7 +5,7 @@
 #include <QThread>
 #include <QTcpSocket>
 #include "RPCRequest.h"
-#include "HTTPResponse.h"
+#include <core/net/http/HTTPResponse.h>
 
 ///
 /// \brief The RPCCommunicationThread class
