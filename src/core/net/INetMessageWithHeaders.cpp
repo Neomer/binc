@@ -8,7 +8,8 @@ INetMessageWithHeaders::INetMessageWithHeaders()
 
 QString INetMessageWithHeaders::compile()
 {
-    return statusRow() + "\r\n" + compileHeaders() + "\r\n\r\n";
+    QString ret = statusRow() + "\r\n";
+    return ret + compileHeaders() + "\r\n";
 }
 
 void INetMessageWithHeaders::setHeader(QString name, QString value)
