@@ -1,7 +1,8 @@
 #include "DatabaseException.h"
 
-DatabaseException::DatabaseException(const char *message)
+DatabaseException::DatabaseException(const char *message) :
+    BaseException(message)
 {
-    _message = message;
+
 }
 

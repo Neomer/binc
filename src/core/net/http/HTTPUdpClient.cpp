@@ -12,7 +12,7 @@ HTTPResponse HTTPUdpClient::send(HTTPRequest *request)
     QUdpSocket *socket = new QUdpSocket();
     if (!request->getUrl().isValid())
     {
-        throw std::runtime_error("Invalid url!");
+        throw BaseException("Invalid url!");
     }
     if (!socket->bind(QHostAddress::AnyIPv4, 45454, QUdpSocket::ShareAddress))
     {

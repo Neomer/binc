@@ -2,6 +2,7 @@
 #define VERSION_H
 
 #include <QString>
+#include <core/BaseException.h>
 
 ///
 /// \brief The Version class класс для представления версии.

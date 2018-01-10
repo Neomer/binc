@@ -67,7 +67,8 @@ SOURCES += \
     src/core/net/rpc/RPCResponse.cpp \
     src/core/IJsonSerializable.cpp \
     src/model/NodeModel.cpp \
-    src/model/NodeCollectionModel.cpp
+    src/model/NodeCollectionModel.cpp \
+    src/core/BaseException.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -130,7 +131,8 @@ HEADERS += \
     src/core/net/rpc/RPCResponse.h \
     src/core/IJsonSerializable.h \
     src/model/NodeModel.h \
-    src/model/NodeCollectionModel.h
+    src/model/NodeCollectionModel.h \
+    src/core/BaseException.h
 
 
 INCLUDEPATH += $$PWD/src

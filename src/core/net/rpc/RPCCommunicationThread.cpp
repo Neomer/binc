@@ -32,7 +32,7 @@ void RPCCommunicationThread::run()
             run = false;
             continue;
         }
-        catch (std::exception &ex)
+        catch (BaseException &ex)
         {
             qDebug() << ex.what();
             run = false;
