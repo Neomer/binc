@@ -1,7 +1,7 @@
 #include "HTTPgetRequest.h"
 
 HTTPgetRequest::HTTPgetRequest() :
-    IHTTPRequest()
+    HTTPRequest()
 {
     _query.clear();
 }

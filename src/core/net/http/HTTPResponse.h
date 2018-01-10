@@ -8,9 +8,9 @@
 class HTTPResponse : public IHTTPMessage
 {
 public:
-    HTTPResponse(IHTTPRequest *request, QByteArray reply);
-    HTTPResponse(IHTTPRequest *request);
-    IHTTPRequest *request() { return _request; }
+    HTTPResponse(HTTPRequest *request, QByteArray reply);
+    HTTPResponse(HTTPRequest *request);
+    HTTPRequest *request() { return _request; }
 
     ///
     /// \brief status Статус HTTP ответа
@@ -36,7 +36,7 @@ public:
 
 private:
 
-    IHTTPRequest *_request;
+    HTTPRequest *_request;
     QString _raw, _statusMessage;
     int _status;
 

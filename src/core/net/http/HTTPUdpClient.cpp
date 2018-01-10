@@ -7,7 +7,7 @@ HTTPUdpClient::HTTPUdpClient()
 
 }
 
-HTTPResponse HTTPUdpClient::send(IHTTPRequest *request)
+HTTPResponse HTTPUdpClient::send(HTTPRequest *request)
 {
     QUdpSocket *socket = new QUdpSocket();
     if (!request->getUrl().isValid())

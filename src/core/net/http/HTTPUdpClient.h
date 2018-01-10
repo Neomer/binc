@@ -9,7 +9,7 @@ class HTTPUdpClient
 public:
     HTTPUdpClient();
 
-    static HTTPResponse send(IHTTPRequest *request);
+    static HTTPResponse send(HTTPRequest *request);
 };
 
 #endif // HTTPUDPCLIENT_H

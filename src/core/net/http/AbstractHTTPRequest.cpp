@@ -2,7 +2,7 @@
 #include <core/StringUtils.h>
 
 AbstractHTTPRequest::AbstractHTTPRequest() :
-    IHTTPRequest()
+    HTTPRequest()
 {
 
 }

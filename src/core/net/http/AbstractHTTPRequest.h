@@ -7,20 +7,10 @@
 ///
 /// \brief The AbstractHTTPRequest class класс для парсинга входящих HTTP-запросов
 ///
-class AbstractHTTPRequest : public IHTTPRequest
+class AbstractHTTPRequest : public HTTPRequest
 {
 public:
     AbstractHTTPRequest();
-
-    ///
-    /// \brief parse Функция парсит полученный HTTP-запрос
-    /// \param data
-    ///
-    void parse(QByteArray data);
-
-    // IHTTPRequest interface
-public:
-    QString methodName() override { return _method; }
 
 private:
     QString _method;

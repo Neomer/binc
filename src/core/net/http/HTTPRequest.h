@@ -10,19 +10,16 @@
 ///
 /// \brief The IHTTPRequest class Интерфейс для создания и обработки HTTP-запроса
 ///
-class IHTTPRequest : public IHTTPMessage
+class HTTPRequest : public IHTTPMessage
 {
 public:
-    IHTTPRequest();
-
-    ///
-    /// \brief methodName Виртуальный метод. Реализующий класс, должен вернуть текстовое предаствление метода HTTP-запроса.
-    /// \return
-    ///
-    virtual QString methodName() = 0;
+    HTTPRequest();
 
     QUrl getUrl() { return _url; }
     void setUrl(QUrl value) { _url = value; }
+
+    QString getMethodName() { return _method; }
+    void setMethodName(QString value) { _method = value; }
 
     // INetMessageWithHeaders interface
 protected:
@@ -31,6 +28,7 @@ protected:
 
 private:
     QUrl _url;
+    QString _method;
 };
 
 #endif // HTTPREQUEST_H

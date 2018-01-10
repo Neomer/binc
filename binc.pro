@@ -17,7 +17,6 @@ SOURCES += \
     src/core/net/NetDataStreamException.cpp \
     src/core/net/http/HTTPClient.cpp \
     src/core/net/http/HTTPResponse.cpp \
-    src/core/net/http/IHTTPRequest.cpp \
     src/core/net/http/HTTPgetRequest.cpp \
     src/core/net/http/HTTPParsingException.cpp \
     src/core/net/http/HTTPUdpClient.cpp \
@@ -65,7 +64,8 @@ SOURCES += \
     src/core/net/RPCRequest.cpp \
     src/core/types/Version.cpp \
     src/core/net/INetMessageWithHeaders.cpp \
-    src/core/net/http/IHTTPMessage.cpp
+    src/core/net/http/IHTTPMessage.cpp \
+    src/core/net/http/HTTPRequest.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -77,7 +77,6 @@ HEADERS += \
     src/core/net/NetDataStreamException.h \
     src/core/net/http/HTTPClient.h \
     src/core/net/http/HTTPResponse.h \
-    src/core/net/http/IHTTPRequest.h \
     src/core/net/http/HTTPgetRequest.h \
     src/core/net/http/HTTPParsingException.h \
     src/core/net/http/HTTPUdpClient.h \
@@ -126,7 +125,8 @@ HEADERS += \
     src/core/net/RPCRequest.h \
     src/core/types/Version.h \
     src/core/net/INetMessageWithHeaders.h \
-    src/core/net/http/IHTTPMessage.h
+    src/core/net/http/IHTTPMessage.h \
+    src/core/net/http/HTTPRequest.h
 
 
 INCLUDEPATH += $$PWD/src

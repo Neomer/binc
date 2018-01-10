@@ -1,9 +1,9 @@
 #ifndef HTTPGETREQUEST_H
 #define HTTPGETREQUEST_H
 
-#include "IHTTPRequest.h"
+#include "HTTPRequest.h"
 
-class HTTPgetRequest : public IHTTPRequest
+class HTTPgetRequest : public HTTPRequest
 {
 public:
     HTTPgetRequest();
