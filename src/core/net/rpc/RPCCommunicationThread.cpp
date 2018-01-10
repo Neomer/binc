@@ -1,5 +1,6 @@
 #include "RPCCommunicationThread.h"
 #include <QMetaObject>
+#include <model/NodeCollectionModel.h>
 
 RPCCommunicationThread::RPCCommunicationThread(QTcpSocket *socket, QObject *parent) :
     QThread(parent),
@@ -38,7 +39,7 @@ void RPCCommunicationThread::run()
             continue;
         }
         QString action = req.action();
-        HTTPResponse resp(&req);
+        RPCResponse resp(&req);
         resp.setHeader("Server", "RPC-Server");
         resp.setHeader("Connection", "close");
         if (action.isEmpty())
@@ -46,7 +47,7 @@ void RPCCommunicationThread::run()
             resp.setStatus(400);
             resp.setStatusMessage("Bad request");
         }
-        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("HTTPResponse *", &resp)))
+        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, Q_ARG(HTTPResponse *, &resp)))
         {
             resp.setStatus(404);
             resp.setStatusMessage("Unknown command!");
@@ -57,9 +58,9 @@ void RPCCommunicationThread::run()
     emit finish(this);
 }
 
-void RPCCommunicationThread::nodes(HTTPResponse *request)
+void RPCCommunicationThread::nodes(HTTPResponse *response)
 {
-    Q_UNUSED(request);
-
-
+    NodeCollectionModel nodes;
+    nodes.addNode(new NodeModel(QHostAddress::Any, 15648));
+    static_cast<RPCResponse *>(response)->setContent(IJsonSerializable::toString(&nodes));
 }

@@ -56,14 +56,18 @@ SOURCES += \
     src/core/IBinarySerializable.cpp \
     src/core/Settings.cpp \
     src/core/ContextException.cpp \
-    src/core/net/RPCServer.cpp \
-    src/core/net/RPCCommunicationThread.cpp \
+    src/core/net/rpc/RPCServer.cpp \
+    src/core/net/rpc/RPCCommunicationThread.cpp \
     src/core/StringUtils.cpp \
-    src/core/net/RPCRequest.cpp \
+    src/core/net/rpc/RPCRequest.cpp \
     src/core/types/Version.cpp \
     src/core/net/INetMessageWithHeaders.cpp \
     src/core/net/http/IHTTPMessage.cpp \
-    src/core/net/http/HTTPRequest.cpp
+    src/core/net/http/HTTPRequest.cpp \
+    src/core/net/rpc/RPCResponse.cpp \
+    src/core/IJsonSerializable.cpp \
+    src/model/NodeModel.cpp \
+    src/model/NodeCollectionModel.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -115,14 +119,18 @@ HEADERS += \
     src/core/IBinarySerializable.h \
     src/core/Settings.h \
     src/core/ContextException.h \
-    src/core/net/RPCServer.h \
-    src/core/net/RPCCommunicationThread.h \
+    src/core/net/rpc/RPCServer.h \
+    src/core/net/rpc/RPCCommunicationThread.h \
     src/core/StringUtils.h \
-    src/core/net/RPCRequest.h \
+    src/core/net/rpc/RPCRequest.h \
     src/core/types/Version.h \
     src/core/net/INetMessageWithHeaders.h \
     src/core/net/http/IHTTPMessage.h \
-    src/core/net/http/HTTPRequest.h
+    src/core/net/http/HTTPRequest.h \
+    src/core/net/rpc/RPCResponse.h \
+    src/core/IJsonSerializable.h \
+    src/model/NodeModel.h \
+    src/model/NodeCollectionModel.h
 
 
 INCLUDEPATH += $$PWD/src
