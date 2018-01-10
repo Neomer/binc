@@ -29,21 +29,21 @@ Version::Version(QString data) :
     data = StringUtils::TrimEx(data);
     if (!StringUtils::IsVersion(data))
     {
-        throw std::runtime_error("Unsupported version format!");
+        throw BaseException("Unsupported version format!");
     }
     bool ok = true;
     int s = data.indexOf(QRegExp("[\\.\\s\\-]")), s1;
     if (s < 0) s = data.length();
     _major = data.left(s).toInt(&ok);
-    if (!ok) throw std::runtime_error("Unsupported version format!");
+    if (!ok) throw BaseException("Unsupported version format!");
     s1 = s; s = data.indexOf(QRegExp("[\\.\\s\\-]"), s + 1);
     if (s < 0) s = data.length();
     if (s != s1) _minor = data.mid(s1 + 1, s - s1 - 1).toInt(&ok);
-    if (!ok) throw std::runtime_error("Unsupported version format!");
+    if (!ok) throw BaseException("Unsupported version format!");
     s1 = s; s = data.indexOf(QRegExp("[\\.\\s\\-]"), s + 1);
     if (s < 0) s = data.length();
     if (s != s1) _maintenance = data.mid(s1 + 1, s - s1 - 1).toInt(&ok);
-    if (!ok) throw std::runtime_error("Unsupported version format!");
+    if (!ok) throw BaseException("Unsupported version format!");
     if (s < data.length())
     {
         QRegExp stageExp("pre-alpha|alpha|beta|rc|pre-a|a|b");

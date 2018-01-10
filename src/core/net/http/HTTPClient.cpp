@@ -12,7 +12,7 @@ HTTPResponse HTTPClient::get(QUrl url)
     QTcpSocket *socket = new QTcpSocket();
     if (!url.isValid())
     {
-        throw std::runtime_error("Invalid url!");
+        throw BaseException("Invalid url!");
     }
     socket->connectToHost(url.host(), url.port(80));
     if (!socket->waitForConnected(3000))

@@ -1,17 +1,12 @@
 #ifndef DATASTREAMEXCEPTION_H
 #define DATASTREAMEXCEPTION_H
 
-#include <QObject>
+#include <core/BaseException.h>
 
-class DataStreamException : public std::exception
+class DataStreamException : public BaseException
 {
 public:
     DataStreamException(const char * message);
-
-    char const* what() const throw() { return _message; }
-
-private:
-    const char * _message;
 };
 
 #endif // DATASTREAMEXCEPTION_H

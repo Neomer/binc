@@ -1,17 +1,12 @@
 #ifndef CONSOLEINPUTEXCEPTION_H
 #define CONSOLEINPUTEXCEPTION_H
 
-#include <QObject>
+#include <core/BaseException.h>
 
-class ConsoleInputException : public std::exception
+class ConsoleInputException : public BaseException
 {
 public:
     ConsoleInputException(const char * message);
-
-    char const* what() const throw() { return _message; }
-
-private:
-    const char * _message;
 };
 
 #endif // CONSOLEINPUTEXCEPTION_H

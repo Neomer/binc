@@ -1,18 +1,12 @@
 #ifndef DATABASEEXCEPTION_H
 #define DATABASEEXCEPTION_H
 
-#include <QObject>
+#include <core/BaseException.h>
 
-class DatabaseException : public std::exception
+class DatabaseException : public BaseException
 {
 public:
     DatabaseException(const char * message);
-
-public:
-    char const* what() const throw() { return _message; }
-
-private:
-    const char *  _message;
 };
 
 #endif // DATABASEEXCEPTION_H
