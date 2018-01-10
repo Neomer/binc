@@ -8,8 +8,9 @@ INetMessageWithHeaders::INetMessageWithHeaders()
 
 QString INetMessageWithHeaders::compile()
 {
+    setHeader("Content-Length", QString::number(getContent().length()));
     QString ret = statusRow() + "\r\n";
-    return ret + compileHeaders() + "\r\n";
+    return ret + compileHeaders() + "\r\n" + getContent();
 }
 
 void INetMessageWithHeaders::setHeader(QString name, QString value)

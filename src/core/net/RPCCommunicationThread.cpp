@@ -39,12 +39,14 @@ void RPCCommunicationThread::run()
         }
         QString action = req.action();
         HTTPResponse resp(&req);
+        resp.setHeader("Server", "RPC-Server");
+        resp.setHeader("Connection", "close");
         if (action.isEmpty())
         {
             resp.setStatus(400);
             resp.setStatusMessage("Bad request");
         }
-        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("request", &resp)))
+        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("HTTPResponse *", &resp)))
         {
             resp.setStatus(404);
             resp.setStatusMessage("Unknown command!");

@@ -5,18 +5,19 @@
 HTTPResponse::HTTPResponse(HTTPRequest *request, QByteArray reply) :
     IHTTPMessage(),
     _status(200),
-    _statusMessage("OK")
+    _statusMessage("OK"),
+    _request(request)
 {
-    _request = request;
     _raw = QString::fromUtf8(reply);
 }
 
 HTTPResponse::HTTPResponse(HTTPRequest *request) :
     IHTTPMessage(),
     _status(200),
-    _statusMessage("OK")
+    _statusMessage("OK"),
+    _request(request)
 {
-    _request = request;
+
 }
 
 QString HTTPResponse::statusRow()
