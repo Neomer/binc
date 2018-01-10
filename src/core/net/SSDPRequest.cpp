@@ -12,7 +12,7 @@
 
 
 SSDPRequest::SSDPRequest() :
-    IHTTPRequest()
+    HTTPRequest()
 {
     setUrl(QUrl("SSDP://239.255.255.250:1900"));
 }

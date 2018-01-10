@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <core/Context.h>
+#include <core/net/RPCServer.h>
 
 #include "../tests/chat/Chat.h"
 
@@ -14,8 +15,11 @@ int main(int argc, char ** argv)
     }
     Context::Instance().load("binc.conf");
 
-    Chat chat;
-    chat.run();
+    RPCServer server;
+    server.start();
+
+//    Chat chat;
+//    chat.run();
 
     int ret = a.exec();
 

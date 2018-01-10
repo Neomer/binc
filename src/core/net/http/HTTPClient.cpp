@@ -1,6 +1,6 @@
 #include "HTTPClient.h"
-#include "HTTPgetRequest.h"
-#include "NetDataStreamException.h"
+#include "HTTPRequest.h"
+#include <core/net/NetDataStreamException.h>
 
 HTTPClient::HTTPClient()
 {
@@ -19,7 +19,7 @@ HTTPResponse HTTPClient::get(QUrl url)
     {
         throw NetDataStreamException(NetDataStreamException::enNDSE_HostNotAvailable ,"Host is unavailable!");
     }
-    HTTPgetRequest req;
+    HTTPRequest req("GET");
     req.setUrl(QUrl("http://ya.ru/"));
     socket->write(req.compile().toUtf8());
     if (!socket->waitForBytesWritten(3000))

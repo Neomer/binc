@@ -1,13 +1,13 @@
 #include "HTTPUdpClient.h"
 #include <QUdpSocket>
-#include "NetDataStreamException.h"
+#include <core/net/NetDataStreamException.h>
 
 HTTPUdpClient::HTTPUdpClient()
 {
 
 }
 
-HTTPResponse HTTPUdpClient::send(IHTTPRequest *request)
+HTTPResponse HTTPUdpClient::send(HTTPRequest *request)
 {
     QUdpSocket *socket = new QUdpSocket();
     if (!request->getUrl().isValid())
