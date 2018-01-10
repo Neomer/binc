@@ -47,7 +47,7 @@ void RPCCommunicationThread::run()
             resp.setStatus(400);
             resp.setStatusMessage("Bad request");
         }
-        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("HTTPResponse *", &resp)))
+        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, Q_ARG(HTTPResponse *, &resp)))
         {
             resp.setStatus(404);
             resp.setStatusMessage("Unknown command!");
@@ -62,5 +62,5 @@ void RPCCommunicationThread::nodes(HTTPResponse *response)
 {
     NodeCollectionModel nodes;
     nodes.addNode(new NodeModel(QHostAddress::Any, 15648));
-    response->setContent(IJsonSerializable::toString(&nodes));
+    static_cast<RPCResponse *>(response)->setContent(IJsonSerializable::toString(&nodes));
 }
