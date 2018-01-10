@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QTcpServer>
-#include "NetDataStreamException.h"
+#include <core/net/NetDataStreamException.h>
 #include "RPCCommunicationThread.h"
 
 class RPCServer : QObject

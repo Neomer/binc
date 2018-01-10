@@ -1,7 +1,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <core/Context.h>
-#include <core/net/RPCServer.h>
+#include <core/net/rpc/RPCServer.h>
 
 #include "../tests/chat/Chat.h"
 
