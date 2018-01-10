@@ -15,12 +15,12 @@ SOURCES += \
     src/core/net/PortMapping.cpp \
     src/core/IDataStream.cpp \
     src/core/net/NetDataStreamException.cpp \
-    src/core/net/HTTPClient.cpp \
-    src/core/net/HTTPResponse.cpp \
-    src/core/net/IHTTPRequest.cpp \
-    src/core/net/HTTPgetRequest.cpp \
-    src/core/net/HTTPParsingException.cpp \
-    src/core/net/HTTPUdpClient.cpp \
+    src/core/net/http/HTTPClient.cpp \
+    src/core/net/http/HTTPResponse.cpp \
+    src/core/net/http/IHTTPRequest.cpp \
+    src/core/net/http/HTTPgetRequest.cpp \
+    src/core/net/http/HTTPParsingException.cpp \
+    src/core/net/http/HTTPUdpClient.cpp \
     src/core/net/SSDPRequest.cpp \
     src/core/net/SSDPProvider.cpp \
     src/database/Database.cpp \
@@ -60,11 +60,12 @@ SOURCES += \
     src/core/ContextException.cpp \
     src/core/net/RPCServer.cpp \
     src/core/net/RPCCommunicationThread.cpp \
-    src/core/net/AbstractHTTPRequest.cpp \
+    src/core/net/http/AbstractHTTPRequest.cpp \
     src/core/StringUtils.cpp \
     src/core/net/RPCRequest.cpp \
     src/core/types/Version.cpp \
-    src/core/net/INetMessageWithHeaders.cpp
+    src/core/net/INetMessageWithHeaders.cpp \
+    src/core/net/http/IHTTPMessage.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -74,12 +75,12 @@ HEADERS += \
     src/core/net/PortMapping.h \
     src/core/IDataStream.h \
     src/core/net/NetDataStreamException.h \
-    src/core/net/HTTPClient.h \
-    src/core/net/HTTPResponse.h \
-    src/core/net/IHTTPRequest.h \
-    src/core/net/HTTPgetRequest.h \
-    src/core/net/HTTPParsingException.h \
-    src/core/net/HTTPUdpClient.h \
+    src/core/net/http/HTTPClient.h \
+    src/core/net/http/HTTPResponse.h \
+    src/core/net/http/IHTTPRequest.h \
+    src/core/net/http/HTTPgetRequest.h \
+    src/core/net/http/HTTPParsingException.h \
+    src/core/net/http/HTTPUdpClient.h \
     src/core/net/SSDPRequest.h \
     src/core/net/SSDPProvider.h \
     src/database/Database.h \
@@ -120,11 +121,12 @@ HEADERS += \
     src/core/ContextException.h \
     src/core/net/RPCServer.h \
     src/core/net/RPCCommunicationThread.h \
-    src/core/net/AbstractHTTPRequest.h \
+    src/core/net/http/AbstractHTTPRequest.h \
     src/core/StringUtils.h \
     src/core/net/RPCRequest.h \
     src/core/types/Version.h \
-    src/core/net/INetMessageWithHeaders.h
+    src/core/net/INetMessageWithHeaders.h \
+    src/core/net/http/IHTTPMessage.h
 
 
 INCLUDEPATH += $$PWD/src

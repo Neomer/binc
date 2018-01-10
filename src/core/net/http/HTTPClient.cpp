@@ -1,6 +1,6 @@
 #include "HTTPClient.h"
 #include "HTTPgetRequest.h"
-#include "NetDataStreamException.h"
+#include <core/net/NetDataStreamException.h>
 
 HTTPClient::HTTPClient()
 {

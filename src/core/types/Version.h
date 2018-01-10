@@ -29,6 +29,14 @@ public:
     /// \param data
     ///
     Version(QString data);
+    ///
+    /// \brief Version создает экземпляр класса Version с указанными значенинями major, minor, maintance и stage
+    /// \param major
+    /// \param minor
+    /// \param maintance
+    /// \param stage
+    ///
+    Version(int major, int minor, int maintance = 0, VersionStage stage = enVersionStageEmpty);
 
 
     int major() { return _major; }

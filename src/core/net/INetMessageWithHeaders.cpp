@@ -16,7 +16,7 @@ void INetMessageWithHeaders::setHeader(QString name, QString value)
     _headers[name] = value;
 }
 
-QString INetMessageWithHeaders::header(QString name)
+QString INetMessageWithHeaders::getHeader(QString name)
 {
     if (!_headers.contains(name)) return StringUtils::EmptyString();
     return _headers[name];

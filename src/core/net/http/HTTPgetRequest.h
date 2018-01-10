@@ -11,7 +11,6 @@ public:
 
 public:
     QString methodName() { return "GET"; }
-    QString compile();
 
 private:
     QString _query;

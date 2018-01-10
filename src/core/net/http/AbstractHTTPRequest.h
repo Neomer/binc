@@ -21,7 +21,6 @@ public:
     // IHTTPRequest interface
 public:
     QString methodName() override { return _method; }
-    QString compile() override { return ""; }
 
 private:
     QString _method;

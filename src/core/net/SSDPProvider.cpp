@@ -15,11 +15,7 @@ void SSDPProvider::registerPort(quint16 port)
     try
     {
         HTTPResponse resp = HTTPUdpClient::send(&req);
-        foreach (QString h, resp.headers())
-        {
-            qDebug() << h << "=>" << resp.header(h);
-        }
-        QString h = resp.header("location");
+        QString h = resp.getHeader("location");
         if (!h.isEmpty())
         {
             req.setAction(SSDP_ACTION_ADDPORT);

@@ -30,12 +30,12 @@ public:
     /// \param name
     /// \return
     ///
-    QString header(QString name);
+    QString getHeader(QString name);
     ///
     /// \brief content Тело сообщения
     /// \return
     ///
-    QString content() { return _content; }
+    QString getContent() { return _content; }
     ///
     /// \brief content устанавливает значение тела сообщения
     /// \param value

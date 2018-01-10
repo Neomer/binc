@@ -1,6 +1,6 @@
 #include "HTTPUdpClient.h"
 #include <QUdpSocket>
-#include "NetDataStreamException.h"
+#include <core/net/NetDataStreamException.h>
 
 HTTPUdpClient::HTTPUdpClient()
 {

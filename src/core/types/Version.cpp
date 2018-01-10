@@ -59,6 +59,12 @@ Version::Version(QString data) :
     }
 }
 
+Version::Version(int major, int minor, int maintance, Version::VersionStage stage) :
+    _major(major), _minor(minor), _maintenance(maintance), _stage(stage)
+{
+
+}
+
 QString Version::stageShort()
 {
     switch (_stage)

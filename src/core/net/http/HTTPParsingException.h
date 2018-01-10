@@ -1,7 +1,7 @@
 #ifndef HTTPPARSINGEXCEPTION_H
 #define HTTPPARSINGEXCEPTION_H
 
-#include "NetDataStreamException.h"
+#include <core/net/NetDataStreamException.h>
 
 class HTTPParsingException : public NetDataStreamException
 {
