@@ -29,7 +29,7 @@ private slots:
     ///
     /// \brief nodes функция возвращает список известных нодов
     ///
-    void nodes(HTTPResponse *);
+    void nodes(HTTPResponse *response);
 
 private:
     QTcpSocket *_socket;
