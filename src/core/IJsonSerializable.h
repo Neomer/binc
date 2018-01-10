@@ -2,6 +2,7 @@
 #define IJSONSERIALIZABLE_H
 
 #include <QJsonObject>
+#include <QJsonArray>
 
 class IJsonSerializable
 {

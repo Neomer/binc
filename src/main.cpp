@@ -2,6 +2,8 @@
 #include <QCoreApplication>
 #include <core/Context.h>
 #include <core/net/rpc/RPCServer.h>
+#include <model/NodeCollectionModel.h>
+#include <QJsonDocument>
 
 #include "../tests/chat/Chat.h"
 
@@ -17,6 +19,19 @@ int main(int argc, char ** argv)
 
     RPCServer server;
     server.start();
+
+    QJsonObject obj;
+
+    NodeCollectionModel nodecollection;
+    NodeModel node;
+    node.setAddress(QHostAddress::Any);
+    node.setPort(3444);
+    nodecollection.addNode(&node);
+    nodecollection.serialize(obj);
+
+    QJsonDocument json(obj);
+
+    qDebug() << QString::fromUtf8(json.toJson(QJsonDocument::Compact));
 
 //    Chat chat;
 //    chat.run();
