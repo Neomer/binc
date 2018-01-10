@@ -1,7 +1,7 @@
 #ifndef SSDPREQUEST_H
 #define SSDPREQUEST_H
 
-#include <core/net/http/IHTTPRequest.h>
+#include <core/net/http/HTTPRequest.h>
 
 #define SSDP_ACTION_ADDPORT            "AddPortMapping"
 

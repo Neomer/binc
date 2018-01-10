@@ -38,3 +38,8 @@ void HTTPResponse::parseStatusRow(QString data)
     setVersion(Version(data.mid(5, data.indexOf(' ') - 5)));
     _statusMessage = data.mid(13);
 }
+
+void HTTPResponse::postParseActions()
+{
+
+}

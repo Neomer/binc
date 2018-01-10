@@ -14,6 +14,7 @@ class HTTPRequest : public IHTTPMessage
 {
 public:
     HTTPRequest();
+    HTTPRequest(QString method);
 
     QUrl getUrl() { return _url; }
     void setUrl(QUrl value) { _url = value; }
@@ -25,10 +26,12 @@ public:
 protected:
     QString statusRow() override;
     void parseStatusRow(QString data) override;
+    void postParseActions() override;
 
 private:
     QUrl _url;
     QString _method;
+
 };
 
 #endif // HTTPREQUEST_H

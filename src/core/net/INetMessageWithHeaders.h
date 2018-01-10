@@ -58,6 +58,10 @@ protected:
     /// \brief parseStatusRow Виртуальный метод. Наследники должны корректно распознать статусную строку (идет первой в скомпилированном сообщении)
     ///
     virtual void parseStatusRow(QString data) = 0;
+    ///
+    /// \brief postParseActions Виртуальный метод. Вызывается после окончания парсинга, для выполнения дополнительных действий в случае необходимости
+    ///
+    virtual void postParseActions() = 0;
 
 private:
     ///

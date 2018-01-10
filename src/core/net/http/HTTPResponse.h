@@ -1,7 +1,7 @@
 #ifndef HTTPRESPONSE_H
 #define HTTPRESPONSE_H
 
-#include "IHTTPRequest.h"
+#include "HTTPRequest.h"
 #include <core/types/Version.h>
 #include <QStringList>
 
@@ -44,6 +44,7 @@ private:
 protected:
     QString statusRow() override;
     void parseStatusRow(QString data) override;
+    void postParseActions() override;
 };
 
 #endif // HTTPRESPONSE_H

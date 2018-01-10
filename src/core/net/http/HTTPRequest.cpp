@@ -1,4 +1,4 @@
-#include "IHTTPRequest.h"
+#include "HTTPRequest.h"
 
 HTTPRequest::HTTPRequest() :
     IHTTPMessage()
@@ -6,11 +6,17 @@ HTTPRequest::HTTPRequest() :
 
 }
 
-QString HTTPRequest::statusRow()
+HTTPRequest::HTTPRequest(QString method) :
+    IHTTPMessage(),
+    _method(method)
 {
 
+}
+
+QString HTTPRequest::statusRow()
+{
     setHeader("Host", getUrl().host() + ((getUrl().port() == -1) ? "" : ":" + QString::number(getUrl().port())));
-    return methodName() + " " + ((getUrl().path().isEmpty()) ? "/" : getUrl().path()) + " HTTP/" + getVersion().toString("J.N");
+    return getMethodName().toUpper() + " " + ((getUrl().path().isEmpty()) ? "/" : getUrl().path()) + " HTTP/" + getVersion().toString("J.N");
 }
 
 void HTTPRequest::parseStatusRow(QString data)
@@ -20,4 +26,14 @@ void HTTPRequest::parseStatusRow(QString data)
     {
         throw HTTPParsingException(0, "Data is not valid HTTP request!");
     }
+
+    // parsing status row
+    int space = data.indexOf(' '), space2 = data.indexOf(' ', space + 1);
+    _method = data.left(space);
+    _url.setPath(data.mid(space + 1, space2 - space - 1));
+}
+
+void HTTPRequest::postParseActions()
+{
+    _url.setUrl(QString("http://") + getHeader("Host"));
 }

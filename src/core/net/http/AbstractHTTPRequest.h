@@ -1,7 +1,7 @@
 #ifndef ABSTRACTHTTPREQUEST_H
 #define ABSTRACTHTTPREQUEST_H
 
-#include "IHTTPRequest.h"
+#include "HTTPRequest.h"
 #include <QMap>
 
 ///

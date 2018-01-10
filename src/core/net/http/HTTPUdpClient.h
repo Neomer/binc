@@ -1,7 +1,7 @@
 #ifndef HTTPUDPCLIENT_H
 #define HTTPUDPCLIENT_H
 
-#include "IHTTPRequest.h"
+#include "HTTPRequest.h"
 #include "HTTPResponse.h"
 
 class HTTPUdpClient

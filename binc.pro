@@ -17,7 +17,6 @@ SOURCES += \
     src/core/net/NetDataStreamException.cpp \
     src/core/net/http/HTTPClient.cpp \
     src/core/net/http/HTTPResponse.cpp \
-    src/core/net/http/HTTPgetRequest.cpp \
     src/core/net/http/HTTPParsingException.cpp \
     src/core/net/http/HTTPUdpClient.cpp \
     src/core/net/SSDPRequest.cpp \
@@ -77,7 +76,6 @@ HEADERS += \
     src/core/net/NetDataStreamException.h \
     src/core/net/http/HTTPClient.h \
     src/core/net/http/HTTPResponse.h \
-    src/core/net/http/HTTPgetRequest.h \
     src/core/net/http/HTTPParsingException.h \
     src/core/net/http/HTTPUdpClient.h \
     src/core/net/SSDPRequest.h \
