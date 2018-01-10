@@ -31,6 +31,7 @@ protected:
 private:
     QUrl _url;
     QString _method;
+    QString _path;
 
 };
 

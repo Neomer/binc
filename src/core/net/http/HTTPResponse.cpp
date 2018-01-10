@@ -3,7 +3,9 @@
 #include <core/StringUtils.h>
 
 HTTPResponse::HTTPResponse(HTTPRequest *request, QByteArray reply) :
-    IHTTPMessage()
+    IHTTPMessage(),
+    _status(200),
+    _statusMessage("OK")
 {
     _request = request;
     _raw = QString::fromUtf8(reply);
@@ -11,7 +13,8 @@ HTTPResponse::HTTPResponse(HTTPRequest *request, QByteArray reply) :
 
 HTTPResponse::HTTPResponse(HTTPRequest *request) :
     IHTTPMessage(),
-    _status(200)
+    _status(200),
+    _statusMessage("OK")
 {
     _request = request;
 }

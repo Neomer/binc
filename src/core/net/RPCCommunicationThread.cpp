@@ -38,13 +38,19 @@ void RPCCommunicationThread::run()
             continue;
         }
         QString action = req.action();
-        qDebug() << "Action:" << action;
         HTTPResponse resp(&req);
-        if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("request", &resp)))
+        if (action.isEmpty())
+        {
+            resp.setStatus(400);
+            resp.setStatusMessage("Bad request");
+        }
+        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, QGenericArgument("request", &resp)))
         {
             resp.setStatus(404);
             resp.setStatusMessage("Unknown command!");
         }
+        QString r = resp.compile();
+        _socket->write(r.toUtf8());
     }
     emit finish(this);
 }

@@ -21,7 +21,7 @@ QString HTTPRequest::statusRow()
 
 void HTTPRequest::parseStatusRow(QString data)
 {
-    QRegExp httpReqValidator("(POST|GET|DELETE|PUT)\\s+((\\/?[\\w\\.\\-\\+]+)*\\/|(\\/))(\\?([\\w\\d]+\\=[\\w\\d]+\\&)*([\\w\\d]+\\=[\\w\\d]+)?)?\\s+HTTP\\/1\\.1");
+    QRegExp httpReqValidator("(POST|GET|DELETE|PUT)\\s+((\\/?[\\w\\.\\-\\+]+)*\\/?|(\\/))(\\?([\\w\\d]+\\=[\\w\\d]+\\&)*([\\w\\d]+\\=[\\w\\d]+)?)?\\s+HTTP\\/1\\.1");
     if (httpReqValidator.indexIn(data) == -1)
     {
         throw HTTPParsingException(0, "Data is not valid HTTP request!");
@@ -30,10 +30,11 @@ void HTTPRequest::parseStatusRow(QString data)
     // parsing status row
     int space = data.indexOf(' '), space2 = data.indexOf(' ', space + 1);
     _method = data.left(space);
-    _url.setPath(data.mid(space + 1, space2 - space - 1));
+    _path = data.mid(space + 1, space2 - space - 1);
 }
 
 void HTTPRequest::postParseActions()
 {
     _url.setUrl(QString("http://") + getHeader("Host"));
+    _url.setPath(_path);
 }

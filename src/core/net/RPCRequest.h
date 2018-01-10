@@ -1,12 +1,12 @@
 #ifndef RPCREQUEST_H
 #define RPCREQUEST_H
 
-#include <core/net/http/AbstractHTTPRequest.h>
+#include <core/net/http/HTTPRequest.h>
 
 ///
 /// \brief The RPCRequest class класс расширяющий AbstractHTTPRequest для работы с RPC-запросами
 ///
-class RPCRequest : public AbstractHTTPRequest
+class RPCRequest : public HTTPRequest
 {
 public:
     RPCRequest();

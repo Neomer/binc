@@ -46,6 +46,7 @@ void INetMessageWithHeaders::parse(QString data)
         setHeader(name, value);
     }
     setContent(data.mid(space));
+    postParseActions();
 }
 
 QString INetMessageWithHeaders::compileHeaders()
