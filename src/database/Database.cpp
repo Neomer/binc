@@ -2,6 +2,7 @@
 #include <QStandardPaths>
 #include <QFile>
 #include <QDir>
+#include <QDebug>
 #include "DatabaseIndexFile.h"
 #include "DatabaseBinaryTreeIndex.h"
 #include "DatabaseDataFile.h"
@@ -29,6 +30,7 @@ Database::~Database()
  */
 bool Database::open()
 {
+    qDebug() << "Opening database...";
     _index->init();
     if (!_databaseDir.exists())
     {

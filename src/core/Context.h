@@ -3,6 +3,7 @@
 
 #include "ContextException.h"
 
+#include <core/net/rpc/RPCServer.h>
 #include <database/Database.h>
 #include "ConsoleInput.h"
 #include "Settings.h"
@@ -42,6 +43,7 @@ private:
     Context & operator=(const Context &other);
 
     Database *_database;
+    RPCServer *_rpc_server;
     bool _isInit;
     ConsoleInput *_consoleInput;
     Settings _sets;

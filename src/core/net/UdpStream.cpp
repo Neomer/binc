@@ -51,7 +51,7 @@ void UdpStream::read(IDataBlock *data)
     }
     catch (DataStreamException &)
     {
-
+        qDebug() << "Parsing error!";
     }
 }
 

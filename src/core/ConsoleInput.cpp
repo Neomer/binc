@@ -12,6 +12,8 @@ ConsoleInput::ConsoleInput(QObject *parent) :
 
 void ConsoleInput::run()
 {
+    qDebug() << "Enabling console input...";
+
     int idx = 0;
     char _buffer[CONSOLE_INPUT_BUFFER_SIZE];
     memset(_buffer, 0, CONSOLE_INPUT_BUFFER_SIZE);

@@ -15,6 +15,7 @@ Chat::~Chat()
 
 void Chat::run()
 {
+    qDebug() << "Running Chat...";
     _stream->open();
 }
 

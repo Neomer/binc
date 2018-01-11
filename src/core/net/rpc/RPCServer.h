@@ -15,6 +15,7 @@ public:
     ~RPCServer();
 
     void start();
+    void stop();
 
 private slots:
     void acceptConnection();

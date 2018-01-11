@@ -16,10 +16,17 @@ RPCServer::~RPCServer()
 
 void RPCServer::start()
 {
+    qDebug() << "RPC server starting on" << QHostAddress(QHostAddress::Any).toString()
+             << "port" << Context::Instance().settings()->RPCport();
     if (!_srv->listen(QHostAddress::Any, Context::Instance().settings()->RPCport()))
     {
         throw NetDataStreamException(NetDataStreamException::enNDSE_PortIsBusy, "Port is busy!");
     }
+}
+
+void RPCServer::stop()
+{
+    _srv->close();
 }
 
 void RPCServer::acceptConnection()

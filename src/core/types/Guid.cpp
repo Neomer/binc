@@ -31,7 +31,6 @@ bool Guid::isEqual(const Guid &v1, const Guid &v2)
 Guid Guid::randomGuid()
 {
     Guid ret;
-    srand(QDateTime::currentDateTime().currentMSecsSinceEpoch());
     unsigned char * cur = (unsigned char *)&(ret._data);
     for (uint i = 0; i < sizeof(_data); i++)
     {
