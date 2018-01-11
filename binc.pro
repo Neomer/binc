@@ -68,7 +68,8 @@ SOURCES += \
     src/core/IJsonSerializable.cpp \
     src/model/NodeModel.cpp \
     src/model/NodeCollectionModel.cpp \
-    src/core/BaseException.cpp
+    src/core/BaseException.cpp \
+    src/model/Deal.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -132,7 +133,8 @@ HEADERS += \
     src/core/IJsonSerializable.h \
     src/model/NodeModel.h \
     src/model/NodeCollectionModel.h \
-    src/core/BaseException.h
+    src/core/BaseException.h \
+    src/model/Deal.h
 
 
 INCLUDEPATH += $$PWD/src

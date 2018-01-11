@@ -23,7 +23,7 @@ void UdpStream::close()
 
 void UdpStream::open()
 {
-    if (!_socket->bind(QHostAddress::Any, _port, QAbstractSocket::ShareAddress))
+    if (!_socket->bind(QHostAddress::Any, _port))
     {
         throw UdpStreamException("Port binding failed!");
     }

@@ -23,6 +23,15 @@ QString Guid::toString()
                 QString::number( _data.Data5, 16));
 }
 
+void Guid::fromString(QString data)
+{
+    QRegExp guidValidator("\\{[\\da-fA-F]{8}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{12}\\}");
+    if (!guidValidator.exactMatch(data))
+    {
+        throw BaseException("Unknown data format!");
+    }
+}
+
 bool Guid::isEqual(const Guid &v1, const Guid &v2)
 {
     return memcmp(&(v2._data), &(v1._data), sizeof(GuidStructure)) == 0;

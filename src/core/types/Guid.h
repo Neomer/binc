@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QDataStream>
+#include <core/BaseException.h>
 
 ///
 /// \brief The Guid class класс для работы с уникальными идентификаторами
@@ -14,6 +15,7 @@ public:
     Guid(const Guid& other);
 
     QString toString();
+    void fromString(QString data);
 
     ///
     /// \brief isEqual возвращает TRUE в случае равенства Guid

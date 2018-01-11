@@ -1,4 +1,5 @@
 #include <core/ISubject.h>
+#include <QDebug>
 
 ISubject::ISubject()
 {
@@ -25,7 +26,14 @@ void ISubject::update(void *data)
 {
     foreach (IObserver *o, _list)
     {
-        o->update(_guid, data);
+        try
+        {
+            o->update(_guid, data);
+        }
+        catch (BaseException &ex)
+        {
+            qDebug() << ex.what();
+        }
     }
 }
 
