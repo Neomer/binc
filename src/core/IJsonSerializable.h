@@ -24,6 +24,13 @@ public:
     /// \return
     ///
     static QString toString(IJsonSerializable *object);
+    ///
+    /// \brief fromString преобразует Json-строку в экзмепляр класса
+    /// \param object
+    /// \param data
+    ///
+    static void fromString(IJsonSerializable *object, QString data);
+    static void fromString(IJsonSerializable *object, QByteArray data);
 };
 
 #endif // IJSONSERIALIZABLE_H

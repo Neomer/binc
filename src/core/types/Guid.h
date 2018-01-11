@@ -15,8 +15,13 @@ public:
     Guid(const Guid& other);
 
     QString toString();
-    void fromString(QString data);
 
+    ///
+    /// \brief fromString возвращает экземпляр Guid из строки
+    /// \param data
+    /// \return
+    ///
+    static Guid fromString(QString data);
     ///
     /// \brief isEqual возвращает TRUE в случае равенства Guid
     /// \return

@@ -1,10 +1,11 @@
 #ifndef DEAL_H
 #define DEAL_H
 
-#include <core/IJsonSerializable.h>
+#include "IModelWithId.h"
 #include <core/types/Guid.h>
+#include <core/types/Hash.h>
 
-class Deal : public IJsonSerializable
+class Deal : public IModelWithId
 {
 public:
     Deal();

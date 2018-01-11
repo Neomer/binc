@@ -6,6 +6,8 @@ void Context::load(QString settings)
     _database = new Database();
     _database->open();
 
+    _dealsPool = new MemoryPool();
+
     _rpc_server = new RPCServer();
     _rpc_server->start();
 
