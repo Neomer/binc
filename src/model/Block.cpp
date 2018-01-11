@@ -1,15 +1,18 @@
 #include "Block.h"
 
-Block::Block()
+Block::Block() :
+    IModelWithId(),
+    _creation_time(QDateTime::currentDateTime())
 {
 
 }
 
 void Block::serialize(QJsonObject &out)
 {
-    out["id"] = _block_id.toString();
+    out["id"] = getId().toString();
     out["version"] = _version.toString();
     out["prev"] = _previous_block.toString();
+    out["creationTime"] = _creation_time.toString("yyyy-MM-ddThh:mm:ss t");
     QJsonArray a;
     foreach (Deal *n, _deals)
     {
@@ -22,7 +25,8 @@ void Block::serialize(QJsonObject &out)
 
 void Block::deserialize(QJsonObject &in)
 {
-    _block_id.fromString(in["id"].toString());
+    setId(Guid::fromString(in["id"].toString()));
     _version = Version(in["version"].toString());
     _previous_block.fromString(in["prev"].toString());
+    _creation_time = QDateTime::fromString(in["creationTime"].toString(), "yyyy-MM-ddThh:mm:ss t");
 }

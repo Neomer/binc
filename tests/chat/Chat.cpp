@@ -24,13 +24,9 @@ void Chat::update(const Guid &subject, void *data)
 {
     if (Guid::isEqual(subject, Context::Instance().consoleInput()->guid()))
     {
-        bool ok = true;
-        Deal d;
-        d.setRecipient(Guid::randomGuid());
-        d.setSender(Guid::randomGuid());
-        d.setAmount(QString((const char *)data).toDouble(&ok));
-        if (!ok) throw BaseException("Wrong number format!");
-        d.setReward(d.getAmount() * 0.001);
+        Block d;
+        d.setPreviousBlock(Guid::randomGuid());
+        d.setVersion(Version(1, 0));
 
         UdpDataBlock block;
         block.setData(IJsonSerializable::toString(&d).toUtf8());
