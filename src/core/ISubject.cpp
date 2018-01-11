@@ -1,7 +1,9 @@
 #include <core/ISubject.h>
+#include <QDebug>
 
 ISubject::ISubject()
 {
+    _guid = Guid::randomGuid();
     _list.clear();
 }
 
@@ -20,11 +22,18 @@ void ISubject::unsubscribe(IObserver *observer)
     _list.removeOne(observer);
 }
 
-void ISubject::update(QVariant data)
+void ISubject::update(void *data)
 {
     foreach (IObserver *o, _list)
     {
-        o->update(data);
+        try
+        {
+            o->update(_guid, data);
+        }
+        catch (BaseException &ex)
+        {
+            qDebug() << ex.what();
+        }
     }
 }
 

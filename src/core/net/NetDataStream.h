@@ -6,7 +6,7 @@
 #include <QHostAddress>
 #include "../IDataStream.h"
 
-class NetDataStream : public IDataStream
+class NetDataStream : public QObject, public IDataStream
 {
     Q_OBJECT
 
@@ -15,17 +15,18 @@ public:
     NetDataStream(QTcpSocket *socket);
     ~NetDataStream();
 
-    void open(quint16 port = 0);
-    void close();
+    void setPort(quint16 value) { _port = value; }
 
-protected:
-    qint64 readData(char *data, qint64 maxlen);
-    qint64 writeData(const char *data, qint64 len);
+    void open() override;
+    void close() override;
+    void read(IDataBlock *data) override;
+    void write(IDataBlock *data) override;
 
 private:
     QTcpSocket *_socket;
     QHostAddress _remoteHost;
     quint16 _port;
+
 };
 
 #endif // NETDATASTREAM_H
