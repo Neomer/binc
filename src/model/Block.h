@@ -28,6 +28,11 @@ public:
     QDateTime getCreationTime() { return _creation_time; }
     void setCreationTime(QDateTime value) { _creation_time = value; }
 
+    int getNonce() { return _nonce; }
+    void setNonce(quint64 value) { _nonce = value; }
+
+    Hash getHash() { return _hash; }
+
     // IJsonSerializable interface
 public:
     void serialize(QJsonObject &out) override;
@@ -38,6 +43,8 @@ private:
     Guid _previous_block;
     QDateTime _creation_time;
     QList<Deal *> _deals;
+    int _nonce;
+    Hash _hash;
 };
 
 #endif // BLOCK_H

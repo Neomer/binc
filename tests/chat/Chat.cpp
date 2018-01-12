@@ -36,9 +36,8 @@ void Chat::update(const Guid &subject, void *data)
     {
         UdpDataBlock *block = static_cast<UdpDataBlock *>(data);
         qDebug() << "From" << block->remoteAddress().toString() << ":" << QString::fromUtf8(block->data());
-        Deal d;
+        Block d;
         IJsonSerializable::fromString(&d, block->data());
-        Context::Instance().dealsPool()->addDeal(d);
     }
 
 }

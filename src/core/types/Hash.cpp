@@ -31,3 +31,14 @@ QString Hash::toString()
 {
     return QString::fromUtf8(_buffer.toHex());
 }
+
+bool Hash::operator ==(const Hash &other)
+{
+    if (_buffer.size() != other._buffer.size()) return false;
+    return memcmp(_buffer.constData(), other._buffer.constData(), _buffer.size()) == 0;
+}
+
+Hash &Hash::operator =(const Hash &other)
+{
+    _buffer = other._buffer;
+}

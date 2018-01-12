@@ -21,6 +21,10 @@ public:
 
     QString toString();
 
+    // Operators
+    bool operator ==(const Hash &other);
+    Hash &operator =(const Hash &other);
+
 private:
     QByteArray _buffer;
 };

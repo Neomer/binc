@@ -73,7 +73,10 @@ SOURCES += \
     src/model/Block.cpp \
     src/core/MemoryPool.cpp \
     src/core/types/Hash.cpp \
-    src/model/IModelWithId.cpp
+    src/model/IModelWithId.cpp \
+    src/miner/Worker.cpp \
+    src/miner/Work.cpp \
+    src/core/net/TransportProvider.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -142,7 +145,10 @@ HEADERS += \
     src/model/Block.h \
     src/core/MemoryPool.h \
     src/core/types/Hash.h \
-    src/model/IModelWithId.h
+    src/model/IModelWithId.h \
+    src/miner/Worker.h \
+    src/miner/Work.h \
+    src/core/net/TransportProvider.h
 
 
 INCLUDEPATH += $$PWD/src
