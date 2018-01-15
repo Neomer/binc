@@ -14,7 +14,7 @@ public:
     NodeConnection(QObject *parent = 0);
 
 private slots:
-    void ping()
+    void ping();
 
 private:
     QTimer *_ping_timer;

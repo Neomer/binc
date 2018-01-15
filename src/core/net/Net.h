@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <core/net/rpc/RPCServer.h>
+#include "netcon.h"
 
 ///
 /// \brief The Net основной класс для подключения к p2p-сети.
