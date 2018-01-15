@@ -15,15 +15,6 @@ void Block::serialize(QJsonObject &out)
     out["prev"] = _previous_block.toString();
     out["creationTime"] = _creation_time.toString("yyyy-MM-ddThh:mm:ss t");
     out["nonce"] = _nonce;
-
-    QJsonArray a;
-    foreach (Deal *n, _deals)
-    {
-        QJsonObject o;
-        n->serialize(o);
-        a << o;
-    }
-    out["deals"] = a;
 }
 
 void Block::deserialize(QJsonObject &in)

@@ -8,6 +8,7 @@
 #include <core/types/Guid.h>
 #include <core/types/Version.h>
 #include <model/Deal.h>
+#include <model/IBlockData.h>
 
 ///
 /// \brief The Block модель данных, представляющая одиночный блок
@@ -17,7 +18,7 @@ class Block : public IModelWithId
 public:
     Block();
 
-    void addDeal(Deal *value) { _deals << value; }
+    void addData(IBlockData *value) { _data << value; }
 
     Version getVersion() { return _version; }
     void setVersion(Version value) { _version = value; }
@@ -42,9 +43,9 @@ private:
     Version _version;
     Guid _previous_block;
     QDateTime _creation_time;
-    QList<Deal *> _deals;
     int _nonce;
     Hash _hash;
+    QList<IBlockData *> _data;
 };
 
 #endif // BLOCK_H

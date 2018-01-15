@@ -76,7 +76,10 @@ SOURCES += \
     src/model/IModelWithId.cpp \
     src/miner/Worker.cpp \
     src/miner/Work.cpp \
-    src/core/net/TransportProvider.cpp
+    src/core/net/TransportProvider.cpp \
+    src/model/IBlockData.cpp \
+    src/core/net/Net.cpp \
+    src/core/net/NodeConnection.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -148,7 +151,10 @@ HEADERS += \
     src/model/IModelWithId.h \
     src/miner/Worker.h \
     src/miner/Work.h \
-    src/core/net/TransportProvider.h
+    src/core/net/TransportProvider.h \
+    src/model/IBlockData.h \
+    src/core/net/Net.h \
+    src/core/net/NodeConnection.h
 
 
 INCLUDEPATH += $$PWD/src

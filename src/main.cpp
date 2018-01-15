@@ -3,6 +3,7 @@
 #include <core/Context.h>
 #include <QJsonDocument>
 
+#include <core/net/Net.h>
 #include "../tests/chat/Chat.h"
 
 int main(int argc, char ** argv)
@@ -14,6 +15,9 @@ int main(int argc, char ** argv)
         qDebug("%s", argv[i]);
     }
     Context::Instance().load("binc.conf");
+
+    Net net;
+    net.connect();
 
     Chat chat;
     chat.run();
