@@ -1,12 +1,11 @@
 #include "NetDataStream.h"
 #include "NetDataStreamException.h"
 
-NetDataStream::NetDataStream(QHostAddress address, QObject *parent) :
-    QObject(parent)
+NetDataStream::NetDataStream(ConnectionPoint point, QObject *parent) :
+    QObject(parent),
+    _point(point)
 {
     _socket = new QTcpSocket(this);
-    _remoteHost = address;
-    _port = 15789;
 }
 
 NetDataStream::NetDataStream(QTcpSocket *socket)
@@ -21,7 +20,7 @@ NetDataStream::~NetDataStream()
 
 void NetDataStream::open()
 {
-    _socket->connectToHost(_remoteHost, _port);
+    _socket->connectToHost(_point.getAddress(), _point.getPort());
     if (!_socket->waitForConnected(3000))
     {
         throw NetDataStreamException(NetDataStreamException::enNDSE_HostNotAvailable, "Host is unavailable!");

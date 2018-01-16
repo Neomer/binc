@@ -19,6 +19,7 @@ public:
     /// \param port
     ///
     ConnectionPoint(QHostAddress address, quint16 port);
+    ConnectionPoint(const ConnectionPoint &other);
     ///
     /// \brief getAddress возвращает адрес
     /// \return

@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QTcpSocket>
-#include <QHostAddress>
+#include <core/types/ConnectionPoint.h>
 #include "../IDataStream.h"
 
 class NetDataStream : public QObject, public IDataStream
@@ -11,11 +11,11 @@ class NetDataStream : public QObject, public IDataStream
     Q_OBJECT
 
 public:
-    NetDataStream(QHostAddress address, QObject *parent = 0);
+    NetDataStream(ConnectionPoint point, QObject *parent = 0);
     NetDataStream(QTcpSocket *socket);
     ~NetDataStream();
 
-    void setPort(quint16 value) { _port = value; }
+    void setPort(quint16 value) { _point.setPort(value); }
 
     void open() override;
     void close() override;
@@ -24,8 +24,7 @@ public:
 
 private:
     QTcpSocket *_socket;
-    QHostAddress _remoteHost;
-    quint16 _port;
+    ConnectionPoint _point;
 
 };
 

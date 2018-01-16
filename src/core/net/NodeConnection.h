@@ -11,7 +11,7 @@ class NodeConnection : public NetDataStream
     Q_OBJECT
 
 public:
-    NodeConnection(QHostAddress address, QObject *parent = 0);
+    NodeConnection(ConnectionPoint point, QObject *parent = 0);
 
 private slots:
     void ping();

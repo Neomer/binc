@@ -1,7 +1,7 @@
 #include "NodeConnection.h"
 
-NodeConnection::NodeConnection(QHostAddress address, QObject *parent) :
-    NetDataStream(address, parent)
+NodeConnection::NodeConnection(ConnectionPoint point, QObject *parent) :
+    NetDataStream(point, parent)
 {
     _ping_timer = new QTimer(this);
     connect(_ping_timer, SIGNAL(timeout()), this, SLOT(ping()));

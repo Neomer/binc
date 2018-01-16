@@ -13,3 +13,10 @@ ConnectionPoint::ConnectionPoint(QHostAddress address, quint16 port) :
 {
 
 }
+
+ConnectionPoint::ConnectionPoint(const ConnectionPoint &other):
+    _address(other._address),
+    _port(other._port)
+{
+
+}

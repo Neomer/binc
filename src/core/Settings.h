@@ -1,14 +1,16 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include "IBinarySerializable.h"
+#include <QFile>
+#include "IJsonSerializable.h"
 #include "ContextException.h"
+#include <model/NodeCollectionModel.h>
 
 ///
 /// \brief The Settings class класс для работы с файлом настроек.
 /// При добавлении новых свойств обязательно добавлять инциализацию значения по-умолчанию в конструктор!
 ///
-class Settings : public IBinarySerializable
+class Settings : public IJsonSerializable
 {
 public:
     Settings();
@@ -23,20 +25,37 @@ public:
     /// \brief save записывает изменения в файл конифгурации
     ///
     void save();
-
+    ///
+    /// \brief RPCport возвращает порт прослушивания RPC-сервера
+    /// \return
+    ///
     quint16 RPCport() { return _rpc_port; }
+    ///
+    /// \brief setRPCport
+    /// \param value
+    ///
     void setRPCport(quint16 value) { _rpc_port = value; }
 
-// IBinarySerializable interface
-private:
-    void serialize(QDataStream &out) override;
-    void deserialize(QDataStream &in) override;
+    ///
+    /// \brief nodes возвращает список известных узлов сети
+    /// \return
+    ///
+    NodeCollectionModel nodes() { return _nodes; }
 
-    QDataStream _stream;
 
-// Serializable properties
+
 private:
+    QFile _file;
+
+    // Serializable properties
     quint16 _rpc_port;
+    NodeCollectionModel _nodes;
+
+
+    // IJsonSerializable interface
+private:
+    void serialize(QJsonObject &out) override;
+    void deserialize(QJsonObject &in) override;
 };
 
 #endif // SETTINGS_H

@@ -17,6 +17,7 @@ void Context::load(QString settings)
 
 void Context::unload()
 {
+    _sets.save();
     _consoleInput->terminate();
     _rpc_server->stop();
     _database->close();
