@@ -14,7 +14,7 @@ Settings::~Settings()
 
 void Settings::load(QString filename)
 {
-    QFile _file(filename);
+    _file.setFileName(filename);
     if (!_file.exists())
     {
         //throw ContextException("Configuration file not found!");
@@ -44,8 +44,17 @@ void Settings::save()
 {
     QJsonObject obj;
     serialize(obj);
+    if (!_file.isOpen() && !_file.open(QIODevice::ReadWrite))
+    {
+        throw ContextException("Configuration file access failed!");
+    }
     _file.write(IJsonSerializable::toString(this).toUtf8());
     _file.flush();
+}
+
+void Settings::close()
+{
+    _file.close();
 }
 
 void Settings::serialize(QJsonObject &out)

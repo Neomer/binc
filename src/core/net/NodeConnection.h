@@ -12,12 +12,17 @@ class NodeConnection : public NetDataStream
 
 public:
     NodeConnection(ConnectionPoint point, QObject *parent = 0);
+    ~NodeConnection();
 
 private slots:
     void ping();
 
+signals:
+    void ConnectionClosed(NodeConnection *);
+
 private:
     QTimer *_ping_timer;
+    QDateTime _last_activity;
 };
 
 #endif // NODECONNECTION_H

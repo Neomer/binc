@@ -14,12 +14,12 @@ void NodeCollectionModel::serialize(QJsonObject &out)
         n->serialize(o);
         a << o;
     }
-    out["nodes"] = a;
+    out["nodeList"] = a;
 }
 
 void NodeCollectionModel::deserialize(QJsonObject &in)
 {
-    QJsonArray a = in["nodes"].toArray();
+    QJsonArray a = in["nodeList"].toArray();
     foreach (QJsonValue v, a)
     {
         QJsonObject o = v.toObject();

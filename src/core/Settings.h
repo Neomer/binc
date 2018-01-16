@@ -40,9 +40,8 @@ public:
     /// \brief nodes возвращает список известных узлов сети
     /// \return
     ///
-    NodeCollectionModel nodes() { return _nodes; }
-
-
+    NodeCollectionModel &nodes() { return _nodes; }
+    void close();
 
 private:
     QFile _file;
