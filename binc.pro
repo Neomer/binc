@@ -79,7 +79,8 @@ SOURCES += \
     src/core/net/TransportProvider.cpp \
     src/model/IBlockData.cpp \
     src/core/net/Net.cpp \
-    src/core/net/NodeConnection.cpp
+    src/core/net/NodeConnection.cpp \
+    src/core/types/ConnectionPoint.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -154,7 +155,8 @@ HEADERS += \
     src/core/net/TransportProvider.h \
     src/model/IBlockData.h \
     src/core/net/Net.h \
-    src/core/net/NodeConnection.h
+    src/core/net/NodeConnection.h \
+    src/core/types/ConnectionPoint.h
 
 
 INCLUDEPATH += $$PWD/src

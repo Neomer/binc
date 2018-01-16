@@ -2,8 +2,9 @@
 #define NET_H
 
 #include <QObject>
+#include <QList>
 #include <core/net/rpc/RPCServer.h>
-#include "netcon.h"
+#include "NodeConnection.h"
 
 ///
 /// \brief The Net основной класс для подключения к p2p-сети.
@@ -42,7 +43,7 @@ private slots:
 
 private:
     RPCServer _rpc_server;
-
+    QList<NodeConnection *> _nodes;
 };
 
 #endif // NET_H

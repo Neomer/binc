@@ -1,7 +1,8 @@
 #include "NetDataStream.h"
 #include "NetDataStreamException.h"
 
-NetDataStream::NetDataStream(QHostAddress address)
+NetDataStream::NetDataStream(QHostAddress address, QObject *parent) :
+    QObject(parent)
 {
     _socket = new QTcpSocket(this);
     _remoteHost = address;

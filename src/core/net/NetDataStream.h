@@ -11,7 +11,7 @@ class NetDataStream : public QObject, public IDataStream
     Q_OBJECT
 
 public:
-    NetDataStream(QHostAddress address);
+    NetDataStream(QHostAddress address, QObject *parent = 0);
     NetDataStream(QTcpSocket *socket);
     ~NetDataStream();
 

@@ -6,12 +6,12 @@
 #include <QDateTime>
 #include "NetDataStream.h"
 
-class NodeConnection : public QObject, public NetDataStream
+class NodeConnection : public NetDataStream
 {
     Q_OBJECT
 
 public:
-    NodeConnection(QObject *parent = 0);
+    NodeConnection(QHostAddress address, QObject *parent = 0);
 
 private slots:
     void ping();
