@@ -30,6 +30,6 @@ public:
 
 private:
     Guid _id;
-}
+};
 
 #endif // IIDENTIFYED_H
