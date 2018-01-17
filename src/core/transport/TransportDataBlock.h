@@ -18,6 +18,12 @@ public:
 
     TransportDataBlock();
 
+    Guid getTransactionId() { return _transaction_id; }
+    Guid getPreviousBlockId() { return _prev_block_id; }
+    quint16 getLength() { return _length; }
+    TransportDataBlockStatus getStatus() { return _status; }
+    QByteArray getData() { return  _data; }
+
 private:
     Guid _transaction_id, _prev_block_id;
     Hash _hash;
