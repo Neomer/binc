@@ -81,7 +81,9 @@ SOURCES += \
     src/core/net/Net.cpp \
     src/core/net/NodeConnection.cpp \
     src/core/types/ConnectionPoint.cpp \
-    src/core/net/NetDataBlock.cpp
+    src/core/net/NetDataBlock.cpp \
+    src/core/transport/TransportDataBlock.cpp \
+    src/core/transport/TransportTransaction.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -158,7 +160,9 @@ HEADERS += \
     src/core/net/Net.h \
     src/core/net/NodeConnection.h \
     src/core/types/ConnectionPoint.h \
-    src/core/net/NetDataBlock.h
+    src/core/net/NetDataBlock.h \
+    src/core/transport/TransportDataBlock.h \
+    src/core/transport/TransportTransaction.h
 
 
 INCLUDEPATH += $$PWD/src
