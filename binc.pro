@@ -83,7 +83,8 @@ SOURCES += \
     src/core/types/ConnectionPoint.cpp \
     src/core/net/NetDataBlock.cpp \
     src/core/transport/TransportDataBlock.cpp \
-    src/core/transport/TransportTransaction.cpp
+    src/core/transport/TransportTransaction.cpp \
+    src/core/ICache.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -163,7 +164,8 @@ HEADERS += \
     src/core/net/NetDataBlock.h \
     src/core/transport/TransportDataBlock.h \
     src/core/transport/TransportTransaction.h \
-    src/core/IIdentifyed.h
+    src/core/IIdentifyed.h \
+    src/core/ICache.h
 
 
 INCLUDEPATH += $$PWD/src
