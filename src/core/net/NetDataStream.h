@@ -4,9 +4,13 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <core/types/ConnectionPoint.h>
+#include <core/ISubject.h>
 #include "../IDataStream.h"
+#include "NetDataBlock.h"
 
-class NetDataStream : public QObject, public IDataStream
+#define NET_BUFFER_SIZE         10240
+
+class NetDataStream : public QObject, public IDataStream, public ISubject
 {
     Q_OBJECT
 
@@ -22,10 +26,13 @@ public:
     void read(IDataBlock *data) override;
     void write(IDataBlock *data) override;
 
+private slots:
+    void readData();
+
 private:
     QTcpSocket *_socket;
     ConnectionPoint _point;
-
+    char _data_buffer[NET_BUFFER_SIZE];
 };
 
 #endif // NETDATASTREAM_H

@@ -80,7 +80,8 @@ SOURCES += \
     src/model/IBlockData.cpp \
     src/core/net/Net.cpp \
     src/core/net/NodeConnection.cpp \
-    src/core/types/ConnectionPoint.cpp
+    src/core/types/ConnectionPoint.cpp \
+    src/core/net/NetDataBlock.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -156,7 +157,8 @@ HEADERS += \
     src/model/IBlockData.h \
     src/core/net/Net.h \
     src/core/net/NodeConnection.h \
-    src/core/types/ConnectionPoint.h
+    src/core/types/ConnectionPoint.h \
+    src/core/net/NetDataBlock.h
 
 
 INCLUDEPATH += $$PWD/src
