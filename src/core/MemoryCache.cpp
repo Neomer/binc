@@ -8,6 +8,7 @@ MemoryCache::MemoryCache(int limit) :
 
 void MemoryCache::add(IIdentifyed *value)
 {
+    if (getLimit() >= 0 && _list.count() >= getLimit()) throw BaseException("Cache overflow!");
     _list << value;
 }
 
@@ -50,4 +51,9 @@ IIdentifyed *MemoryCache::takeFirst()
 {
     if (isEmpty()) return 0;
     return _list.takeFirst();
+}
+
+void MemoryCache::clear()
+{
+    _list.clear();
 }

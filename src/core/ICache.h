@@ -59,6 +59,10 @@ public:
     /// \return
     ///
     virtual int count() = 0;
+    ///
+    /// \brief clear очищает буфер
+    ///
+    virtual void clear() = 0;
 
 private:
     int _limit;

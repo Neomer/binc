@@ -17,6 +17,7 @@ public:
     int count();
     IIdentifyed *take(Guid id);
     IIdentifyed *takeFirst();
+    void clear();
 
 private:
     QList<IIdentifyed *> _list;
