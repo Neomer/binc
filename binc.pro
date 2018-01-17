@@ -162,7 +162,8 @@ HEADERS += \
     src/core/types/ConnectionPoint.h \
     src/core/net/NetDataBlock.h \
     src/core/transport/TransportDataBlock.h \
-    src/core/transport/TransportTransaction.h
+    src/core/transport/TransportTransaction.h \
+    src/core/IIdentifyed.h
 
 
 INCLUDEPATH += $$PWD/src

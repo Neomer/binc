@@ -1,10 +1,11 @@
 #ifndef ITRANSPORTDATABLOCK_H
 #define ITRANSPORTDATABLOCK_H
 
+#include <core/IIdentifyed.h>
 #include <core/types/Guid.h>
 #include <core/types/Hash.h>
 
-class TransportDataBlock
+class TransportDataBlock : public IIdentifyed
 {
 public:
     enum TransportDataBlockStatus
@@ -17,7 +18,7 @@ public:
     TransportDataBlock();
 
 private:
-    Guid _transaction_id, _block_id, _prev_block_id;
+    Guid _transaction_id, _prev_block_id;
     Hash _hash;
     quint16 _length;
     char _prefix[4];
