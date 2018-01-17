@@ -1,11 +1,21 @@
 #include "TransportTransaction.h"
 
-TransportTransaction::TransportTransaction()
+IncomingTransportTransaction::IncomingTransportTransaction()
 {
 
 }
 
-void TransportTransaction::postponeBlock(TransportDataBlock *block)
+IncomingTransportTransaction::~IncomingTransportTransaction()
+{
+    _blocks_cache.clear();
+}
+
+void IncomingTransportTransaction::postponeBlock(TransportDataBlock *block)
 {
     _blocks_cache.add(block);
+}
+
+OutgoingTransportTransaction::OutgoingTransportTransaction()
+{
+
 }

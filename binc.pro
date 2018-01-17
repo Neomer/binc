@@ -53,7 +53,6 @@ SOURCES += \
     src/database/DatabaseIndexProvider.cpp \
     src/database/DatabaseDataProvider.cpp \
     tests/chat/Chat.cpp \
-    src/core/IBinarySerializable.cpp \
     src/core/Settings.cpp \
     src/core/ContextException.cpp \
     src/core/net/rpc/RPCServer.cpp \

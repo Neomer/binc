@@ -8,15 +8,22 @@
 #include <core/MemoryCache.h>
 #include <core/transport/TransportDataBlock.h>
 
-class TransportTransaction : public IIdentifyed
+class IncomingTransportTransaction : public IIdentifyed
 {
 public:
-    TransportTransaction();
+    IncomingTransportTransaction();
+    ~IncomingTransportTransaction();
 
     void postponeBlock(TransportDataBlock *block);
 
 private:
     MemoryCache _blocks_cache;
+};
+
+class OutgoingTransportTransaction : public IIdentifyed
+{
+public:
+    OutgoingTransportTransaction();
 };
 
 #endif // ITRANSPORTTRANSACTION_H

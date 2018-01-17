@@ -28,7 +28,7 @@ private:
     Guid _transaction_id, _prev_block_id;
     Hash _hash;
     quint16 _length;
-    char _prefix[4];
+    QString _prefix;
     TransportDataBlockStatus _status;
     QByteArray _data;
 
