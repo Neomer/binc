@@ -1,7 +1,7 @@
 #include "Deal.h"
 
 Deal::Deal() :
-    IModelWithId(),
+    IIdentifyed(),
     _amount(0),
     _reward(0)
 {

@@ -1,7 +1,7 @@
 #include "Block.h"
 
 Block::Block() :
-    IModelWithId(),
+    IIdentifyed(),
     _creation_time(QDateTime::currentDateTime()),
     _nonce(0)
 {

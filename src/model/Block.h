@@ -4,7 +4,8 @@
 #include <QList>
 #include <QDateTime>
 
-#include "IModelWithId.h"
+#include <core/IJsonSerializable.h>
+#include <core/IIdentifyed.h>
 #include <core/types/Guid.h>
 #include <core/types/Version.h>
 #include <model/Deal.h>
@@ -13,7 +14,7 @@
 ///
 /// \brief The Block модель данных, представляющая одиночный блок
 ///
-class Block : public IModelWithId
+class Block : public IIdentifyed, public IJsonSerializable
 {
 public:
     Block();

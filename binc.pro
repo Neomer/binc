@@ -71,7 +71,6 @@ SOURCES += \
     src/model/Deal.cpp \
     src/model/Block.cpp \
     src/core/types/Hash.cpp \
-    src/model/IModelWithId.cpp \
     src/miner/Worker.cpp \
     src/miner/Work.cpp \
     src/core/net/TransportProvider.cpp \
@@ -151,7 +150,6 @@ HEADERS += \
     src/model/Deal.h \
     src/model/Block.h \
     src/core/types/Hash.h \
-    src/model/IModelWithId.h \
     src/miner/Worker.h \
     src/miner/Work.h \
     src/core/net/TransportProvider.h \
