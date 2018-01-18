@@ -70,7 +70,6 @@ SOURCES += \
     src/core/BaseException.cpp \
     src/model/Deal.cpp \
     src/model/Block.cpp \
-    src/core/MemoryPool.cpp \
     src/core/types/Hash.cpp \
     src/model/IModelWithId.cpp \
     src/miner/Worker.cpp \
@@ -151,7 +150,6 @@ HEADERS += \
     src/core/BaseException.h \
     src/model/Deal.h \
     src/model/Block.h \
-    src/core/MemoryPool.h \
     src/core/types/Hash.h \
     src/model/IModelWithId.h \
     src/miner/Worker.h \

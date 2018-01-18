@@ -32,6 +32,11 @@ public:
     /// \return
     ///
     static Guid randomGuid();
+    ///
+    /// \brief emptyGuid генерирует нулевой Guid
+    /// \return
+    ///
+    static Guid emptyGuid();
 
 // Operators
     bool operator ==(const Guid &other);

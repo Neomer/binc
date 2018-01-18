@@ -9,6 +9,14 @@ QString IJsonSerializable::toString(IJsonSerializable *object)
     return QString::fromUtf8(json.toJson(QJsonDocument::Compact));
 }
 
+QByteArray IJsonSerializable::toByteArray(IJsonSerializable *object)
+{
+    QJsonObject obj;
+    object->serialize(obj);
+    QJsonDocument json(obj);
+    return json.toJson(QJsonDocument::Compact);
+}
+
 void IJsonSerializable::fromString(IJsonSerializable *object, QString data)
 {
     fromString(object, data.toUtf8());

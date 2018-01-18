@@ -6,7 +6,9 @@
 #include <core/IIdentifyed.h>
 #include <core/types/Guid.h>
 #include <core/MemoryCache.h>
+#include <core/IJsonSerializable.h>
 #include <core/transport/TransportDataBlock.h>
+
 
 class IncomingTransportTransaction : public IIdentifyed
 {
@@ -23,7 +25,10 @@ private:
 class OutgoingTransportTransaction : public IIdentifyed
 {
 public:
-    OutgoingTransportTransaction();
+    OutgoingTransportTransaction(IJsonSerializable *object);
+
+private:
+    QList<TransportDataBlock *> _blocks;
 };
 
 #endif // ITRANSPORTTRANSACTION_H

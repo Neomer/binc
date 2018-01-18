@@ -53,11 +53,18 @@ Guid Guid::randomGuid()
 {
     Guid ret;
     unsigned char * cur = (unsigned char *)&(ret._data);
-    for (uint i = 0; i < sizeof(_data); i++)
+    for (uint i = 0; i < sizeof(ret._data); i++)
     {
         cur[i] = rand() % 0xff;
     }
 
+    return ret;
+}
+
+Guid Guid::emptyGuid()
+{
+    Guid ret;
+    memset(&ret._data, 0, sizeof(ret._data));
     return ret;
 }
 

@@ -25,6 +25,12 @@ public:
     ///
     static QString toString(IJsonSerializable *object);
     ///
+    /// \brief toByteArray преобразует Json-объект в массив байт
+    /// \param object
+    /// \return
+    ///
+    static QByteArray toByteArray(IJsonSerializable *object);
+    ///
     /// \brief fromString преобразует Json-строку в экзмепляр класса
     /// \param object
     /// \param data
