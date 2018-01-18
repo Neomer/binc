@@ -80,9 +80,9 @@ void UdpStream::readDatagram()
     else
     {
         TransportTransaction *tr = static_cast<TransportTransaction *>(_transaction_cache.get(block.getTransactionId()));
-        if (!tr)
-        {
-        }
+        if (!tr) tr = new TransportTransaction();
+        tr->addBlock(&block);
+        _transaction_cache.add(tr);
     }
 }
 
