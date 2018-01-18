@@ -1,6 +1,8 @@
 #ifndef UDPSTREAM_H
 #define UDPSTREAM_H
 
+#include <core/transport/TransportTransaction.h>
+#include <core/MemoryCache.h>
 #include <core/IDataStream.h>
 #include <core/ISubject.h>
 #include <QUdpSocket>
@@ -28,8 +30,8 @@ public:
     //IDataStream interface
     void close() override;
     void open() override;
-    void read(IDataBlock *data) override;
-    void write(IDataBlock *data) override;
+    void read(IJsonSerializable *data) override;
+    void write(IJsonSerializable *data) override;
 
 private slots:
     void readDatagram();
@@ -37,7 +39,9 @@ private slots:
 private:
     QUdpSocket *_socket;
     quint16 _port;
-    char _data_buffer[UDP_BUFFER_SIZE];
+    MemoryCache _transaction_cache;
+    QByteArray _buffer;
+    QDataStream _stream;
 };
 
 #endif // UDPSTREAM_H

@@ -57,3 +57,9 @@ void MemoryCache::clear()
 {
     _list.clear();
 }
+
+MemoryCache &MemoryCache::operator <<(IIdentifyed *value)
+{
+    _list.append(value);
+    return *this;
+}

@@ -19,6 +19,8 @@ public:
     IIdentifyed *takeFirst();
     void clear();
 
+    MemoryCache &operator <<(IIdentifyed *value);
+
 private:
     QList<IIdentifyed *> _list;
 };

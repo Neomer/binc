@@ -9,14 +9,18 @@
 #include <core/IJsonSerializable.h>
 #include <core/transport/TransportDataBlock.h>
 
-
-class IncomingTransportTransaction : public IIdentifyed
+class TransportTransaction : public IIdentifyed
 {
 public:
-    IncomingTransportTransaction();
-    ~IncomingTransportTransaction();
+    TransportTransaction();
+    ~TransportTransaction();
 
-    void postponeBlock(TransportDataBlock *block);
+    ///
+    /// \brief cache Возвращает кэш блоков
+    /// \return
+    ///
+    const MemoryCache &cache() { return _blocks_cache; }
+    void addBlock(TransportDataBlock *block);
 
 private:
     MemoryCache _blocks_cache;

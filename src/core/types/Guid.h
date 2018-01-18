@@ -37,6 +37,11 @@ public:
     /// \return
     ///
     static Guid emptyGuid();
+    ///
+    /// \brief isEmpty проверяет нулевой ли Guid
+    /// \return
+    ///
+    bool isEmpty();
 
 // Operators
     bool operator ==(const Guid &other);

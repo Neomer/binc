@@ -67,12 +67,22 @@ public:
     /// \brief setData устанавливает сообщение блока данных
     /// \param value
     ///
-    void setData(QByteArray value) { _data = value; }
+    void setData(QByteArray value);
     ///
     /// \brief setData устанавливает сообщение блока данных
     /// \param value
     ///
-    void setData(const char *value, int length) { _data = QByteArray(value, length); }
+    void setData(const char *value, int length);
+    ///
+    /// \brief isReady проверяет удалось ли десериализовать блок
+    /// \return
+    ///
+    bool isReady() { return _ready; }
+    ///
+    /// \brief isValid проверяет блок на валидность. Проверяется префикс и хэш-сумма.
+    /// \return
+    ///
+    bool isValid();
 
 private:
     Guid _transaction_id, _prev_block_id;
@@ -81,6 +91,7 @@ private:
     QString _prefix;
     TransportDataBlockStatus _status;
     QByteArray _data;
+    bool _ready;
 
     // IBinarySerializable interface
 public:

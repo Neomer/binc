@@ -5,7 +5,9 @@
 #include <QTcpSocket>
 #include <core/types/ConnectionPoint.h>
 #include <core/ISubject.h>
-#include "../IDataStream.h"
+#include <core/IDataStream.h>
+#include <core/transport/TransportTransaction.h>
+#include <core/MemoryCache.h>
 #include "NetDataBlock.h"
 
 #define NET_BUFFER_SIZE         10240
@@ -23,8 +25,8 @@ public:
 
     void open() override;
     void close() override;
-    void read(IDataBlock *data) override;
-    void write(IDataBlock *data) override;
+    void read(IJsonSerializable *data) override;
+    void write(IJsonSerializable *data) override;
 
 private slots:
     void readData();

@@ -7,7 +7,6 @@
 #include <database/Database.h>
 #include "ConsoleInput.h"
 #include "Settings.h"
-#include "MemoryPool.h"
 
 ///
 /// \brief The Context class хранит глобальные ресурсы используемые разными модулями программы.
@@ -29,7 +28,6 @@ public:
     Database *database() { return _database; }
     ConsoleInput * consoleInput() const { return _consoleInput; }
     Settings *settings() { return &_sets; }
-    MemoryPool *dealsPool() { return _dealsPool; }
 
 
     ///
@@ -46,7 +44,6 @@ private:
 
     Database *_database;
     RPCServer *_rpc_server;
-    MemoryPool *_dealsPool;
 
     bool _isInit;
     ConsoleInput *_consoleInput;

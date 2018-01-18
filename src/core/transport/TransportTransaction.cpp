@@ -1,18 +1,26 @@
 #include "TransportTransaction.h"
 
-IncomingTransportTransaction::IncomingTransportTransaction()
+TransportTransaction::TransportTransaction()
 {
 
 }
 
-IncomingTransportTransaction::~IncomingTransportTransaction()
+TransportTransaction::~TransportTransaction()
 {
     _blocks_cache.clear();
 }
 
-void IncomingTransportTransaction::postponeBlock(TransportDataBlock *block)
+void TransportTransaction::addBlock(TransportDataBlock *block)
 {
-    _blocks_cache.add(block);
+    if (block->getPreviousBlockId().isEmpty())
+    {
+
+    }
+
+    if (_blocks_cache.isEmpty())
+    {
+
+    }
 }
 
 OutgoingTransportTransaction::OutgoingTransportTransaction(IJsonSerializable *object)
@@ -20,19 +28,17 @@ OutgoingTransportTransaction::OutgoingTransportTransaction(IJsonSerializable *ob
     QByteArray data = IJsonSerializable::toByteArray(object);
 
     TransportDataBlock *b, *b1 = 0;
-    int blocks = data.size() / MAX_BLOCK_SIZE;
-    bool first = true;
-    while (--blocks)
+    int blocks = data.size() / MAX_BLOCK_SIZE + 1;
+    for (int i = 0; i < blocks; i++)
     {
         b = new TransportDataBlock();
-        if (blocks == 0)
+        if (i == blocks - 1)
         {
             b->setStatus(TransportDataBlock::enStatusLast);
         }
-        else if (first)
+        else if (i == 0)
         {
             b->setStatus(TransportDataBlock::enStatusFirst);
-            first = false;
         }
         else
         {
@@ -46,6 +52,8 @@ OutgoingTransportTransaction::OutgoingTransportTransaction(IJsonSerializable *ob
         {
             b->setPreviousBlockId(b1->getId());
         }
+        b->setTransactionId(this->getId());
+        b->setData(data.constData() + i * MAX_BLOCK_SIZE, qMin(MAX_BLOCK_SIZE, data.size() - i * MAX_BLOCK_SIZE));
         b1 = b;
     }
 }

@@ -3,7 +3,9 @@
 
 #include <QObject>
 #include <QIODevice>
-#include "IDataBlock.h"
+#include <core/IDataBlock.h>
+#include <core/transport/TransportTransaction.h>
+#include <core/IJsonSerializable.h>
 
 class IDataStream
 {
@@ -12,8 +14,8 @@ public:
 
     virtual void open() = 0;
     virtual void close() = 0;
-    virtual void read(IDataBlock *data) = 0;
-    virtual void write(IDataBlock *data) = 0;
+    virtual void read(IJsonSerializable *data) = 0;
+    virtual void write(IJsonSerializable *data) = 0;
 };
 
 #endif // IDATASTREAM_H

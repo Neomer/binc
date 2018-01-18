@@ -68,6 +68,11 @@ Guid Guid::emptyGuid()
     return ret;
 }
 
+bool Guid::isEmpty()
+{
+    return *this == Guid::emptyGuid();
+}
+
 bool Guid::operator ==(const Guid &other)
 {
     return memcmp(&_data, &(other._data), sizeof(GuidStructure)) == 0;

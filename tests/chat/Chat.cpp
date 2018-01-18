@@ -27,10 +27,9 @@ void Chat::update(const Guid &subject, void *data)
         Block d;
         d.setPreviousBlock(Guid::randomGuid());
         d.setVersion(Version(1, 0));
+        d.setNonce(QString((const char *)data).toInt());
 
-        UdpDataBlock block;
-        block.setData(IJsonSerializable::toString(&d).toUtf8());
-        _stream->write(&block);
+        _stream->write(&d);
     }
     else if (Guid::isEqual(subject, _stream->guid()))
     {
