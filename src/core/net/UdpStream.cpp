@@ -35,23 +35,7 @@ void UdpStream::open()
 
 void UdpStream::read(IJsonSerializable *data)
 {
-    do
-    {
-        int len = _socket->pendingDatagramSize();
-        _buffer.resize(len);
-        _socket->readDatagram(_buffer.data(), len);
-    }
-    while (_socket->hasPendingDatagrams());
-
-    QDataStream stream(&_buffer, QIODevice::ReadOnly);
-    stream.setVersion(QDataStream::Qt_5_0);
-
-    TransportDataBlock block;
-    block.deserialize(stream);
-    if (!block.isReady())
-    {
-        return;
-    }
+    Q_UNUSED(data);
 }
 
 void UdpStream::write(IJsonSerializable *data)
@@ -71,6 +55,34 @@ void UdpStream::write(IJsonSerializable *data)
 
 void UdpStream::readDatagram()
 {
-    read(0);
+    do
+    {
+        int len = _socket->pendingDatagramSize();
+        _buffer.resize(len);
+        _socket->readDatagram(_buffer.data(), len);
+    }
+    while (_socket->hasPendingDatagrams());
+
+    QDataStream stream(&_buffer, QIODevice::ReadOnly);
+    stream.setVersion(QDataStream::Qt_5_0);
+
+    TransportDataBlock block;
+    block.deserialize(stream);
+    if (!block.isReady() || !block.isValid())
+    {
+        return;
+    }
+
+    if (block.getStatus() == TransportDataBlock::enStatusLast && block.getPreviousBlockId().isEmpty())
+    {
+        //если блок единственный в транзакции
+    }
+    else
+    {
+        TransportTransaction *tr = static_cast<TransportTransaction *>(_transaction_cache.get(block.getTransactionId()));
+        if (!tr)
+        {
+        }
+    }
 }
 
