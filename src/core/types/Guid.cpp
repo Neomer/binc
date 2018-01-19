@@ -16,7 +16,7 @@ Guid::Guid(const Guid &other)
 
 QString Guid::toString()
 {
-    return QString("{%1-%2-%3-%4-%5%6}").arg(
+    return QString("%1-%2-%3-%4-%5%6").arg(
                 QString::number(_data.Data1, 16).rightJustified(8, '0'),
                 QString::number(_data.Data2, 16).rightJustified(4, '0'),
                 QString::number(_data.Data3, 16).rightJustified(4, '0'),
@@ -27,7 +27,7 @@ QString Guid::toString()
 
 Guid Guid::fromString(QString data)
 {
-    QRegExp guidValidator("\\{[\\da-fA-F]{8}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{12}\\}");
+    QRegExp guidValidator("\\{?[\\da-fA-F]{8}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{4}\\-[\\da-fA-F]{12}\\}?");
     if (!guidValidator.exactMatch(data))
     {
         throw BaseException("Unknown data format!");
@@ -35,12 +35,12 @@ Guid Guid::fromString(QString data)
     QStringList r = data.split('-');
     bool ok = true;
     Guid ret;
-    ret._data.Data1 = QString(r.at(0)).mid(1).toInt(&ok, 16);
+    ret._data.Data1 = ((QString(r.at(0)).startsWith('{')) ? QString(r.at(0)).mid(1) : QString(r.at(0))).toInt(&ok, 16);
     ret._data.Data2 = QString(r.at(1)).toInt(&ok, 16);
     ret._data.Data3 = QString(r.at(2)).toInt(&ok, 16);
     ret._data.Data4 = QString(r.at(3)).toInt(&ok, 16) << 16;
     ret._data.Data4 |= QString(r.at(4)).left(4).toInt(&ok, 16);
-    ret._data.Data5 = QString(r.at(4)).right(12).toInt(&ok, 16);
+    ret._data.Data5 = ((QString(r.at(0)).endsWith('}')) ? QString(r.at(4)).right(12) : QString(r.at(4))).toInt(&ok, 16);
     return ret;
 }
 
