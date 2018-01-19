@@ -5,6 +5,7 @@
 #include <core/MemoryCache.h>
 #include <core/IDataStream.h>
 #include <core/ISubject.h>
+#include <core/SerializableEntityFactory.h>
 #include <QUdpSocket>
 #include <QHostAddress>
 #include <QThread>
@@ -42,6 +43,7 @@ private:
     MemoryCache _transaction_cache;
     QByteArray _buffer;
     QDataStream _stream;
+    SerializableEntityFactory _entity_factory;
 };
 
 #endif // UDPSTREAM_H

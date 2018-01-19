@@ -32,15 +32,17 @@ Guid Guid::fromString(QString data)
     {
         throw BaseException("Unknown data format!");
     }
+    if (data.startsWith("{")) data = data.mid(1);
+    if (data.endsWith("}")) data = data.left(-1);
     QStringList r = data.split('-');
     bool ok = true;
     Guid ret;
-    ret._data.Data1 = ((QString(r.at(0)).startsWith('{')) ? QString(r.at(0)).mid(1) : QString(r.at(0))).toInt(&ok, 16);
-    ret._data.Data2 = QString(r.at(1)).toInt(&ok, 16);
-    ret._data.Data3 = QString(r.at(2)).toInt(&ok, 16);
-    ret._data.Data4 = QString(r.at(3)).toInt(&ok, 16) << 16;
-    ret._data.Data4 |= QString(r.at(4)).left(4).toInt(&ok, 16);
-    ret._data.Data5 = ((QString(r.at(0)).endsWith('}')) ? QString(r.at(4)).right(12) : QString(r.at(4))).toInt(&ok, 16);
+    ret._data.Data1 = QString(r.at(0)).toUInt(&ok, 16);
+    ret._data.Data2 = QString(r.at(1)).toUInt(&ok, 16);
+    ret._data.Data3 = QString(r.at(2)).toUInt(&ok, 16);
+    ret._data.Data4 = QString(r.at(3)).toUInt(&ok, 16) << 16;
+    ret._data.Data4 |= QString(r.at(4)).left(4).toUInt(&ok, 16);
+    ret._data.Data5 = QString(r.at(4)).right(8).toUInt(&ok, 16);
     return ret;
 }
 

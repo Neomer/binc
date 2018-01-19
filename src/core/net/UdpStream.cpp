@@ -78,6 +78,12 @@ void UdpStream::readDatagram()
         //если блок единственный в транзакции
         SerializableEntity entity;
         IJsonSerializable::fromString(&entity, block.getData());
+        SerializableEntity *e = static_cast<SerializableEntity *>(_entity_factory.createEntity(entity.getEntityName()));
+        if (e)
+        {
+            IJsonSerializable::fromString(e, block.getData());
+            update(e);
+        }
     }
     else
     {

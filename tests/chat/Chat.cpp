@@ -1,6 +1,7 @@
 #include "Chat.h"
 #include <QDebug>
 #include <model/Block.h>
+#include <core/SerializableEntityFactory.h>
 
 Chat::Chat()
 {
@@ -33,10 +34,17 @@ void Chat::update(const Guid &subject, void *data)
     }
     else if (Guid::isEqual(subject, _stream->guid()))
     {
-        UdpDataBlock *block = static_cast<UdpDataBlock *>(data);
-        qDebug() << "From" << block->remoteAddress().toString() << ":" << QString::fromUtf8(block->data());
-        Block d;
-        IJsonSerializable::fromString(&d, block->data());
+        if (SerializableEntityFactory::IsBlock(static_cast<IEntity *>(data)))
+        {
+            Block *b = static_cast<Block *>(data);
+            qDebug() << "New block" << b->getId().toString()
+                     << "\nPrevious Block:" <<  b->getPreviousBlock().toString()
+                     << "\nCreation Time:" <<  b->getCreationTime().toString("yyyy-MM-dd hh:mm:ss")
+                     << "\nNonce:" <<  b->getNonce()
+                     << "\nVersion:" <<  b->getVersion().toString();
+        }
+
+
     }
 
 }

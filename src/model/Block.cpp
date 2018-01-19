@@ -24,8 +24,8 @@ void Block::deserialize(QJsonObject &in)
     SerializableEntity::deserialize(in);
     setId(Guid::fromString(in["id"].toString()));
     _version = Version(in["version"].toString());
-    _previous_block.fromString(in["prev"].toString());
+    _previous_block = Guid::fromString(in["prev"].toString());
     _creation_time = QDateTime::fromString(in["creationTime"].toString(), "yyyy-MM-ddThh:mm:ss");
     _nonce = in["nonce"].toInt();
-    _hash = Hash::fromString(in["hash"].toString());
+    //_hash = Hash::fromString(in["hash"].toString());
 }

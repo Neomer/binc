@@ -23,11 +23,6 @@ int main(int argc, char ** argv)
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1566));
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1567));
 
-    Block b;
-    b.setNonce(324345);
-    b.setVersion(Version(2,3,1));
-    OutgoingTransportTransaction tr(&b);
-
     Net net;
     net.connect();
 

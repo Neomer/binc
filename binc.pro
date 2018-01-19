@@ -82,7 +82,8 @@ SOURCES += \
     src/core/transport/TransportDataBlock.cpp \
     src/core/transport/TransportTransaction.cpp \
     src/core/ICache.cpp \
-    src/core/MemoryCache.cpp
+    src/core/MemoryCache.cpp \
+    src/core/SerializableEntityFactory.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -165,7 +166,8 @@ HEADERS += \
     src/core/MemoryCache.h \
     src/core/IEntityFactory.h \
     src/core/IEntity.h \
-    src/core/SerializableEntity.h
+    src/core/SerializableEntity.h \
+    src/core/SerializableEntityFactory.h
 
 
 INCLUDEPATH += $$PWD/src
