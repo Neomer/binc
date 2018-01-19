@@ -15,7 +15,7 @@ void Block::serialize(QJsonObject &out)
     out["id"] = getId().toString();
     out["version"] = _version.toString();
     out["prev"] = _previous_block.toString();
-    out["creationTime"] = _creation_time.toString("yyyy-MM-ddThh:mm:ss t");
+    out["creationTime"] = _creation_time.toString("yyyy-MM-ddThh:mm:ss");
     out["nonce"] = _nonce;
 }
 
