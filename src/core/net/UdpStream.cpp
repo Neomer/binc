@@ -1,6 +1,6 @@
 #include "UdpStream.h"
 #include <QDebug>
-
+#include <core/SerializableEntity.h>
 
 UdpStream::UdpStream() :
     QObject(),
@@ -76,6 +76,8 @@ void UdpStream::readDatagram()
     if (block.getStatus() == TransportDataBlock::enStatusLast && block.getPreviousBlockId().isEmpty())
     {
         //если блок единственный в транзакции
+        SerializableEntity entity;
+        IJsonSerializable::fromString(&entity, block.getData());
     }
     else
     {

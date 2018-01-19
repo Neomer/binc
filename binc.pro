@@ -162,7 +162,10 @@ HEADERS += \
     src/core/transport/TransportTransaction.h \
     src/core/IIdentifyed.h \
     src/core/ICache.h \
-    src/core/MemoryCache.h
+    src/core/MemoryCache.h \
+    src/core/IEntityFactory.h \
+    src/core/IEntity.h \
+    src/core/SerializableEntity.h
 
 
 INCLUDEPATH += $$PWD/src

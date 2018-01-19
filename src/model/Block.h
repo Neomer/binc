@@ -4,7 +4,7 @@
 #include <QList>
 #include <QDateTime>
 
-#include <core/IJsonSerializable.h>
+#include <core/SerializableEntity.h>
 #include <core/IIdentifyed.h>
 #include <core/types/Guid.h>
 #include <core/types/Version.h>
@@ -14,8 +14,16 @@
 ///
 /// \brief The Block модель данных, представляющая одиночный блок
 ///
-class Block : public IIdentifyed, public IJsonSerializable
+class Block : public IIdentifyed, public SerializableEntity
 {
+private:
+    Version _version;
+    Guid _previous_block;
+    QDateTime _creation_time;
+    int _nonce;
+    Hash _hash;
+    QList<IBlockData *> _data;
+
 public:
     Block();
 
@@ -39,14 +47,6 @@ public:
 public:
     void serialize(QJsonObject &out) override;
     void deserialize(QJsonObject &in) override;
-
-private:
-    Version _version;
-    Guid _previous_block;
-    QDateTime _creation_time;
-    int _nonce;
-    Hash _hash;
-    QList<IBlockData *> _data;
 };
 
 #endif // BLOCK_H
