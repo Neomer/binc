@@ -37,7 +37,8 @@ void Chat::update(const Guid &subject, void *data)
         if (SerializableEntityFactory::IsBlock(static_cast<IEntity *>(data)))
         {
             Block *b = static_cast<Block *>(data);
-            qDebug() << "New block" << b->getId().toString()
+            qDebug() << "New block!"
+                     << "\nBlock ID:" << b->getId().toString()
                      << "\nPrevious Block:" <<  b->getPreviousBlock().toString()
                      << "\nCreation Time:" <<  b->getCreationTime().toString("yyyy-MM-dd hh:mm:ss")
                      << "\nNonce:" <<  b->getNonce()
