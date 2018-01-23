@@ -76,9 +76,9 @@ void UdpStream::readDatagram()
     if (block.getStatus() == TransportDataBlock::enStatusLast && block.getPreviousBlockId().isEmpty())
     {
         //если блок единственный в транзакции
-        SerializableEntity entity;
+        JsonSerializableEntity entity;
         IJsonSerializable::fromString(&entity, block.getData());
-        SerializableEntity *e = static_cast<SerializableEntity *>(_entity_factory.createEntity(entity.getEntityName()));
+        JsonSerializableEntity *e = static_cast<JsonSerializableEntity *>(_entity_factory.createEntity(entity.getEntityName()));
         if (e)
         {
             IJsonSerializable::fromString(e, block.getData());

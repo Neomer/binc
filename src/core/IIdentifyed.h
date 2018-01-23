@@ -9,7 +9,15 @@
 class IIdentifyed
 {
 public:
+    ///
+    /// \brief IIdentifyed инициализирует сущность со случайно сгенерированным идентификатором
+    ///
     IIdentifyed() : _id(Guid::randomGuid()) {}
+    ///
+    /// \brief IIdentifyed инициализирует сущность с установленным идентификатором id
+    /// \param id значение идентификатора
+    ///
+    IIdentifyed(Guid id) : _id(id) {}
 
     ///
     /// \brief getId получить идентификатор

@@ -10,11 +10,12 @@
 #include <core/types/Version.h>
 #include <model/Deal.h>
 #include <model/IBlockData.h>
+#include <database/IDatabaseWritable.h>
 
 ///
 /// \brief The Block модель данных, представляющая одиночный блок
 ///
-class Block : public IIdentifyed, public SerializableEntity
+class Block : public JsonSerializableEntity, public IDatabaseWritable
 {
 private:
     Version _version;
@@ -47,6 +48,11 @@ public:
 public:
     void toJsonObject(QJsonObject &out) override;
     void fromJsonObject(QJsonObject &in) override;
+
+    // IBinarySerializable interface
+public:
+    void toDataStream(QDataStream &out) override;
+    void fromDataStream(QDataStream &in) override;
 };
 
 #endif // BLOCK_H

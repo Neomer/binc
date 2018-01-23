@@ -2,6 +2,7 @@
 #define VERSION_H
 
 #include <QString>
+#include <QDataStream>
 #include <core/BaseException.h>
 
 ///
@@ -88,5 +89,27 @@ private:
     int _major, _minor, _maintenance;
     VersionStage _stage;
 };
+
+inline QDataStream &operator <<(QDataStream &stream, const Version &object)
+{
+    stream << object._major;
+    stream << object._minor;
+    stream << object._maintenance;
+    stream << (quint8) object._stage;
+    return stream;
+}
+
+inline QDataStream &operator >>(QDataStream &stream, Version &object)
+{
+    quint8 stage;
+
+    stream >> object._major;
+    stream >> object._minor;
+    stream >> object._maintenance;
+    stream >> stage;
+
+    stage = (Version::VersionStage)stage;
+    return stream;
+}
 
 #endif // VERSION_H

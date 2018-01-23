@@ -30,7 +30,7 @@ void TransportProvider::update(const Guid &subject, void *data)
     Q_UNUSED(subject);
 
     if (!data) return;
-    SerializableEntity *entity = static_cast<SerializableEntity *>(data);
+    JsonSerializableEntity *entity = static_cast<JsonSerializableEntity *>(data);
     if (SerializableEntityFactory::IsBlock(entity))
     {
         Block *b = static_cast<Block *>(entity);

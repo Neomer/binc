@@ -4,10 +4,10 @@
 #include <core/IJsonSerializable.h>
 #include <core/IEntity.h>
 
-class SerializableEntity : public IEntity, public IJsonSerializable
+class JsonSerializableEntity : public IEntity, public IJsonSerializable
 {
 public:
-    SerializableEntity(QString entityName = QString()) { _entityName = entityName; }
+    JsonSerializableEntity(QString entityName = QString()) { _entityName = entityName; }
 
     // IJsonSerializable interface
 public:

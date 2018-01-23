@@ -83,7 +83,8 @@ SOURCES += \
     src/core/ICache.cpp \
     src/core/MemoryCache.cpp \
     src/core/SerializableEntityFactory.cpp \
-    src/core/IObservableDataStream.cpp
+    src/core/IObservableDataStream.cpp \
+    src/database/IDatabaseWritable.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -165,9 +166,10 @@ HEADERS += \
     src/core/MemoryCache.h \
     src/core/IEntityFactory.h \
     src/core/IEntity.h \
-    src/core/SerializableEntity.h \
     src/core/SerializableEntityFactory.h \
-    src/core/IObservableDataStream.h
+    src/core/IObservableDataStream.h \
+    src/database/IDatabaseWritable.h \
+    src/core/JsonSerializableEntity.h
 
 
 INCLUDEPATH += $$PWD/src

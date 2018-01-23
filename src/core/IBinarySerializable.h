@@ -3,6 +3,9 @@
 
 #include <QDataStream>
 
+///
+/// \brief The IBinarySerializable интерфейс, который должны реализовать модели, которые необходимо сериализовывать в двоичный поток.
+///
 class IBinarySerializable
 {
 public:
