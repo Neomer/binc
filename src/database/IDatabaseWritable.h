@@ -10,7 +10,8 @@ class IDatabaseWritable :
         public IBinarySerializable
 {
 public:
-    IDatabaseWritable();
+    IDatabaseWritable() : IIdentifyed() {}
+    IDatabaseWritable(Guid id) : IIdentifyed(id) {}
 };
 
 #endif // IDATABASEWRITABLE_H

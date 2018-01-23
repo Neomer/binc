@@ -7,14 +7,29 @@
 #include <core/transport/TransportTransaction.h>
 #include <core/IJsonSerializable.h>
 
+///
+/// \brief IDataStream интерфейс должны реализовывать классы, которые работают с потоками данных (UDP, TCP сокеты и пр.)
+///
 class IDataStream
 {
 public:
-    IDataStream();
-
+    ///
+    /// \brief open Открывает поток данных
+    ///
     virtual void open() = 0;
+    ///
+    /// \brief close Закрывает поток данных
+    ///
     virtual void close() = 0;
+    ///
+    /// \brief read ?
+    /// \param data
+    ///
     virtual void read(IJsonSerializable *data) = 0;
+    ///
+    /// \brief write Записывает сериализуемый объект в поток
+    /// \param data
+    ///
     virtual void write(IJsonSerializable *data) = 0;
 };
 

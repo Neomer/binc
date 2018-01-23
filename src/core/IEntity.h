@@ -9,6 +9,10 @@
 class IEntity
 {
 public:
+    ///
+    /// \brief getEntityName Возращает наименование сущности
+    /// \return
+    ///
     virtual QString getEntityName() = 0;
 };
 

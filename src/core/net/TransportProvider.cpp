@@ -1,6 +1,6 @@
 #include "TransportProvider.h"
 #include <core/net/UdpStream.h>
-#include <core/SerializableEntity.h>
+#include <core/JsonSerializableEntity.h>
 #include <core/Context.h>
 #include <model/Block.h>
 

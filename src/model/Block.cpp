@@ -2,6 +2,7 @@
 
 Block::Block() :
     JsonSerializableEntity("Block"),
+    IDatabaseWritable(),
     _creation_time(QDateTime::currentDateTime()),
     _nonce(0)
 {

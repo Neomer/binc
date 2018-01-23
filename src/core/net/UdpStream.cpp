@@ -1,6 +1,6 @@
 #include "UdpStream.h"
 #include <QDebug>
-#include <core/SerializableEntity.h>
+#include <core/JsonSerializableEntity.h>
 
 UdpStream::UdpStream() :
     QObject(),

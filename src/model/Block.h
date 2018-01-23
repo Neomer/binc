@@ -4,7 +4,7 @@
 #include <QList>
 #include <QDateTime>
 
-#include <core/SerializableEntity.h>
+#include <core/JsonSerializableEntity.h>
 #include <core/IIdentifyed.h>
 #include <core/types/Guid.h>
 #include <core/types/Version.h>
@@ -13,7 +13,7 @@
 #include <database/IDatabaseWritable.h>
 
 ///
-/// \brief The Block модель данных, представляющая одиночный блок
+/// \brief The Block модель данных, представляющая одиночный блок.
 ///
 class Block : public JsonSerializableEntity, public IDatabaseWritable
 {
@@ -27,19 +27,50 @@ private:
 
 public:
     Block();
-
+    ///
+    /// \brief addData Добавляет данные в блок
+    /// \param value
+    ///
     void addData(IBlockData *value) { _data << value; }
-
+    ///
+    /// \brief getVersion возвращает версию протокола блока
+    /// \return
+    ///
     Version getVersion() { return _version; }
+    ///
+    /// \brief setVersion устанавливает версию протокола блока
+    /// \param value
+    ///
     void setVersion(Version value) { _version = value; }
-
+    ///
+    /// \brief getPreviousBlock возвращает идентификатор предыдущего блока
+    /// \return
+    ///
     Guid getPreviousBlock() { return _previous_block; }
+    ///
+    /// \brief setPreviousBlock устанавливает идентификатор предыдущего блока
+    /// \param value
+    ///
     void setPreviousBlock(Guid value) { _previous_block = value; }
-
+    ///
+    /// \brief getCreationTime возвращает дату/время создания блока
+    /// \return
+    ///
     QDateTime getCreationTime() { return _creation_time; }
+    ///
+    /// \brief setCreationTime устанавливает дату/время создания блока
+    /// \param value
+    ///
     void setCreationTime(QDateTime value) { _creation_time = value; }
-
+    ///
+    /// \brief getNonce возвращает
+    /// \return
+    ///
     int getNonce() { return _nonce; }
+    ///
+    /// \brief setNonce устанавливает
+    /// \param value
+    ///
     void setNonce(quint64 value) { _nonce = value; }
 
     Hash getHash() { return _hash; }

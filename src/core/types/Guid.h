@@ -6,16 +6,25 @@
 #include <core/BaseException.h>
 
 ///
-/// \brief The Guid class класс для работы с уникальными идентификаторами
+/// \brief Guid Класс для работы с уникальными идентификаторами.
 ///
 class Guid
 {
 public:
+    ///
+    /// \brief Guid Инициализирует пустой идентификатор
+    ///
     Guid();
+    ///
+    /// \brief Guid Инициализирует идентификатор, как копию другого
+    /// \param other
+    ///
     Guid(const Guid& other);
-
+    ///
+    /// \brief toString Приводит Guid к печатному виду
+    /// \return
+    ///
     QString toString();
-
     ///
     /// \brief fromString возвращает экземпляр Guid из строки
     /// \param data
@@ -44,13 +53,43 @@ public:
     bool isEmpty();
 
 // Operators
+    ///
+    /// \brief operator == Проверяет два Guid на равенство
+    /// \param other
+    /// \return
+    ///
     bool operator ==(const Guid &other);
+    ///
+    /// \brief operator = Копирует значение Guid
+    /// \param other
+    /// \return
+    ///
     Guid &operator =(const Guid &other);
-
+    ///
+    /// \brief operator < Сравнивает два Guid
+    /// \param other
+    /// \return
+    ///
     bool operator <(const Guid &other);
+    ///
+    /// \brief operator > Сравнивает два Guid
+    /// \param other
+    /// \return
+    ///
     bool operator >(const Guid &other);
-
+    ///
+    /// \brief operator << Метод необходимый для работы с QDataStream
+    /// \param stream
+    /// \param object
+    /// \return
+    ///
     friend QDataStream &operator <<(QDataStream &stream, const Guid &object);
+    ///
+    /// \brief operator >>  Метод необходимый для работы с QDataStream
+    /// \param stream
+    /// \param object
+    /// \return
+    ///
     friend QDataStream &operator >>(QDataStream &stream, Guid &object);
 
 
