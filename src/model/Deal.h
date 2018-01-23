@@ -2,9 +2,11 @@
 #define DEAL_H
 
 #include <core/IJsonSerializable.h>
+#include <core/IIdentifyed.h>
 #include <core/types/Guid.h>
+#include <core/types/Hash.h>
 
-class Deal : public IJsonSerializable
+class Deal : public IIdentifyed, public IJsonSerializable
 {
 public:
     Deal();
@@ -23,8 +25,8 @@ public:
 
     // IJsonSerializable interface
 public:
-    void serialize(QJsonObject &out) override;
-    void deserialize(QJsonObject &in) override;
+    void toJsonObject(QJsonObject &out) override;
+    void fromJsonObject(QJsonObject &in) override;
 
 private:
     Guid _sender, _recipient;

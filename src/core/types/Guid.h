@@ -15,8 +15,13 @@ public:
     Guid(const Guid& other);
 
     QString toString();
-    void fromString(QString data);
 
+    ///
+    /// \brief fromString возвращает экземпляр Guid из строки
+    /// \param data
+    /// \return
+    ///
+    static Guid fromString(QString data);
     ///
     /// \brief isEqual возвращает TRUE в случае равенства Guid
     /// \return
@@ -27,6 +32,16 @@ public:
     /// \return
     ///
     static Guid randomGuid();
+    ///
+    /// \brief emptyGuid генерирует нулевой Guid
+    /// \return
+    ///
+    static Guid emptyGuid();
+    ///
+    /// \brief isEmpty проверяет нулевой ли Guid
+    /// \return
+    ///
+    bool isEmpty();
 
 // Operators
     bool operator ==(const Guid &other);

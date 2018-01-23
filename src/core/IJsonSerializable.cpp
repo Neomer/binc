@@ -1,9 +1,31 @@
 #include "IJsonSerializable.h"
+#include <QJsonParseError>
 
 QString IJsonSerializable::toString(IJsonSerializable *object)
 {
     QJsonObject obj;
-    object->serialize(obj);
+    object->toJsonObject(obj);
     QJsonDocument json(obj);
     return QString::fromUtf8(json.toJson(QJsonDocument::Compact));
+}
+
+QByteArray IJsonSerializable::toByteArray(IJsonSerializable *object)
+{
+    QJsonObject obj;
+    object->toJsonObject(obj);
+    QJsonDocument json(obj);
+    return json.toJson(QJsonDocument::Compact);
+}
+
+void IJsonSerializable::fromString(IJsonSerializable *object, QString data)
+{
+    fromString(object, data.toUtf8());
+}
+
+void IJsonSerializable::fromString(IJsonSerializable *object, QByteArray data)
+{
+    QJsonParseError err;
+    QJsonDocument json = QJsonDocument::fromJson(data, &err);
+    QJsonObject o = json.object();
+    object->fromJsonObject(o);
 }

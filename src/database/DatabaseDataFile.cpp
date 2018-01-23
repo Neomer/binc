@@ -14,7 +14,7 @@ quint64 DatabaseDataFile::write(IDatabaseDataBlock *block)
     static_cast<DatabaseDataFileHeader *>(header())->addBytesUsed(static_cast<DatabaseDataFileRecord *>(block)->blockSize());
     static_cast<DatabaseDataFileHeader *>(header())->addRecords(1);
     QFile::seek(0);
-    static_cast<DatabaseDataFileHeader *>(header())->serialize(_stream);
+    static_cast<DatabaseDataFileHeader *>(header())->toDataStream(_stream);
     return ret;
 }
 
@@ -30,5 +30,5 @@ void DatabaseDataFile::toEnd()
 
 void DatabaseDataFile::readHeader()
 {
-    static_cast<DatabaseDataFileHeader *>(header())->deserialize(_stream);
+    static_cast<DatabaseDataFileHeader *>(header())->fromDataStream(_stream);
 }

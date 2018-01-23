@@ -1,11 +1,13 @@
 #include "NetDataStream.h"
 #include "NetDataStreamException.h"
 
-NetDataStream::NetDataStream(QHostAddress address)
+NetDataStream::NetDataStream(ConnectionPoint point, QObject *parent) :
+    IObservableDataStream(),
+    QObject(parent),
+    _point(point)
 {
     _socket = new QTcpSocket(this);
-    _remoteHost = address;
-    _port = 15789;
+    connect(_socket, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
 NetDataStream::NetDataStream(QTcpSocket *socket)
@@ -20,7 +22,7 @@ NetDataStream::~NetDataStream()
 
 void NetDataStream::open()
 {
-    _socket->connectToHost(_remoteHost, _port);
+    _socket->connectToHost(_point.getAddress(), _point.getPort());
     if (!_socket->waitForConnected(3000))
     {
         throw NetDataStreamException(NetDataStreamException::enNDSE_HostNotAvailable, "Host is unavailable!");
@@ -32,12 +34,16 @@ void NetDataStream::close()
     _socket->close();
 }
 
-void NetDataStream::read(IDataBlock *data)
+void NetDataStream::read(IJsonSerializable *data)
 {
-    _socket->read(0, 0);
+    Q_UNUSED(data);
 }
 
-void NetDataStream::write(IDataBlock *data)
+void NetDataStream::write(IJsonSerializable *data)
 {
-    _socket->write(data->data().constData(), data->size());
+    Q_UNUSED(data);
+}
+
+void NetDataStream::readData()
+{
 }

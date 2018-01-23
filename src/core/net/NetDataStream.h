@@ -3,30 +3,37 @@
 
 #include <QObject>
 #include <QTcpSocket>
-#include <QHostAddress>
-#include "../IDataStream.h"
+#include <core/types/ConnectionPoint.h>
+#include <core/IObservableDataStream.h>
+#include <core/transport/TransportTransaction.h>
+#include <core/MemoryCache.h>
+#include "NetDataBlock.h"
 
-class NetDataStream : public QObject, public IDataStream
+#define NET_BUFFER_SIZE         10240
+
+class NetDataStream : public QObject, public IObservableDataStream
 {
     Q_OBJECT
 
 public:
-    NetDataStream(QHostAddress address);
+    NetDataStream(ConnectionPoint point, QObject *parent = 0);
     NetDataStream(QTcpSocket *socket);
     ~NetDataStream();
 
-    void setPort(quint16 value) { _port = value; }
+    void setPort(quint16 value) { _point.setPort(value); }
 
     void open() override;
     void close() override;
-    void read(IDataBlock *data) override;
-    void write(IDataBlock *data) override;
+    void read(IJsonSerializable *data) override;
+    void write(IJsonSerializable *data) override;
+
+private slots:
+    void readData();
 
 private:
     QTcpSocket *_socket;
-    QHostAddress _remoteHost;
-    quint16 _port;
-
+    ConnectionPoint _point;
+    char _data_buffer[NET_BUFFER_SIZE];
 };
 
 #endif // NETDATASTREAM_H

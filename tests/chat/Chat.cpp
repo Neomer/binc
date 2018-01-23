@@ -1,6 +1,7 @@
 #include "Chat.h"
 #include <QDebug>
-#include <model/Deal.h>
+#include <model/Block.h>
+#include <core/SerializableEntityFactory.h>
 
 Chat::Chat()
 {
@@ -24,26 +25,27 @@ void Chat::update(const Guid &subject, void *data)
 {
     if (Guid::isEqual(subject, Context::Instance().consoleInput()->guid()))
     {
-        bool ok = true;
+        Block d;
+        d.setPreviousBlock(Guid::randomGuid());
+        d.setVersion(Version(1, 0));
+        d.setNonce(QString((const char *)data).toInt());
 
-        Deal d;
-        d.setRecipient(Guid::randomGuid());
-        d.setSender(Guid::randomGuid());
-        d.setAmount(QString((const char *)data).toDouble(&ok));
-        if (!ok)
-        {
-            throw BaseException("Wrong amount format!");
-        }
-        d.setReward(d.getAmount() * 0.01);
-
-        UdpDataBlock block;
-        block.setData(IJsonSerializable::toString(&d).toUtf8());
-        _stream->write(&block);
+        _stream->write(&d);
     }
     else if (Guid::isEqual(subject, _stream->guid()))
     {
-        UdpDataBlock *block = static_cast<UdpDataBlock *>(data);
-        qDebug() << "From" << block->remoteAddress().toString() << ":" << QString::fromLatin1(block->data());
+        if (SerializableEntityFactory::IsBlock(static_cast<IEntity *>(data)))
+        {
+            Block *b = static_cast<Block *>(data);
+            qDebug() << "New block!"
+                     << "\nBlock ID:" << b->getId().toString()
+                     << "\nPrevious Block:" <<  b->getPreviousBlock().toString()
+                     << "\nCreation Time:" <<  b->getCreationTime().toString("yyyy-MM-dd hh:mm:ss")
+                     << "\nNonce:" <<  b->getNonce()
+                     << "\nVersion:" <<  b->getVersion().toString();
+        }
+
+
     }
 
 }

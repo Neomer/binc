@@ -26,17 +26,17 @@ void IDatabaseRandomAccessFile::seek(quint64 index)
 
 quint64 IDatabaseRandomAccessFile::write(IDatabaseDataBlock *block)
 {
-    block->serialize(_stream);
+    block->toDataStream(_stream);
     static_cast<HeaderDataBlock *>(header())->addBytesUsed(_block_size);
     static_cast<HeaderDataBlock *>(header())->addRecords(1);
     QFile::seek(0);
-    header()->serialize(_stream);
+    header()->toDataStream(_stream);
     return 0;
 }
 
 void IDatabaseRandomAccessFile::read(IDatabaseDataBlock *block)
 {
-    block->deserialize(_stream);
+    block->fromDataStream(_stream);
 }
 
 quint64 IDatabaseRandomAccessFile::write(quint64 index, IDatabaseDataBlock *block)

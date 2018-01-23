@@ -39,3 +39,4 @@ CMakeLists.txt.user*
 
 #docs TEMP files
 docs/~*.*x
+docs/~*.tmp

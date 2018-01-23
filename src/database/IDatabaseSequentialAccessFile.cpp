@@ -11,13 +11,13 @@ quint64 IDatabaseSequentialAccessFile::write(IDatabaseDataBlock *block)
 {
     quint64 ret = static_cast<HeaderDataBlock *>(header())->bytesUsed();
     toEnd();
-    block->serialize(_stream);
+    block->toDataStream(_stream);
     return ret;
 }
 
 void IDatabaseSequentialAccessFile::read(IDatabaseDataBlock *block)
 {
-    block->deserialize(_stream);
+    block->fromDataStream(_stream);
 }
 
 void IDatabaseSequentialAccessFile::seek(quint64 index)

@@ -44,6 +44,7 @@ private:
 
     Database *_database;
     RPCServer *_rpc_server;
+
     bool _isInit;
     ConsoleInput *_consoleInput;
     Settings _sets;

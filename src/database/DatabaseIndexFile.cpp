@@ -30,5 +30,5 @@ void DatabaseIndexFile::read(IDatabaseDataBlock *block)
 void DatabaseIndexFile::readHeader()
 {
     QFile::seek(0);
-     static_cast<DatabaseIndexHeader *>(header())->deserialize(_stream);
+     static_cast<DatabaseIndexHeader *>(header())->fromDataStream(_stream);
 }

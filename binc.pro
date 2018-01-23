@@ -44,7 +44,6 @@ SOURCES += \
     src/core/DataStreamException.cpp \
     src/core/net/UdpStreamException.cpp \
     src/core/IDataBlock.cpp \
-    src/core/net/UdpDataBlock.cpp \
     src/core/IHashedDataBlock.cpp \
     src/core/ConsoleInput.cpp \
     src/core/ConsoleInputException.cpp \
@@ -53,7 +52,6 @@ SOURCES += \
     src/database/DatabaseIndexProvider.cpp \
     src/database/DatabaseDataProvider.cpp \
     tests/chat/Chat.cpp \
-    src/core/IBinarySerializable.cpp \
     src/core/Settings.cpp \
     src/core/ContextException.cpp \
     src/core/net/rpc/RPCServer.cpp \
@@ -69,7 +67,23 @@ SOURCES += \
     src/model/NodeModel.cpp \
     src/model/NodeCollectionModel.cpp \
     src/core/BaseException.cpp \
-    src/model/Deal.cpp
+    src/model/Deal.cpp \
+    src/model/Block.cpp \
+    src/core/types/Hash.cpp \
+    src/miner/Worker.cpp \
+    src/miner/Work.cpp \
+    src/core/net/TransportProvider.cpp \
+    src/model/IBlockData.cpp \
+    src/core/net/Net.cpp \
+    src/core/net/NodeConnection.cpp \
+    src/core/types/ConnectionPoint.cpp \
+    src/core/net/NetDataBlock.cpp \
+    src/core/transport/TransportDataBlock.cpp \
+    src/core/transport/TransportTransaction.cpp \
+    src/core/ICache.cpp \
+    src/core/MemoryCache.cpp \
+    src/core/SerializableEntityFactory.cpp \
+    src/core/IObservableDataStream.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -108,7 +122,6 @@ HEADERS += \
     src/core/DataStreamException.h \
     src/core/net/UdpStreamException.h \
     src/core/IDataBlock.h \
-    src/core/net/UdpDataBlock.h \
     src/core/IHashedDataBlock.h \
     src/core/Context.h \
     src/core/ConsoleInput.h \
@@ -134,7 +147,27 @@ HEADERS += \
     src/model/NodeModel.h \
     src/model/NodeCollectionModel.h \
     src/core/BaseException.h \
-    src/model/Deal.h
+    src/model/Deal.h \
+    src/model/Block.h \
+    src/core/types/Hash.h \
+    src/miner/Worker.h \
+    src/miner/Work.h \
+    src/core/net/TransportProvider.h \
+    src/model/IBlockData.h \
+    src/core/net/Net.h \
+    src/core/net/NodeConnection.h \
+    src/core/types/ConnectionPoint.h \
+    src/core/net/NetDataBlock.h \
+    src/core/transport/TransportDataBlock.h \
+    src/core/transport/TransportTransaction.h \
+    src/core/IIdentifyed.h \
+    src/core/ICache.h \
+    src/core/MemoryCache.h \
+    src/core/IEntityFactory.h \
+    src/core/IEntity.h \
+    src/core/SerializableEntity.h \
+    src/core/SerializableEntityFactory.h \
+    src/core/IObservableDataStream.h
 
 
 INCLUDEPATH += $$PWD/src

@@ -91,7 +91,7 @@ QString Version::stageFull()
 
 QString Version::toString()
 {
-    return QString::number(_major) + "." + QString::number(_minor) + "." + QString::number(_maintenance) + "-" + stageFull();
+    return QString::number(_major) + "." + QString::number(_minor) + ((_maintenance > 0) ? "." + QString::number(_maintenance) : "") + ((_stage != enVersionStageEmpty) ? "-" + stageFull() : "");
 }
 
 QString Version::toString(QString format)
