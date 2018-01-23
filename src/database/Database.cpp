@@ -14,8 +14,6 @@ Database::Database()
     _lockFile = new QLockFile(_databaseDir.absoluteFilePath(".LOCK"));
     _index = new DatabaseBinaryTreeIndex();
 
-    _data = new IDatabaseData();
-    _data->setFileName(".DATA");
 }
 
 Database::~Database()
@@ -53,35 +51,10 @@ void Database::close()
 
 bool Database::read(dbkey key, DatabaseDataFileRecord *data)
 {
-    DatabaseIndexRecord index_record;
-    if (!_index->find(key, &index_record))
-    {
-        return false;
-    }
-    if (!_data->open(QIODevice::ReadWrite))
-    {
-        throw DatabaseFileException(_data->fileName(), "File access failed!");
-    }
-    _data->seek(index_record.offset());
-    _data->read(data);
-    _data->close();
     return true;
 }
 
 void Database::write(dbkey key, DatabaseDataFileRecord *data)
 {
-    if (!_data->open(QIODevice::ReadWrite))
-    {
-        throw DatabaseFileException(_data->fileName(), "File access failed!");
-    }
-    quint64 offset = _data->write(data);
-    _data->close();
-
-    DatabaseIndexRecord index_record;
-    index_record.setGuid(data->guid());
-    index_record.setIsDeleted(false);
-    index_record.setLength(data->blockSize());
-    index_record.setOffset(offset);
-    _index->write(key, &index_record);
 
 }

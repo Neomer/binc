@@ -1,60 +1,52 @@
 #ifndef IDATABASEFILE_H
 #define IDATABASEFILE_H
 
-#include "IDatabaseDataBlock.h"
 #include <QFile>
 
+#include "IDatabaseWritable.h"
+#include "IDatabaseFileHeader.h"
+#include "DatabaseFileException.h"
+
 ///
-/// \brief The IDatabaseFile class интерфейс для реализации работы с файлами.
-/// В случае записи не в начало файла происходит освобождение необходимого пространства.
+/// \brief Класс реализует работу с файлами базы данных.
+/// Основное отличие от обычных файлов в том, что запись в файл осуществляется блоками данных, а не последовательностью байт.
+/// Запись в базу данных доступна для моделей, которые реализуют интерфейс IDatabaseWritable. Файл базы данных - название условное,
+/// так как фактически это ДВА файла - файл с данными и файл заголовок.
 ///
-class IDatabaseFile : public QFile
+class IDatabaseFile
 {
 public:
-    IDatabaseFile(IDatabaseDataBlock *header);
-    ~IDatabaseFile();
-
     ///
-    /// \brief open открывает файл для чтения или записи в зависимости от значения flags
-    /// \param flags
+    /// \brief Инициализирует интерфейс для работы с файлом
+    /// \param filename Наименование файла
+    ///
+    IDatabaseFile(IDatabaseFileHeader * header, QString filename);
+    ~IDatabaseFile();
+    ///
+    /// \brief open открывает файл для чтения и/или записи
     /// \return
     ///
-    bool open(OpenMode flags);
+    bool open();
     ///
     /// \brief close закрывает файл
     ///
     void close();
-
     ///
     /// \brief toBegin перемещает каретку в начало файла
     ///
-    virtual void toBegin() = 0;
+    void toBegin();
     ///
     /// \brief toEnd перемещает каретку в конец файла
     ///
-    virtual void toEnd() = 0;
+    void toEnd();
     ///
-    /// \brief seek перемещает каретку на указанный блок
-    /// \param offset смещение в байтах от начала файла
+    /// \brief write Записывает в файл блок данных
+    /// \param data
     ///
-    virtual void seek(quint64 index) = 0;
-
-    ///
-    /// \brief write записывает в файл блок данных
-    /// \param block
-    /// \return возвращает смещение в байтах от начала файла записи
-    ///
-    virtual quint64 write(IDatabaseDataBlock *block) = 0;
-    ///
-    /// \brief read читает из файла блок данных
-    /// \param block
-    ///
-    virtual void read(IDatabaseDataBlock *block) = 0;
-
-    IDatabaseDataBlock *header() { return _header; }
+    void write(IDatabaseWritable *data);
 
 private:
-    IDatabaseDataBlock *_header;
+    QFile _datafile, _headerfile;
 
 protected:
     virtual void readHeader() = 0;

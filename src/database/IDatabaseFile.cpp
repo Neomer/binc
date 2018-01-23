@@ -1,27 +1,53 @@
 #include "IDatabaseFile.h"
+#include <QDebug>
 
-IDatabaseFile::IDatabaseFile(IDatabaseDataBlock *header) :
-    _stream(this)
+IDatabaseFile::IDatabaseFile(IDatabaseFileHeader * header, QString filename) :
+    _datafile(filename.append(".data")),
+    _headerfile(filename.append(".hdr"))
 {
-    _header = header;
+
 }
 
 IDatabaseFile::~IDatabaseFile()
 {
-    delete _header;
 }
 
-bool IDatabaseFile::open(QIODevice::OpenMode flags)
+bool IDatabaseFile::open()
 {
-    bool ex = QFile::exists();
-    if (ex) flags |= QIODevice::ReadOnly;
-    bool ret = QFile::open(flags);
-    if (ret && ex) readHeader();
+    bool ret = true;
+
+    if (!_datafile.open(QIODevice::ReadWrite))
+    {
+        throw DatabaseFileException(_datafile.fileName().toUtf8().constData(), "File openning failed!");
+    }
+    _stream.setDevice(&_datafile);
+
+    try
+    {
+        readHeader();
+    }
+    catch (DatabaseFileException &ex)
+    {
+        ret = false;
+        qDebug() << "Error in file (" << ex.filename() << "):" << ex.what();
+    }
     return ret;
 }
 
 void IDatabaseFile::close()
 {
-    QFile::flush();
-    QFile::close();
+}
+
+void IDatabaseFile::toBegin()
+{
+    _datafile.seek(0);
+}
+
+void IDatabaseFile::toEnd()
+{
+}
+
+void IDatabaseFile::write(IDatabaseWritable *data)
+{
+    data->toDataStream(_stream);
 }
