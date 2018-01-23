@@ -9,7 +9,7 @@ DatabaseDataFileRecord::DatabaseDataFileRecord() :
 
 }
 
-void DatabaseDataFileRecord::serialize(QDataStream &out)
+void DatabaseDataFileRecord::toDataStream(QDataStream &out)
 {
     out << _guid;
     out << (quint64) _number;
@@ -17,7 +17,7 @@ void DatabaseDataFileRecord::serialize(QDataStream &out)
     out << _data;
 }
 
-void DatabaseDataFileRecord::deserialize(QDataStream &in)
+void DatabaseDataFileRecord::fromDataStream(QDataStream &in)
 {
     in >> _guid;
     in >> _number;

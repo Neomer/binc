@@ -1,7 +1,7 @@
 #ifndef TRANSPORTPROVIDER_H
 #define TRANSPORTPROVIDER_H
 
-#include <core/IDataStream.h>
+#include <core/IObservableDataStream.h>
 #include <core/IObserver.h>
 #include <core/ISubject.h>
 
@@ -13,12 +13,18 @@ class TransportProvider : public IObserver, public ISubject
 public:
     TransportProvider();
 
+    ///
+    /// \brief add добавляет поток в список отслеживаемых
+    /// \param stream
+    ///
+    void add(IObservableDataStream *stream);
+
     // IObserver interface
 public:
     void update(const Guid &subject, void *data) override;
 
 private:
-    QList<IDataStream *> _streams;
+    QList<IObservableDataStream *> _streams;
 };
 
 #endif // TRANSPORTPROVIDER_H

@@ -4,7 +4,7 @@
 QString IJsonSerializable::toString(IJsonSerializable *object)
 {
     QJsonObject obj;
-    object->serialize(obj);
+    object->toJsonObject(obj);
     QJsonDocument json(obj);
     return QString::fromUtf8(json.toJson(QJsonDocument::Compact));
 }
@@ -12,7 +12,7 @@ QString IJsonSerializable::toString(IJsonSerializable *object)
 QByteArray IJsonSerializable::toByteArray(IJsonSerializable *object)
 {
     QJsonObject obj;
-    object->serialize(obj);
+    object->toJsonObject(obj);
     QJsonDocument json(obj);
     return json.toJson(QJsonDocument::Compact);
 }
@@ -27,5 +27,5 @@ void IJsonSerializable::fromString(IJsonSerializable *object, QByteArray data)
     QJsonParseError err;
     QJsonDocument json = QJsonDocument::fromJson(data, &err);
     QJsonObject o = json.object();
-    object->deserialize(o);
+    object->fromJsonObject(o);
 }

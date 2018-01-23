@@ -8,7 +8,7 @@ Deal::Deal() :
 
 }
 
-void Deal::serialize(QJsonObject &out)
+void Deal::toJsonObject(QJsonObject &out)
 {
     out["id"] = getId().toString();
     out["recipient"] = _recipient.toString();
@@ -18,7 +18,7 @@ void Deal::serialize(QJsonObject &out)
     out["hash"] = Hash::fromJsonObject(out).toString();
 }
 
-void Deal::deserialize(QJsonObject &in)
+void Deal::fromJsonObject(QJsonObject &in)
 {
     setId(Guid::fromString(in["id"].toString()));
     _recipient = Guid::fromString(in["recipient"].toString());

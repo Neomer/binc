@@ -10,7 +10,7 @@ DatabaseIndexRecord::DatabaseIndexRecord() :
 
 }
 
-void DatabaseIndexRecord::serialize(QDataStream &out)
+void DatabaseIndexRecord::toDataStream(QDataStream &out)
 {
     out << _guid;
     out << _is_deleted;
@@ -18,7 +18,7 @@ void DatabaseIndexRecord::serialize(QDataStream &out)
     out << _offset;
 }
 
-void DatabaseIndexRecord::deserialize(QDataStream &in)
+void DatabaseIndexRecord::fromDataStream(QDataStream &in)
 {
     in >> _guid;
     in >> _is_deleted;

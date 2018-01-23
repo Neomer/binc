@@ -53,8 +53,8 @@ private:
 
     // IJsonSerializable interface
 private:
-    void serialize(QJsonObject &out) override;
-    void deserialize(QJsonObject &in) override;
+    void toJsonObject(QJsonObject &out) override;
+    void fromJsonObject(QJsonObject &in) override;
 };
 
 #endif // SETTINGS_H

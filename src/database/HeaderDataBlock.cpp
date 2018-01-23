@@ -7,13 +7,13 @@ HeaderDataBlock::HeaderDataBlock() :
 
 }
 
-void HeaderDataBlock::serialize(QDataStream &out)
+void HeaderDataBlock::toDataStream(QDataStream &out)
 {
     out << (quint64)_bytesUsed;
     out << (quint64) _records;
 }
 
-void HeaderDataBlock::deserialize(QDataStream &in)
+void HeaderDataBlock::fromDataStream(QDataStream &in)
 {
     in >> _bytesUsed;
     in >> _records;

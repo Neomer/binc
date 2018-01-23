@@ -19,6 +19,7 @@ void Net::connect()
         qDebug() << "RPC Server starting failed!" << ex.what();
         return;
     }
+    _transport_provider.add(new UdpStream());
 }
 
 void Net::close()

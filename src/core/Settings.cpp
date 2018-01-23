@@ -43,7 +43,7 @@ void Settings::load(QString filename)
 void Settings::save()
 {
     QJsonObject obj;
-    serialize(obj);
+    toJsonObject(obj);
     if (!_file.isOpen() && !_file.open(QIODevice::ReadWrite))
     {
         throw ContextException("Configuration file access failed!");
@@ -57,19 +57,19 @@ void Settings::close()
     _file.close();
 }
 
-void Settings::serialize(QJsonObject &out)
+void Settings::toJsonObject(QJsonObject &out)
 {
     out["rpc_port"] = _rpc_port;
 
     QJsonObject objNodes;
-    _nodes.serialize(objNodes);
+    _nodes.toJsonObject(objNodes);
     out["nodes"] = objNodes;
 }
 
-void Settings::deserialize(QJsonObject &in)
+void Settings::fromJsonObject(QJsonObject &in)
 {
     _rpc_port = in["rpc_port"].toInt(15698);
 
     QJsonObject objNodes = in["nodes"].toObject();
-    _nodes.deserialize(objNodes);
+    _nodes.fromJsonObject(objNodes);
 }

@@ -4,15 +4,14 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <core/types/ConnectionPoint.h>
-#include <core/ISubject.h>
-#include <core/IDataStream.h>
+#include <core/IObservableDataStream.h>
 #include <core/transport/TransportTransaction.h>
 #include <core/MemoryCache.h>
 #include "NetDataBlock.h"
 
 #define NET_BUFFER_SIZE         10240
 
-class NetDataStream : public QObject, public IDataStream, public ISubject
+class NetDataStream : public QObject, public IObservableDataStream
 {
     Q_OBJECT
 

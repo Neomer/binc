@@ -26,7 +26,7 @@ bool TransportDataBlock::isValid()
     return true;
 }
 
-void TransportDataBlock::serialize(QDataStream &out)
+void TransportDataBlock::toDataStream(QDataStream &out)
 {
     out << QString("BINC");
     out << (quint16)_length;
@@ -38,7 +38,7 @@ void TransportDataBlock::serialize(QDataStream &out)
     //out << _hash;
 }
 
-void TransportDataBlock::deserialize(QDataStream &in)
+void TransportDataBlock::fromDataStream(QDataStream &in)
 {
     in.startTransaction();
 

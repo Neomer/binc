@@ -4,7 +4,7 @@
 
 UdpStream::UdpStream() :
     QObject(),
-    ISubject(),
+    IObservableDataStream(),
     _port(16789)
 {
     _socket = new QUdpSocket(this);
@@ -49,7 +49,7 @@ void UdpStream::write(IJsonSerializable *data)
     block->setStatus(TransportDataBlock::enStatusLast);
     block->setPreviousBlockId(Guid::emptyGuid());
     block->setData(IJsonSerializable::toByteArray(data));
-    block->serialize(stream);
+    block->toDataStream(stream);
     _socket->writeDatagram(buffer, QHostAddress::Broadcast, _port);
 }
 
@@ -67,7 +67,7 @@ void UdpStream::readDatagram()
     stream.setVersion(QDataStream::Qt_5_0);
 
     TransportDataBlock block;
-    block.deserialize(stream);
+    block.fromDataStream(stream);
     if (!block.isReady() || !block.isValid())
     {
         return;

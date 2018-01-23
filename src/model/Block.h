@@ -45,8 +45,8 @@ public:
 
     // IJsonSerializable interface
 public:
-    void serialize(QJsonObject &out) override;
-    void deserialize(QJsonObject &in) override;
+    void toJsonObject(QJsonObject &out) override;
+    void fromJsonObject(QJsonObject &in) override;
 };
 
 #endif // BLOCK_H

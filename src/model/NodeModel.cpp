@@ -11,13 +11,13 @@ NodeModel::NodeModel(QHostAddress address, quint16 port) :
 
 }
 
-void NodeModel::serialize(QJsonObject &out)
+void NodeModel::toJsonObject(QJsonObject &out)
 {
     out["address"] = getAddress().toString();
     out["port"] = getPort();
 }
 
-void NodeModel::deserialize(QJsonObject &in)
+void NodeModel::fromJsonObject(QJsonObject &in)
 {
     setAddress(QHostAddress(in["address"].toString()));
     setPort(in["port"].toInt());

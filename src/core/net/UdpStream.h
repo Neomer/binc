@@ -3,13 +3,11 @@
 
 #include <core/transport/TransportTransaction.h>
 #include <core/MemoryCache.h>
-#include <core/IDataStream.h>
-#include <core/ISubject.h>
+#include <core/IObservableDataStream.h>
 #include <core/SerializableEntityFactory.h>
 #include <QUdpSocket>
 #include <QHostAddress>
 #include <QThread>
-#include "UdpDataBlock.h"
 #include "UdpStreamException.h"
 
 #define UDP_BUFFER_SIZE         1024
@@ -18,7 +16,7 @@
 /// \brief The UdpStream class реализует функционал обмена информацией с помощью широковещательных запросов
 /// При получении пакета данных он отправляется всем подписчикам. Отправляется (UdpDataBlock *)
 ///
-class UdpStream : public QObject, public IDataStream, public ISubject
+class UdpStream : public QObject, public IObservableDataStream
 {
     Q_OBJECT
 

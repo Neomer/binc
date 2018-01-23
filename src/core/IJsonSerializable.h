@@ -12,12 +12,12 @@ public:
     /// \brief serialize преобразует объект в Json-объект
     /// \return
     ///
-    virtual void serialize(QJsonObject &out) = 0;
+    virtual void toJsonObject(QJsonObject &out) = 0;
     ///
     /// \brief deserialize преобразует Json-объект в класс
     /// \param data
     ///
-    virtual void deserialize(QJsonObject &in) = 0;
+    virtual void fromJsonObject(QJsonObject &in) = 0;
     ///
     /// \brief toString преобразует Json-объект в строку
     /// \param object

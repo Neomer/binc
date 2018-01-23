@@ -11,12 +11,12 @@ public:
 
     // IJsonSerializable interface
 public:
-    void serialize(QJsonObject &out) override
+    void toJsonObject(QJsonObject &out) override
     {
         out["entityName"] = _entityName;
     }
 
-    void deserialize(QJsonObject &in) override
+    void fromJsonObject(QJsonObject &in) override
     {
         _entityName = in["entityName"].toString();
     }

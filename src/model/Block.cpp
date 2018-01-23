@@ -9,9 +9,9 @@ Block::Block() :
 
 }
 
-void Block::serialize(QJsonObject &out)
+void Block::toJsonObject(QJsonObject &out)
 {
-    SerializableEntity::serialize(out);
+    SerializableEntity::toJsonObject(out);
     out["id"] = getId().toString();
     out["version"] = _version.toString();
     out["prev"] = _previous_block.toString();
@@ -19,9 +19,9 @@ void Block::serialize(QJsonObject &out)
     out["nonce"] = _nonce;
 }
 
-void Block::deserialize(QJsonObject &in)
+void Block::fromJsonObject(QJsonObject &in)
 {
-    SerializableEntity::deserialize(in);
+    SerializableEntity::fromJsonObject(in);
     setId(Guid::fromString(in["id"].toString()));
     _version = Version(in["version"].toString());
     _previous_block = Guid::fromString(in["prev"].toString());

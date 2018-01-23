@@ -2,6 +2,7 @@
 #include "NetDataStreamException.h"
 
 NetDataStream::NetDataStream(ConnectionPoint point, QObject *parent) :
+    IObservableDataStream(),
     QObject(parent),
     _point(point)
 {

@@ -5,12 +5,12 @@ IBlockData::IBlockData()
 
 }
 
-void IBlockData::serialize(QJsonObject &out)
+void IBlockData::toJsonObject(QJsonObject &out)
 {
 
 }
 
-void IBlockData::deserialize(QJsonObject &in)
+void IBlockData::fromJsonObject(QJsonObject &in)
 {
 
 }
