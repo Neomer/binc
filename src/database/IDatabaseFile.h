@@ -1,8 +1,7 @@
 #ifndef IDATABASEFILE_H
 #define IDATABASEFILE_H
 
-#include <QFile>
-
+#include <core/IFileWithStream.h>
 #include "IDatabaseWritable.h"
 #include "IDatabaseFileHeader.h"
 #include "DatabaseFileException.h"
@@ -44,14 +43,14 @@ public:
     /// \param data
     ///
     void write(IDatabaseWritable *data);
+    ///
+    /// \brief read Читает из файла блок данных
+    /// \param data
+    ///
+    void read(IDatabaseWritable *data);
 
 private:
-    QFile _datafile, _headerfile;
-
-protected:
-    virtual void readHeader() = 0;
-
-    QDataStream _stream;
+    IFileWithStream _datafile, _headerfile;
 };
 
 #endif // IDATABASEFILE_H

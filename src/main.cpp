@@ -23,6 +23,14 @@ int main(int argc, char ** argv)
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1566));
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1567));
 
+    IDatabaseFile file(0, "test");
+    file.open();
+    Block b;
+    b.setVersion(Version(2, 323, 12));
+    b.setPreviousBlock(Guid::randomGuid());
+    file.write(&b);
+    file.close();
+
     Net net;
     net.connect();
 

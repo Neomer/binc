@@ -5,7 +5,7 @@ IDatabaseFile::IDatabaseFile(IDatabaseFileHeader * header, QString filename) :
     _datafile(filename.append(".data")),
     _headerfile(filename.append(".hdr"))
 {
-
+    Q_UNUSED(header);
 }
 
 IDatabaseFile::~IDatabaseFile()
@@ -16,15 +16,14 @@ bool IDatabaseFile::open()
 {
     bool ret = true;
 
-    if (!_datafile.open(QIODevice::ReadWrite))
+    if (!_datafile.open())
     {
         throw DatabaseFileException(_datafile.fileName().toUtf8().constData(), "File openning failed!");
     }
-    _stream.setDevice(&_datafile);
 
     try
     {
-        readHeader();
+        //readHeader();
     }
     catch (DatabaseFileException &ex)
     {
@@ -36,6 +35,7 @@ bool IDatabaseFile::open()
 
 void IDatabaseFile::close()
 {
+    _datafile.close();
 }
 
 void IDatabaseFile::toBegin()
@@ -45,9 +45,15 @@ void IDatabaseFile::toBegin()
 
 void IDatabaseFile::toEnd()
 {
+
 }
 
 void IDatabaseFile::write(IDatabaseWritable *data)
 {
-    data->toDataStream(_stream);
+    data->toDataStream(_datafile.stream());
+}
+
+void IDatabaseFile::read(IDatabaseWritable *data)
+{
+    data->fromDataStream(_datafile.stream());
 }
