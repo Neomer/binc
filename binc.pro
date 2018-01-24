@@ -62,7 +62,11 @@ SOURCES += \
     src/core/ICache.cpp \
     src/core/MemoryCache.cpp \
     src/core/SerializableEntityFactory.cpp \
-    src/core/IObservableDataStream.cpp
+    src/core/IObservableDataStream.cpp \
+    src/database/Database.cpp \
+    src/database/DatabaseFile.cpp \
+    src/model/DatabaseIndexRecord.cpp \
+    src/model/DatabaseDataHeader.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -125,7 +129,13 @@ HEADERS += \
     src/core/SerializableEntityFactory.h \
     src/core/IObservableDataStream.h \
     src/database/IDatabaseWritable.h \
-    src/core/JsonSerializableEntity.h
+    src/core/JsonSerializableEntity.h \
+    src/database/Database.h \
+    src/core/StreamedBuffer.h \
+    src/database/DatabaseFile.h \
+    src/model/DatabaseIndexRecord.h \
+    src/model/DatabaseDataHeader.h \
+    src/core/StreamedFile.h
     src/core/IFileWithStream.h
 
 
