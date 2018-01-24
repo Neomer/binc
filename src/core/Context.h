@@ -3,7 +3,7 @@
 
 #include "ContextException.h"
 
-#include <core/net/rpc/RPCServer.h>
+#include <core/net/Net.h>
 #include <database/Database.h>
 #include "ConsoleInput.h"
 #include "Settings.h"
@@ -28,6 +28,7 @@ public:
     Database *database() { return _database; }
     ConsoleInput * consoleInput() const { return _consoleInput; }
     Settings *settings() { return &_sets; }
+    Net *network() { return &_net; }
 
 
     ///
@@ -43,11 +44,11 @@ private:
     Context & operator=(const Context &other);
 
     Database *_database;
-    RPCServer *_rpc_server;
 
     bool _isInit;
     ConsoleInput *_consoleInput;
     Settings _sets;
+    Net _net;
 };
 
 

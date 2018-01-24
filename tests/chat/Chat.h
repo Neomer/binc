@@ -15,9 +15,6 @@ public:
     // IObserver interface
 public:
     void update(const Guid &subject, void *data) override;
-
-private:
-    UdpStream *_stream;
 };
 
 #endif // CHAT_H

@@ -46,7 +46,7 @@ void Database::write(IDatabaseWritable *object)
     }
 }
 
-void Database::read(Guid id, IDatabaseWritable *object)
+bool Database::read(Guid id, IDatabaseWritable *object)
 {
     _file.seek(0);
     while (!_file.atEnd())
@@ -54,8 +54,8 @@ void Database::read(Guid id, IDatabaseWritable *object)
         object->fromDataStream(_file.stream());
         if (Guid::isEqual(object->getId(), id))
         {
-            return;
+            return true;
         }
     }
-    object = 0;
+    return false;
 }

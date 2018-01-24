@@ -15,7 +15,7 @@ public:
     void open();
     void close();
     void write(IDatabaseWritable *object);
-    void read(Guid id, IDatabaseWritable *object);
+    bool read(Guid id, IDatabaseWritable *object);
 
 private:
     StreamedFile _file;

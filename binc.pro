@@ -66,7 +66,8 @@ SOURCES += \
     src/database/Database.cpp \
     src/database/DatabaseFile.cpp \
     src/model/DatabaseIndexRecord.cpp \
-    src/model/DatabaseDataHeader.cpp
+    src/model/DatabaseDataHeader.cpp \
+    src/core/net/TcpStream.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -135,7 +136,8 @@ HEADERS += \
     src/database/DatabaseFile.h \
     src/model/DatabaseIndexRecord.h \
     src/model/DatabaseDataHeader.h \
-    src/core/StreamedFile.h
+    src/core/StreamedFile.h \
+    src/core/net/TcpStream.h
     src/core/IFileWithStream.h
 
 

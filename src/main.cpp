@@ -2,6 +2,7 @@
 #include <QCoreApplication>
 #include <core/Context.h>
 #include <QJsonDocument>
+#include <time.h>
 
 #include <core/net/Net.h>
 #include <core/transport/TransportTransaction.h>
@@ -10,6 +11,8 @@
 
 int main(int argc, char ** argv)
 {
+    srand(time(NULL));
+
     QCoreApplication a(argc, argv);
     for (int i = 0; i < argc; i++)
     {
@@ -21,9 +24,6 @@ int main(int argc, char ** argv)
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1565));
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1566));
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1567));
-
-    Net net;
-    net.connect();
 
     Chat chat;
     chat.run();

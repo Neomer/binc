@@ -13,7 +13,7 @@
 /// Осуществляет поиск активных узлов в сети, подключение к ним, обмен системной информацией, необходимой для поддержки подключения.
 /// Содержит методы для возможности входа в сеть, отключения от сети, отправку информации по сети.
 ///
-class Net : public QObject
+class Net : public QObject, public IObserver
 {
     Q_OBJECT
 
@@ -28,8 +28,12 @@ public:
     /// \brief close закрывает все активные подключения.
     ///
     void close();
-    void write();
+    void write(IJsonSerializable *data);
     void read();
+
+    // IObserver interface
+public:
+    void update(const Guid &subject, void *data) override;
 
 signals:
     ///
@@ -47,6 +51,7 @@ private:
     RPCServer _rpc_server;
     QList<NodeConnection *> _nodes;
     TransportProvider _transport_provider;
+
 };
 
 #endif // NET_H

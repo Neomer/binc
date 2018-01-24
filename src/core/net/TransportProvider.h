@@ -19,6 +19,8 @@ public:
     ///
     void add(IObservableDataStream *stream);
 
+    void write(IJsonSerializable *data);
+
     // IObserver interface
 public:
     void update(const Guid &subject, void *data) override;

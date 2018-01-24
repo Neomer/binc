@@ -25,6 +25,14 @@ void TransportProvider::add(IObservableDataStream *stream)
     _streams << stream;
 }
 
+void TransportProvider::write(IJsonSerializable *data)
+{
+    foreach (auto stream, _streams)
+    {
+        stream->write(data);
+    }
+}
+
 void TransportProvider::update(const Guid &subject, void *data)
 {
     Q_UNUSED(subject);
@@ -34,7 +42,7 @@ void TransportProvider::update(const Guid &subject, void *data)
     if (SerializableEntityFactory::IsBlock(entity))
     {
         Block *b = static_cast<Block *>(entity);
-
+        ISubject::update(b);
     }
     else // Unknown format
     {
