@@ -1,5 +1,6 @@
 #include "Settings.h"
 #include <QFile>
+#include <QStandardPaths>
 
 Settings::Settings() :
     _rpc_port(15698)
@@ -60,6 +61,7 @@ void Settings::close()
 void Settings::toJsonObject(QJsonObject &out)
 {
     out["rpc_port"] = _rpc_port;
+    out["database_path"] = _database_path;
 
     QJsonObject objNodes;
     _nodes.toJsonObject(objNodes);
@@ -69,6 +71,7 @@ void Settings::toJsonObject(QJsonObject &out)
 void Settings::fromJsonObject(QJsonObject &in)
 {
     _rpc_port = in["rpc_port"].toInt(15698);
+    _database_path = in["database_path"].toString(QStandardPaths::standardLocations(QStandardPaths::AppDataLocation)[0].append("/db"));
 
     QJsonObject objNodes = in["nodes"].toObject();
     _nodes.fromJsonObject(objNodes);

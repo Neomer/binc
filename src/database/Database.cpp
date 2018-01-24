@@ -1,6 +1,7 @@
 #include "Database.h"
 #include <QFile>
 
+#include <core/Context.h>
 #include <core/StreamedBuffer.h>
 #include <model/DatabaseIndexRecord.h>
 
@@ -11,6 +12,15 @@ Database::Database() :
 
 void Database::open()
 {
+//    _database_dir.setPath(Context::Instance().settings()->getDatabasePath());
+//    if (!_database_dir.exists())
+//    {
+//        if (!_database_dir.mkpath(Context::Instance().settings()->getDatabasePath()))
+//        {
+//            throw BaseException("Database directory creation failed!");
+//        }
+//    }
+
     if (!_file.open(QIODevice::ReadWrite))
     {
         throw BaseException("File access error!");
@@ -26,6 +36,7 @@ void Database::close()
 
 void Database::write(IDatabaseWritable *object)
 {
+    _file.seek(_file.size());
     StreamedBuffer buffer;
     object->toDataStream(buffer.stream());
 

@@ -26,16 +26,23 @@ public:
     ///
     void save();
     ///
-    /// \brief RPCport возвращает порт прослушивания RPC-сервера
+    /// \brief RPCport порт прослушивания RPC-сервера
     /// \return
     ///
-    quint16 RPCport() { return _rpc_port; }
+    quint16 getRPCport() { return _rpc_port; }
     ///
-    /// \brief setRPCport
+    /// \brief setRPCport порт прослушивания RPC-сервера
     /// \param value
     ///
     void setRPCport(quint16 value) { _rpc_port = value; }
-
+    ///
+    /// \brief getDatabasePath директория базы данных
+    ///
+    QString getDatabasePath() { return _database_path; }
+    ///
+    /// \brief getDatabasePath директория базы данных
+    ///
+    void setDatabasePath(QString value) { _database_path = value; }
     ///
     /// \brief nodes возвращает список известных узлов сети
     /// \return
@@ -49,6 +56,7 @@ private:
     // Serializable properties
     quint16 _rpc_port;
     NodeCollectionModel _nodes;
+    QString _database_path;
 
 
     // IJsonSerializable interface

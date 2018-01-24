@@ -28,7 +28,16 @@ int main(int argc, char ** argv)
     Chat chat;
     chat.run();
 
-    int ret = a.exec();
+    int ret = 0;
+    try
+    {
+        ret = a.exec();
+    }
+    catch (BaseException &ex)
+    {
+        qDebug() << "Execution failed:" << ex.what();
+    }
+
 
     Context::Instance().unload();
     return ret;

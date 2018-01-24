@@ -3,7 +3,9 @@
 
 void Context::load(QString settings)
 {
+    // Настройки должны грузиться раньше всего остального!
     _sets.load(settings);
+
     _database = new Database();
     _database->open();
 
