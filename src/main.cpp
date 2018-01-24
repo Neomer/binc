@@ -23,15 +23,12 @@ int main(int argc, char ** argv)
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1566));
     Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1567));
 
-    QFile file("test.bin");
-    file.open(QIODevice::ReadWrite);
-    QDataStream stream(&file);
-
-    Block b, copy;
+    IDatabaseFile file(0, "test");
+    file.open();
+    Block b;
+    b.setVersion(Version(2, 323, 12));
     b.setPreviousBlock(Guid::randomGuid());
-    b.setNonce(78234);
-    b.setVersion(Version(1, 43, 23));
-    file.write(IJsonSerializable::toString(&b).toUtf8());
+    file.write(&b);
     file.close();
 
     Net net;

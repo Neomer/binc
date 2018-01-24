@@ -13,11 +13,11 @@ public:
 
 public:
     quint64 write(IDatabaseDataBlock *block);
-    void read(IDatabaseDataBlock *block) override;
+    void read(IDatabaseDataBlock *block);
 
 // IDatabaseFile interface
 protected:
-    void readHeader() override;
+    void readHeader();
 };
 
 #endif // DATABASEINDEXFILE_H

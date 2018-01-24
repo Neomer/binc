@@ -7,6 +7,7 @@ class DatabaseFileException : public DatabaseException
 {
 public:
     DatabaseFileException(QString filename, const char *message);
+    DatabaseFileException(const char *filename, const char *message);
 
     QString filename() { return _filename; }
 

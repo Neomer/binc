@@ -13,13 +13,13 @@ public:
 
     // IDatabaseFile interface
 public:
-    quint64 write(IDatabaseDataBlock *block) override;
-    void toBegin() override;
-    void toEnd() override;
+    quint64 write(IDatabaseDataBlock *block);
+    void toBegin();
+    void toEnd();
 
     // IDatabaseFile interface
 protected:
-    void readHeader() override;
+    void readHeader();
 };
 
 #endif // DATABASEDATAFILE_H
