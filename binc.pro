@@ -62,8 +62,7 @@ SOURCES += \
     src/core/ICache.cpp \
     src/core/MemoryCache.cpp \
     src/core/SerializableEntityFactory.cpp \
-    src/core/IObservableDataStream.cpp \
-    src/database/IDatabaseWritable.cpp
+    src/core/IObservableDataStream.cpp
 
 HEADERS += \
     src/core/IData.h \
