@@ -67,7 +67,9 @@ SOURCES += \
     src/database/DatabaseFile.cpp \
     src/model/DatabaseIndexRecord.cpp \
     src/model/DatabaseDataHeader.cpp \
-    src/core/net/TcpStream.cpp
+    src/core/net/TcpStream.cpp \
+    src/core/net/rpc/RPCClient.cpp \
+    src/core/net/rpc/RPCRequestThread.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -137,7 +139,9 @@ HEADERS += \
     src/model/DatabaseIndexRecord.h \
     src/model/DatabaseDataHeader.h \
     src/core/StreamedFile.h \
-    src/core/net/TcpStream.h
+    src/core/net/TcpStream.h \
+    src/core/net/rpc/RPCClient.h \
+    src/core/net/rpc/RPCRequestThread.h
     src/core/IFileWithStream.h
 
 

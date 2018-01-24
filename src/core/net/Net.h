@@ -7,6 +7,7 @@
 #include <core/net/UdpStream.h>
 #include "TransportProvider.h"
 #include "NodeConnection.h"
+#include <model/NodeCollectionModel.h>
 
 ///
 /// \brief The Net основной класс для подключения к p2p-сети.
@@ -51,7 +52,6 @@ private:
     RPCServer _rpc_server;
     QList<NodeConnection *> _nodes;
     TransportProvider _transport_provider;
-
 };
 
 #endif // NET_H
