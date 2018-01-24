@@ -1,4 +1,5 @@
 #include "Context.h"
+#include <QDateTime>
 
 void Context::load(QString settings)
 {

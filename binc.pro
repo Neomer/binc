@@ -21,24 +21,6 @@ SOURCES += \
     src/core/net/http/HTTPUdpClient.cpp \
     src/core/net/SSDPRequest.cpp \
     src/core/net/SSDPProvider.cpp \
-    src/database/Database.cpp \
-    src/database/DatabaseException.cpp \
-    src/database/IDatabaseIndex.cpp \
-    src/database/DatabaseBinaryTreeIndex.cpp \
-    src/database/DatabaseFile.cpp \
-    src/database/DatabaseFileException.cpp \
-    src/database/DatabaseDataFile.cpp \
-    src/database/DatabaseIndexFile.cpp \
-    src/database/IDatabaseFileCollection.cpp \
-    src/database/IDatabaseDataBlock.cpp \
-    src/database/DatabaseIndexHeader.cpp \
-    src/database/DatabaseIndexRecord.cpp \
-    src/database/DatabaseDataFileHeader.cpp \
-    src/database/DatabaseDataFileRecord.cpp \
-    src/database/IDatabaseFile.cpp \
-    src/database/IDatabaseSequentialAccessFile.cpp \
-    src/database/IDatabaseRandomAccessFile.cpp \
-    src/database/HeaderDataBlock.cpp \
     src/core/net/UdpStream.cpp \
     src/core/Context.cpp \
     src/core/DataStreamException.cpp \
@@ -48,9 +30,6 @@ SOURCES += \
     src/core/ConsoleInput.cpp \
     src/core/ConsoleInputException.cpp \
     src/core/types/Guid.cpp \
-    src/database/IDatabaseData.cpp \
-    src/database/DatabaseIndexProvider.cpp \
-    src/database/DatabaseDataProvider.cpp \
     tests/chat/Chat.cpp \
     src/core/Settings.cpp \
     src/core/ContextException.cpp \
@@ -84,8 +63,10 @@ SOURCES += \
     src/core/MemoryCache.cpp \
     src/core/SerializableEntityFactory.cpp \
     src/core/IObservableDataStream.cpp \
-    src/database/IDatabaseWritable.cpp \
-    src/database/IDatabaseFileHeader.cpp
+    src/database/Database.cpp \
+    src/database/DatabaseFile.cpp \
+    src/model/DatabaseIndexRecord.cpp \
+    src/model/DatabaseDataHeader.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -101,25 +82,6 @@ HEADERS += \
     src/core/net/http/HTTPUdpClient.h \
     src/core/net/SSDPRequest.h \
     src/core/net/SSDPProvider.h \
-    src/database/Database.h \
-    src/database/DatabaseException.h \
-    src/database/IDatabaseIndex.h \
-    src/database/DatabaseGeneral.h \
-    src/database/DatabaseBinaryTreeIndex.h \
-    src/database/DatabaseFile.h \
-    src/database/DatabaseFileException.h \
-    src/database/DatabaseDataFile.h \
-    src/database/DatabaseIndexFile.h \
-    src/database/IDatabaseFileCollection.h \
-    src/database/IDatabaseDataBlock.h \
-    src/database/DatabaseIndexHeader.h \
-    src/database/DatabaseIndexRecord.h \
-    src/database/DatabaseDataFileHeader.h \
-    src/database/DatabaseDataFileRecord.h \
-    src/database/IDatabaseFile.h \
-    src/database/IDatabaseSequentialAccessFile.h \
-    src/database/IDatabaseRandomAccessFile.h \
-    src/database/HeaderDataBlock.h \
     src/core/net/UdpStream.h \
     src/core/DataStreamException.h \
     src/core/net/UdpStreamException.h \
@@ -129,9 +91,6 @@ HEADERS += \
     src/core/ConsoleInput.h \
     src/core/ConsoleInputException.h \
     src/core/types/Guid.h \
-    src/database/IDatabaseData.h \
-    src/database/DatabaseIndexProvider.h \
-    src/database/DatabaseDataProvider.h \
     tests/chat/Chat.h \
     src/core/IBinarySerializable.h \
     src/core/Settings.h \
@@ -171,7 +130,12 @@ HEADERS += \
     src/core/IObservableDataStream.h \
     src/database/IDatabaseWritable.h \
     src/core/JsonSerializableEntity.h \
-    src/database/IDatabaseFileHeader.h \
+    src/database/Database.h \
+    src/core/StreamedBuffer.h \
+    src/database/DatabaseFile.h \
+    src/model/DatabaseIndexRecord.h \
+    src/model/DatabaseDataHeader.h \
+    src/core/StreamedFile.h
     src/core/IFileWithStream.h
 
 

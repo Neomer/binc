@@ -1,60 +1,50 @@
 #include "Database.h"
-#include <QStandardPaths>
 #include <QFile>
-#include <QDir>
-#include <QDebug>
-#include "DatabaseIndexFile.h"
-#include "DatabaseBinaryTreeIndex.h"
-#include "DatabaseDataFile.h"
 
-Database::Database()
+#include <core/StreamedBuffer.h>
+#include <model/DatabaseIndexRecord.h>
+
+Database::Database() :
+    _file("data.bin")
 {
-    _databasePath = QDir(QStandardPaths::displayName(QStandardPaths::DataLocation)).absoluteFilePath("db");
-    _databaseDir = QDir(_databasePath);
-    _lockFile = new QLockFile(_databaseDir.absoluteFilePath(".LOCK"));
-    _index = new DatabaseBinaryTreeIndex();
-
 }
 
-Database::~Database()
+void Database::open()
 {
-    //delete _index;
-    delete _lockFile;
-}
-
-/* Проверяем наличие директорий, системных файлов.
- * Если чего-то не хватает, создаем. Поверяем наличие блокировки, если свободно,
- * то блокируем.
- */
-bool Database::open()
-{
-    qDebug() << "Opening database...";
-    _index->init();
-    if (!_databaseDir.exists())
+    if (!_file.open(QIODevice::ReadWrite))
     {
-        if (!_databaseDir.mkpath(_databasePath))
-        {
-            throw DatabaseException("Database path creation failed!");
-        }
+        throw BaseException("File access error!");
     }
-    if (!_lockFile->tryLock(3000))
-    {
-        return false;
-    }
-    return true;
+    _file.seek(0);
 }
 
 void Database::close()
 {
-    _lockFile->unlock();
+    _file.flush();
+    _file.close();
 }
 
-bool Database::read(dbkey key, DatabaseDataFileRecord *data)
+void Database::write(IDatabaseWritable *object)
 {
-    return true;
+    StreamedBuffer buffer;
+    object->toDataStream(buffer.stream());
+
+    if (_file.write(buffer) != buffer.size())
+    {
+        throw BaseException("Not all data was written!");
+    }
 }
 
-void Database::write(dbkey key, DatabaseDataFileRecord *data)
+void Database::read(Guid id, IDatabaseWritable *object)
 {
-
+    _file.seek(0);
+    while (!_file.atEnd())
+    {
+        object->fromDataStream(_file.stream());
+        if (Guid::isEqual(object->getId(), id))
+        {
+            return;
+        }
+    }
+    object = 0;
 }
