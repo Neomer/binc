@@ -49,7 +49,7 @@ void Settings::save()
     {
         throw ContextException("Configuration file access failed!");
     }
-    _file.seek(0);
+    _file.resize(0);
     _file.write(IJsonSerializable::toString(this).toUtf8());
     _file.flush();
 }

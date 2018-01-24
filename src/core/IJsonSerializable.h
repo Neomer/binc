@@ -4,6 +4,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <core/BaseException.h>
 
 class IJsonSerializable
 {
@@ -42,6 +43,18 @@ public:
     /// \param data
     ///
     static void fromString(IJsonSerializable *object, QByteArray data);
+    ///
+    /// \brief toFile Сериализует объект object и сохраняет его в файл filename. Внимание! Все содержимое файла будет перезаписано!
+    /// \param object Объект для сериализации
+    /// \param filename Наименование файла
+    ///
+    static void toFile(IJsonSerializable *object, QString filename);
+    ///
+    /// \brief fromFile Читает все содержимое файла и пытается десереализовать создержимое как Json-строку.
+    /// \param object Объект
+    /// \param filename Наименование файла
+    ///
+    static void fromFile(IJsonSerializable *object, QString filename);
 };
 
 #endif // IJSONSERIALIZABLE_H

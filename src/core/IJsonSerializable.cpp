@@ -1,5 +1,6 @@
 #include "IJsonSerializable.h"
 #include <QJsonParseError>
+#include <QFile>
 
 QString IJsonSerializable::toString(IJsonSerializable *object)
 {
@@ -28,4 +29,30 @@ void IJsonSerializable::fromString(IJsonSerializable *object, QByteArray data)
     QJsonDocument json = QJsonDocument::fromJson(data, &err);
     QJsonObject o = json.object();
     object->fromJsonObject(o);
+}
+
+void IJsonSerializable::toFile(IJsonSerializable *object, QString filename)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        throw BaseException("File access failed!");
+    }
+    file.seek(0);
+    file.resize(0);
+    file.write(IJsonSerializable::toByteArray(object));
+    file.flush();
+    file.close();
+}
+
+void IJsonSerializable::fromFile(IJsonSerializable *object, QString filename)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        throw BaseException("File access failed!");
+    }
+    file.seek(0);
+    IJsonSerializable::fromString(object, file.readAll());
+    file.close();
 }

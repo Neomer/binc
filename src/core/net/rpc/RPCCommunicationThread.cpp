@@ -1,6 +1,7 @@
 #include "RPCCommunicationThread.h"
 #include <QMetaObject>
 #include <model/NodeCollectionModel.h>
+#include <core/Context.h>
 
 RPCCommunicationThread::RPCCommunicationThread(QTcpSocket *socket, QObject *parent) :
     QThread(parent),
@@ -60,7 +61,5 @@ void RPCCommunicationThread::run()
 
 void RPCCommunicationThread::nodes(HTTPResponse *response)
 {
-    NodeCollectionModel nodes;
-    nodes.addNode(new NodeModel(QHostAddress::Any, 15648));
-    static_cast<RPCResponse *>(response)->setContent(IJsonSerializable::toString(&nodes));
+    static_cast<RPCResponse *>(response)->setContent(IJsonSerializable::toString(&Context::Instance().settings()->nodes()));
 }
