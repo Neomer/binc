@@ -1,10 +1,18 @@
 #include "TcpStream.h"
 #include <core/JsonSerializableEntity.h>
 
-TcpStream::TcpStream() :
-    _socket(new QTcpSocket(this))
+TcpStream::TcpStream(ConnectionPoint point) :
+    _socket(new QTcpSocket(this)),
+    _point(point)
 {
-    connect(_socket, SIGNAL(readyRead()), this, SLOT(readData()));
+    initConnections();
+    open();
+}
+
+TcpStream::TcpStream(QTcpSocket *socket) :
+    _socket(socket)
+{
+    initConnections();
 }
 
 TcpStream::~TcpStream()
@@ -14,12 +22,16 @@ TcpStream::~TcpStream()
 
 void TcpStream::open()
 {
-
+    _socket->connectToHost(_point.getAddress(), _point.getPort());
+    if (!_socket->waitForConnected(3000))
+    {
+        throw NetDataStreamException(NetDataStreamException::enNDSE_HostNotAvailable, "Host not available!");
+    }
 }
 
 void TcpStream::close()
 {
-
+    _socket->close();
 }
 
 void TcpStream::read(IJsonSerializable *data)
@@ -29,20 +41,12 @@ void TcpStream::read(IJsonSerializable *data)
 
 void TcpStream::write(IJsonSerializable *data)
 {
-    QByteArray buffer;
-    QDataStream stream(&buffer, QIODevice::WriteOnly);
-    stream.setVersion(QDataStream::Qt_5_0);
-
-    auto block = new TransportDataBlock();
-    block->setTransactionId(Guid::randomGuid());
-    block->setStatus(TransportDataBlock::enStatusLast);
-    block->setPreviousBlockId(Guid::emptyGuid());
-    block->setData(IJsonSerializable::toByteArray(data));
-    block->toDataStream(stream);
-    if (_socket->write(buffer) != buffer.size())
-    {
-        throw BaseException("Not all data was sent!");
-    }
+    TransportDataBlock block;
+    block.setTransactionId(Guid::randomGuid());
+    block.setStatus(TransportDataBlock::enStatusLast);
+    block.setPreviousBlockId(Guid::emptyGuid());
+    block.setData(IJsonSerializable::toByteArray(data));
+    writeTransportBlock(&block);
 }
 
 void TcpStream::readData()
@@ -84,4 +88,33 @@ void TcpStream::readData()
         tr->addBlock(&block);
         _transaction_cache.add(tr);
     }
+}
+
+void TcpStream::onDisconnected()
+{
+    emit Disconnected(this);
+}
+
+void TcpStream::onError(QAbstractSocket::SocketError error)
+{
+    Q_UNUSED(error);
+}
+
+void TcpStream::writeTransportBlock(TransportDataBlock *block)
+{
+    QByteArray buffer;
+    QDataStream stream(&buffer, QIODevice::WriteOnly);
+    stream.setVersion(QDataStream::Qt_5_0);
+    block->toDataStream(stream);
+    if (_socket->write(buffer) != buffer.size())
+    {
+        throw BaseException("Not all data was sent!");
+    }
+}
+
+void TcpStream::initConnections()
+{
+    connect(_socket, SIGNAL(readyRead()), this, SLOT(readData()));
+    connect(_socket, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
+    connect(_socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onError(QAbstractSocket::SocketError)));
 }

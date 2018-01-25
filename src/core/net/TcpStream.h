@@ -3,11 +3,13 @@
 
 #include <QTcpSocket>
 
+#include <core/types/ConnectionPoint.h>
 #include <core/IDataStream.h>
 #include <core/ISubject.h>
 #include <core/SerializableEntityFactory.h>
 #include <core/transport/TransportTransaction.h>
 #include <core/MemoryCache.h>
+#include <core/net/NetDataStreamException.h>
 
 class TcpStream :
         public QObject,
@@ -17,7 +19,8 @@ class TcpStream :
     Q_OBJECT
 
 public:
-    TcpStream();
+    TcpStream(ConnectionPoint point);
+    TcpStream(QTcpSocket *socket);
     ~TcpStream();
 
     // IDataStream interface
@@ -29,13 +32,22 @@ public:
 
 private slots:
     void readData();
+    void onDisconnected();
+    void onError(QAbstractSocket::SocketError error);
+
+signals:
+    void Disconnected(TcpStream *);
 
 private:
+    void writeTransportBlock(TransportDataBlock *block);
+    void initConnections();
+
     QTcpSocket *_socket;
     QByteArray _buffer;
     QDataStream _stream;
     SerializableEntityFactory _entity_factory;
     MemoryCache _transaction_cache;
+    ConnectionPoint _point;
 };
 
 #endif // TCPSTREAM_H

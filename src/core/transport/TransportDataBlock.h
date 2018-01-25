@@ -18,7 +18,8 @@ public:
     {
         enStatusFirst,
         enStatusRegular,
-        enStatusLast
+        enStatusLast,
+        enStatusPing
     };
 
     TransportDataBlock();

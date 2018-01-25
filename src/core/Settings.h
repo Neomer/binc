@@ -21,6 +21,7 @@ public:
     /// \param filename
     ///
     void load(QString filename);
+    void close();
     ///
     /// \brief save записывает изменения в файл конифгурации
     ///
@@ -48,7 +49,16 @@ public:
     /// \return
     ///
     NodeCollectionModel &nodes() { return _nodes; }
-    void close();
+    ///
+    /// \brief getP2PConnectionPoint точка подключения для входящих подключению с помощью p2p-сети
+    /// \return
+    ///
+    ConnectionPoint getP2PConnectionPoint() { return _p2p_cp; }
+    ///
+    /// \brief setP2PConnectionPoint точка подключения для входящих подключению с помощью p2p-сети
+    /// \param value
+    ///
+    void setP2PConnectionPoint(ConnectionPoint value) { _p2p_cp = value; }
 
 private:
     QFile _file;
@@ -57,6 +67,7 @@ private:
     quint16 _rpc_port;
     NodeCollectionModel _nodes;
     QString _database_path;
+    ConnectionPoint _p2p_cp;
 
 
     // IJsonSerializable interface

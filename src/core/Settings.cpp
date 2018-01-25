@@ -3,7 +3,8 @@
 #include <QStandardPaths>
 
 Settings::Settings() :
-    _rpc_port(15698)
+    _rpc_port(15698),
+    _p2p_cp(ConnectionPoint(QHostAddress::Any, 16845))
 {
 
 }
