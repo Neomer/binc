@@ -30,7 +30,7 @@ void INetMessageWithHeaders::parse(QString data)
 
     // parsing status row
     QRegExp regex("\r?\n");
-    int space = regex.indexIn(data), space2;
+    int space = regex.indexIn(data), space2, next = 99999;
     parseStatusRow(data.left(space));
     space += regex.matchedLength();
 
@@ -38,15 +38,17 @@ void INetMessageWithHeaders::parse(QString data)
     // parsing headers
     while (regex.indexIn(data, space) > 0)
     {
+        next = regex.indexIn(data, space);
+        if (next - space <= regex.matchedLength()) break;
         space2 = data.indexOf(':', space);
         name = StringUtils::TrimEx(data.mid(space, space2 - space));
         space = space2 + 1;
-        space2 = regex.indexIn(data, space);
+        space2 = next;
         value = StringUtils::TrimEx(data.mid(space, space2 - space));
         space = space2 + regex.matchedLength();
         setHeader(name, value);
     }
-    setContent(data.mid(space));
+    setContent(StringUtils::TrimEx(data.mid(space)));
     postParseActions();
 }
 
