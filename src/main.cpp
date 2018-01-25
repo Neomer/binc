@@ -22,7 +22,7 @@ int main(int argc, char ** argv)
     {
         Context::Instance().load("binc.conf");
 
-        RPCRequestThread thr(ConnectionPoint(QHostAddress("127.0.0.1"), 15698));
+//        RPCRequestThread thr(ConnectionPoint(QHostAddress("127.0.0.1"), 15698));
 
 
 //    Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1564));

@@ -11,7 +11,6 @@ UdpStream::UdpStream() :
     _stream.setDevice(_socket);
     _stream.setVersion(QDataStream::Qt_5_9);
     connect(_socket, SIGNAL(readyRead()), this, SLOT(readDatagram()), Qt::DirectConnection);
-    open();
 }
 
 UdpStream::~UdpStream()

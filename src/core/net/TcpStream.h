@@ -4,7 +4,7 @@
 #include <QTcpSocket>
 
 #include <core/types/ConnectionPoint.h>
-#include <core/IDataStream.h>
+#include <core/IObservableDataStream.h>
 #include <core/ISubject.h>
 #include <core/SerializableEntityFactory.h>
 #include <core/transport/TransportTransaction.h>
@@ -13,8 +13,7 @@
 
 class TcpStream :
         public QObject,
-        public IDataStream,
-        public ISubject
+        public IObservableDataStream
 {
     Q_OBJECT
 

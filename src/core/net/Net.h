@@ -3,10 +3,12 @@
 
 #include <QObject>
 #include <QList>
+
 #include <core/net/rpc/RPCServer.h>
 #include <core/net/UdpStream.h>
-#include "TransportProvider.h"
-#include "NodeConnection.h"
+#include <core/net/TransportProvider.h>
+#include <core/net/NodeConnection.h>
+#include <core/net/NodeConnectionPoint.h>
 #include <model/NodeCollectionModel.h>
 
 ///
@@ -52,6 +54,7 @@ private:
     RPCServer _rpc_server;
     QList<NodeConnection *> _nodes;
     TransportProvider _transport_provider;
+    NodeConnectionPoint _node;
 };
 
 #endif // NET_H
