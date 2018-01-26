@@ -100,7 +100,14 @@ void Net::onEntityReady(JsonSerializableEntity *entity)
     qDebug() << "New Entity" << entity->getEntityName();
     if (SerializableEntityFactory::IsBlock(entity))
     {
-        Block *block = static_cast<Block *>(entity);
-        qDebug() << block->getId().toString();
+        Block *block = static_cast<Block *>(entity),
+                *db_block = new Block();
+
+        if (!Context::Instance().database()->read(block->getId(), db_block))
+        {
+            qDebug() << block->getId().toString();
+            Context::Instance().database()->write(block);
+            _transport_provider.write(block);
+        }
     }
 }
