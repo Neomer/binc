@@ -5,6 +5,7 @@
 #include <model/Block.h>
 
 TransportProvider::TransportProvider() :
+    QObject(),
     ISubject()
 {
 
@@ -16,6 +17,7 @@ void TransportProvider::add(IObservableDataStream *stream)
     try
     {
         stream->open();
+        connect(stream, SIGNAL(onConnectionClosed(IObservableDataStream*)), this, SLOT(onConnectionClosed(IObservableDataStream*)));
     }
     catch (UdpStreamException &ex)
     {
@@ -23,6 +25,7 @@ void TransportProvider::add(IObservableDataStream *stream)
         return;
     }
     _streams << stream;
+    emit streamCountChanged(_streams.count());
 }
 
 void TransportProvider::write(IJsonSerializable *data)
@@ -48,4 +51,9 @@ void TransportProvider::update(const Guid &subject, void *data)
     {
         return;
     }
+}
+
+void TransportProvider::onConnectionClosed(IObservableDataStream *stream)
+{
+    _streams.removeOne(stream);
 }

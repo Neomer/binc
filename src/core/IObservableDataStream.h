@@ -7,10 +7,18 @@
 ///
 /// \brief The IObservableDataStream поток данных, реализующий интерфейс ISubject для уведомления о поступлении нового блока данных
 ///
-class IObservableDataStream : public IDataStream, public ISubject
+class IObservableDataStream :
+        public QObject,
+        public IDataStream,
+        public ISubject
 {
+    Q_OBJECT
+
 public:
-    IObservableDataStream();
+    IObservableDataStream(QObject * parent = 0);
+
+signals:
+    void onConnectionClosed(IObservableDataStream *);
 };
 
 #endif // IOBSERVABLEDATASTREAM_H

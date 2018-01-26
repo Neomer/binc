@@ -9,6 +9,7 @@ Net::Net(QObject *parent) :
     _rpc_server(this),
     _node(this)
 {
+    _node.subscribe(this);
 
 }
 
@@ -26,17 +27,18 @@ void Net::connect()
     try
     {
         _node.open();
-        _node.subscribe(this);
     }
     catch (NetDataStreamException &ex)
     {
         qDebug() << "Node Server starting failed!" << ex.what();
         return;
     }
+    QObject::connect(&_transport_provider, SIGNAL(streamCountChanged(int)), this, SLOT(onConnectionCountChanged(int)));
 
     auto udpStream = new UdpStream();
     udpStream->subscribe(this);
     _transport_provider.add(udpStream);
+    _tcp_provider.start();
 }
 
 void Net::close()
@@ -79,5 +81,14 @@ void Net::update(const Guid &subject, void *data)
             qDebug() << "New Block!" << b->getId().toString();
             write(b);
         }
+    }
+}
+
+void Net::onConnectionCountChanged(int count)
+{
+    qDebug() << "Connection count" << count;
+    if (Context::Instance().settings()->getConnectionsLimit() > count)
+    {
+        _tcp_provider.start();
     }
 }

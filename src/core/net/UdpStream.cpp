@@ -3,7 +3,6 @@
 #include <core/JsonSerializableEntity.h>
 
 UdpStream::UdpStream() :
-    QObject(),
     IObservableDataStream(),
     _port(16789)
 {

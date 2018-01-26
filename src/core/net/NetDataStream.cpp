@@ -3,11 +3,10 @@
 
 NetDataStream::NetDataStream(ConnectionPoint point, QObject *parent) :
     IObservableDataStream(),
-    QObject(parent),
     _point(point)
 {
-    _socket = new QTcpSocket(this);
-    connect(_socket, SIGNAL(readyRead()), this, SLOT(readData()));
+    _socket = new QTcpSocket();
+    //connect(_socket, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
 NetDataStream::NetDataStream(QTcpSocket *socket)

@@ -12,7 +12,6 @@
 #include <core/net/NetDataStreamException.h>
 
 class TcpStream :
-        public QObject,
         public IObservableDataStream
 {
     Q_OBJECT

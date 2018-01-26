@@ -1,6 +1,7 @@
 #include "IObservableDataStream.h"
 
-IObservableDataStream::IObservableDataStream() :
+IObservableDataStream::IObservableDataStream(QObject *parent) :
+    QObject(parent),
     ISubject()
 {
 

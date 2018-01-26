@@ -59,6 +59,17 @@ public:
     /// \param value
     ///
     void setP2PConnectionPoint(ConnectionPoint value) { _p2p_cp = value; }
+    ///
+    /// \brief getConnectionsLimit максимальное количество одновременно установленных соединений
+    /// \return
+    ///
+    int getConnectionsLimit() { return _connection_limit; }
+    ///
+    /// \brief setConnectionsLimit максимальное количество одновременно установленных соединений
+    /// \param value
+    ///
+    void setConnectionsLimit(int value) { _connection_limit = value; }
+
 
 private:
     QFile _file;
@@ -68,6 +79,7 @@ private:
     NodeCollectionModel _nodes;
     QString _database_path;
     ConnectionPoint _p2p_cp;
+    int _connection_limit;
 
 
     // IJsonSerializable interface

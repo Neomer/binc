@@ -4,7 +4,8 @@
 
 Settings::Settings() :
     _rpc_port(15698),
-    _p2p_cp(ConnectionPoint(QHostAddress::Any, 16845))
+    _p2p_cp(ConnectionPoint(QHostAddress::Any, 16845)),
+    _connection_limit(10)
 {
 
 }
@@ -64,6 +65,7 @@ void Settings::toJsonObject(QJsonObject &out)
 {
     out["rpc_port"] = _rpc_port;
     out["database_path"] = _database_path;
+    out["connection_limit"] = _connection_limit;
 
     QJsonObject objNodes;
     _nodes.toJsonObject(objNodes);
@@ -74,6 +76,7 @@ void Settings::fromJsonObject(QJsonObject &in)
 {
     _rpc_port = in["rpc_port"].toInt(15698);
     _database_path = in["database_path"].toString(QStandardPaths::standardLocations(QStandardPaths::AppDataLocation)[0].append("/db"));
+    _connection_limit = in["connection_limit"].toInt(10);
 
     QJsonObject objNodes = in["nodes"].toObject();
     _nodes.fromJsonObject(objNodes);

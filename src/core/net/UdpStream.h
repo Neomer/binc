@@ -16,7 +16,7 @@
 /// \brief The UdpStream class реализует функционал обмена информацией с помощью широковещательных запросов
 /// При получении пакета данных он отправляется всем подписчикам. Отправляется (UdpDataBlock *)
 ///
-class UdpStream : public QObject, public IObservableDataStream
+class UdpStream : public IObservableDataStream
 {
     Q_OBJECT
 

@@ -10,6 +10,7 @@
 #include <core/net/NodeConnection.h>
 #include <core/net/NodeConnectionPoint.h>
 #include <model/NodeCollectionModel.h>
+#include <core/net/TcpStreamProvider.h>
 
 ///
 /// \brief The Net основной класс для подключения к p2p-сети.
@@ -34,6 +35,8 @@ public:
     void write(IJsonSerializable *data);
     void read();
 
+    NodeCollectionModel &getNodes() { return _nodes; }
+
     // IObserver interface
 public:
     void update(const Guid &subject, void *data) override;
@@ -43,18 +46,19 @@ signals:
     /// \brief Connected Удалось подключиться хотя бы к 1 узлу
     ///
     void Connected();
+
+private slots:
     ///
     /// \brief ConnectionCountChanged Количество подключенных узлов изменилось
     ///
-    void ConnectionCountChanged(int);
-
-private slots:
+    void onConnectionCountChanged(int);
 
 private:
     RPCServer _rpc_server;
-    QList<NodeConnection *> _nodes;
+    NodeCollectionModel _nodes;
     TransportProvider _transport_provider;
     NodeConnectionPoint _node;
+    TcpStreamProvider _tcp_provider;
 };
 
 #endif // NET_H

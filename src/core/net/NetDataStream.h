@@ -11,7 +11,7 @@
 
 #define NET_BUFFER_SIZE         10240
 
-class NetDataStream : public QObject, public IObservableDataStream
+class NetDataStream : public IObservableDataStream
 {
     Q_OBJECT
 
