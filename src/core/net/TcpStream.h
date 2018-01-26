@@ -10,6 +10,7 @@
 #include <core/transport/TransportTransaction.h>
 #include <core/MemoryCache.h>
 #include <core/net/NetDataStreamException.h>
+#include <core/JsonSerializableEntity.h>
 
 class TcpStream :
         public IObservableDataStream
@@ -35,6 +36,7 @@ private slots:
 
 signals:
     void Disconnected(TcpStream *);
+    void PackageReceived(JsonSerializableEntity *);
 
 private:
     void writeTransportBlock(TransportDataBlock *block);

@@ -32,6 +32,7 @@ private slots:
     void onConnectionClosed(IObservableDataStream *stream);
 
 signals:
+    void onEntityReady(JsonSerializableEntity *);
     void streamCountChanged(int);
 
 private:

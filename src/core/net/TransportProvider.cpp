@@ -24,6 +24,8 @@ void TransportProvider::add(IObservableDataStream *stream)
         stream->unsubscribe(this);
         return;
     }
+    connect(stream, SIGNAL(onEntityReady(JsonSerializableEntity*)), this, SIGNAL(onEntityReady(JsonSerializableEntity*)));
+
     _streams << stream;
     emit streamCountChanged(_streams.count());
 }

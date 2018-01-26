@@ -3,6 +3,7 @@
 
 #include <core/IDataStream.h>
 #include <core/ISubject.h>
+#include <core/JsonSerializableEntity.h>
 
 ///
 /// \brief The IObservableDataStream поток данных, реализующий интерфейс ISubject для уведомления о поступлении нового блока данных
@@ -19,6 +20,7 @@ public:
 
 signals:
     void onConnectionClosed(IObservableDataStream *);
+    void onEntityReady(JsonSerializableEntity *);
 };
 
 #endif // IOBSERVABLEDATASTREAM_H

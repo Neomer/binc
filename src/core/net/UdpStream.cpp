@@ -81,7 +81,7 @@ void UdpStream::readDatagram()
         if (e)
         {
             IJsonSerializable::fromString(e, block.getData());
-            update(e);
+            emit onEntityReady(e);
         }
     }
     else
