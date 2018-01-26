@@ -78,7 +78,7 @@ void TcpStream::readData()
         if (e)
         {
             IJsonSerializable::fromString(e, block.getData());
-            update(e);
+            emit onEntityReady(e);
         }
     }
     else

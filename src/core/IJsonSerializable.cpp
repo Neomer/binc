@@ -27,6 +27,10 @@ void IJsonSerializable::fromString(IJsonSerializable *object, QByteArray data)
 {
     QJsonParseError err;
     QJsonDocument json = QJsonDocument::fromJson(data, &err);
+    if (err.error != QJsonParseError::NoError)
+    {
+        throw BaseException("Json parsing error!");
+    }
     QJsonObject o = json.object();
     object->fromJsonObject(o);
 }

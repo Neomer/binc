@@ -28,6 +28,8 @@ void NodeConnectionPoint::onConnectionAccept()
 {
     while (_server.hasPendingConnections())
     {
-        update(new TcpStream(_server.nextPendingConnection()));
+        QTcpSocket *socket = _server.nextPendingConnection();
+        qDebug() << "New connection" << socket->peerAddress().toString() << ":" << socket->peerPort();
+        update(new TcpStream(socket));
     }
 }

@@ -3,6 +3,7 @@
 #include <core/JsonSerializableEntity.h>
 #include <core/Context.h>
 #include <model/Block.h>
+#include <core/SerializableEntityFactory.h>
 
 Net::Net(QObject *parent) :
     QObject(parent),
@@ -11,6 +12,8 @@ Net::Net(QObject *parent) :
 {
     _node.subscribe(this);
 
+    QObject::connect(&_transport_provider, SIGNAL(streamCountChanged(int)), this, SLOT(onConnectionCountChanged(int)));
+    QObject::connect(&_transport_provider, SIGNAL(onEntityReady(JsonSerializableEntity*)), this, SLOT(onEntityReady(JsonSerializableEntity*)));
 }
 
 void Net::connect()
@@ -33,12 +36,11 @@ void Net::connect()
         qDebug() << "Node Server starting failed!" << ex.what();
         return;
     }
-    QObject::connect(&_transport_provider, SIGNAL(streamCountChanged(int)), this, SLOT(onConnectionCountChanged(int)));
 
     auto udpStream = new UdpStream();
     udpStream->subscribe(this);
     _transport_provider.add(udpStream);
-    _tcp_provider.start();
+    //_tcp_provider.start();
 }
 
 void Net::close()
@@ -89,6 +91,23 @@ void Net::onConnectionCountChanged(int count)
     qDebug() << "Connection count" << count;
     if (Context::Instance().settings()->getConnectionsLimit() > count)
     {
-        _tcp_provider.start();
+        //_tcp_provider.start();
+    }
+}
+
+void Net::onEntityReady(JsonSerializableEntity *entity)
+{
+    qDebug() << "New Entity" << entity->getEntityName();
+    if (SerializableEntityFactory::IsBlock(entity))
+    {
+        Block *block = static_cast<Block *>(entity),
+                *db_block = new Block();
+
+        if (!Context::Instance().database()->read(block->getId(), db_block))
+        {
+            qDebug() << block->getId().toString();
+            Context::Instance().database()->write(block);
+            _transport_provider.write(block);
+        }
     }
 }

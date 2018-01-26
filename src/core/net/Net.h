@@ -52,6 +52,7 @@ private slots:
     /// \brief ConnectionCountChanged Количество подключенных узлов изменилось
     ///
     void onConnectionCountChanged(int);
+    void onEntityReady(JsonSerializableEntity *entity);
 
 private:
     RPCServer _rpc_server;

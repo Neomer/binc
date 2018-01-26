@@ -7,6 +7,9 @@
 #include <database/IDatabaseWritable.h>
 #include <core/StreamedFile.h>
 
+///
+/// \brief Database класс для работы с базой данных.
+///
 class Database
 {
 public:
@@ -15,6 +18,12 @@ public:
     void open();
     void close();
     void write(IDatabaseWritable *object);
+    ///
+    /// \brief read читает запись из базы данных
+    /// \param id Идентификатор искомой сущности
+    /// \param object найденный объект
+    /// \return возвращает TRUE, если объект найден
+    ///
     bool read(Guid id, IDatabaseWritable *object);
 
 private:
