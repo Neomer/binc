@@ -40,7 +40,7 @@ void Net::connect()
     auto udpStream = new UdpStream();
     udpStream->subscribe(this);
     _transport_provider.add(udpStream);
-    //_tcp_provider.start();
+    _tcp_provider.start();
 }
 
 void Net::close()
