@@ -29,7 +29,6 @@ public:
     Database *database() { return _database; }
     ConsoleInput * consoleInput() const { return _consoleInput; }
     Settings *settings() { return &_sets; }
-    Net *network() { return &_net; }
 
 
     ///
@@ -49,7 +48,6 @@ private:
     bool _isInit;
     ConsoleInput *_consoleInput;
     Settings _sets;
-    Net _net;
     RPCServerCollectionModel _rpc_servers;
 };
 

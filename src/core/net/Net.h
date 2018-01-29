@@ -16,12 +16,23 @@
 /// Осуществляет поиск активных узлов в сети, подключение к ним, обмен системной информацией, необходимой для поддержки подключения.
 /// Содержит методы для возможности входа в сеть, отключения от сети, отправку информации по сети.
 ///
-class Net : public QObject, public IObserver
+class Net :
+        public QObject,
+        public IObserver,
+        public ISubject
 {
     Q_OBJECT
 
 public:
-    Net(QObject *parent = 0);
+    ///
+    /// \brief Instance возвращает статический экземпляр класса
+    /// \return
+    ///
+    static Net& Instance()
+    {
+        static Net s;
+        return s;
+    }
 
     ///
     /// \brief connect начинает подключение к сети. При успешном подключении хотя бы к 1му узлу сети формируется сигнал Connected.
@@ -54,6 +65,10 @@ private slots:
     void onEntityReady(JsonSerializableIdentifyedEntity *entity);
 
 private:
+    Net();
+    Net(const Net &other);
+    Net &operator =(const Net &other);
+
     RPCServer _rpc_server;
     NodeCollectionModel _nodes;
     TransportProvider _transport_provider;

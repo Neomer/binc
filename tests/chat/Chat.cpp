@@ -5,6 +5,7 @@
 Chat::Chat()
 {
     Context::Instance().consoleInput()->subscribe(this);
+    Net::Instance().subscribe(this);
 }
 
 Chat::~Chat()
@@ -24,7 +25,12 @@ void Chat::update(const Guid &subject, void *data)
         NetMessage msg;
         msg.setId(Guid::randomGuid());
         msg.setMessage(QString((const char *)data));
-        Context::Instance().network()->write(&msg);
+        Net::Instance().write(&msg);
+    }
+    else if (Guid::isEqual(subject, Net::Instance().guid()))
+    {
+        NetMessage *msg = static_cast<NetMessage *>(data);
+        qDebug() << "receive: " << msg->getMessage();
     }
 
 }

@@ -5,8 +5,9 @@
 #include <model/Block.h>
 #include <core/SerializableEntityFactory.h>
 
-Net::Net(QObject *parent) :
-    QObject(parent),
+Net::Net() :
+    QObject(),
+    ISubject(),
     _rpc_server(this),
     _node(this)
 {
@@ -77,8 +78,5 @@ void Net::onConnectionCountChanged(int count)
 
 void Net::onEntityReady(JsonSerializableIdentifyedEntity *entity)
 {
-    qDebug() << "New Entity" << entity->getEntityName();
-    if (SerializableEntityFactory::IsBlock(entity))
-    {
-    }
+    ISubject::update(entity);
 }

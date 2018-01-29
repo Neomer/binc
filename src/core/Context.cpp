@@ -12,7 +12,7 @@ void Context::load(QString settings)
     _consoleInput = new ConsoleInput();
     _consoleInput->start();
 
-    _net.connect();
+    Net::Instance().connect();
 
     _rpc_servers.servers().append(new RPCServerModel(ConnectionPoint(QHostAddress("127.0.0.1"), 15698)));
 }
