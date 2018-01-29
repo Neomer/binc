@@ -36,6 +36,7 @@ public:
     IIdentifyed *take(Guid id);
     IIdentifyed *takeFirst();
     void clear();
+    bool contains(Guid id);
 
     MemoryCache &operator <<(IIdentifyed *value);
 

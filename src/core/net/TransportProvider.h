@@ -31,7 +31,16 @@ public:
     void update(const Guid &subject, void *data) override;
 
 private slots:
+    ///
+    /// \brief onConnectionClosed вызывается, когда поток закрывается
+    /// \param stream
+    ///
     void onConnectionClosed(IObservableDataStream *stream);
+    ///
+    /// \brief entityReady вызывается, когда по одному из потоков успешно получена и разобрана транспортная транзакция
+    /// \param entity
+    ///
+    void entityReady(JsonSerializableIdentifyedEntity *entity);
 
 signals:
     void onEntityReady(JsonSerializableIdentifyedEntity *);

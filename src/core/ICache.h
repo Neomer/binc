@@ -63,6 +63,12 @@ public:
     /// \brief clear очищает буфер
     ///
     virtual void clear() = 0;
+    ///
+    /// \brief contains проверяет существует ли в кэше объект с идентификатором id
+    /// \param id идентификатор
+    /// \return
+    ///
+    virtual bool contains(Guid id) = 0;
 
 private:
     int _limit;

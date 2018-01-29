@@ -70,6 +70,18 @@ void MemoryCache::clear()
     _list.clear();
 }
 
+bool MemoryCache::contains(Guid id)
+{
+    foreach (MemoryCacheItem i, _list)
+    {
+        if (Guid::isEqual(i.Data->getId(), id))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 MemoryCache &MemoryCache::operator <<(IIdentifyed *value)
 {
     add(value);
