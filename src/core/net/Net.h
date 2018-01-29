@@ -72,8 +72,9 @@ private:
     RPCServer _rpc_server;
     NodeCollectionModel _nodes;
     TransportProvider _transport_provider;
+    // Точка подключения для удаленных клиентов
     NodeConnectionPoint _node;
-    TcpStreamProvider _tcp_provider;
+    //TcpStreamProvider _tcp_provider;
 };
 
 #endif // NET_H

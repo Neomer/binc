@@ -65,15 +65,12 @@ void Net::write(JsonSerializableIdentifyedEntity *data)
 
 void Net::update(const Guid &subject, void *data)
 {
+    Q_UNUSED(subject); Q_UNUSED(data);
 }
 
 void Net::onConnectionCountChanged(int count)
 {
     qDebug() << "Connection count" << count;
-    if (Context::Instance().settings()->getConnectionsLimit() > count)
-    {
-        //_tcp_provider.start();
-    }
 }
 
 void Net::onEntityReady(JsonSerializableIdentifyedEntity *entity)
