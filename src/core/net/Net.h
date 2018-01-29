@@ -7,7 +7,6 @@
 #include <core/net/rpc/RPCServer.h>
 #include <core/net/UdpStream.h>
 #include <core/net/TransportProvider.h>
-#include <core/net/NodeConnection.h>
 #include <core/net/NodeConnectionPoint.h>
 #include <model/NodeCollectionModel.h>
 #include <core/net/TcpStreamProvider.h>
@@ -32,7 +31,7 @@ public:
     /// \brief close закрывает все активные подключения.
     ///
     void close();
-    void write(IJsonSerializable *data);
+    void write(JsonSerializableIdentifyedEntity *data);
     void read();
 
     NodeCollectionModel &getNodes() { return _nodes; }
@@ -52,7 +51,7 @@ private slots:
     /// \brief ConnectionCountChanged Количество подключенных узлов изменилось
     ///
     void onConnectionCountChanged(int);
-    void onEntityReady(JsonSerializableEntity *entity);
+    void onEntityReady(JsonSerializableIdentifyedEntity *entity);
 
 private:
     RPCServer _rpc_server;

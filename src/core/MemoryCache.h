@@ -1,13 +1,31 @@
 #ifndef MEMORYCACHE_H
 #define MEMORYCACHE_H
 
-#include <core/ICache.h>
 #include <QList>
+#include <QDateTime>
+#include <QTimer>
 
-class MemoryCache : public ICache
+#include <core/ICache.h>
+
+///
+/// \brief MemoryCache класс представляющий самоочищающийся список, хранящийся в опреативной памяти.
+///
+class MemoryCache : public QObject, public ICache
 {
+    Q_OBJECT
+
 public:
     MemoryCache(int limit = -1);
+    ///
+    /// \brief setClearInterval устанавливает интервал самоочистки
+    /// \param interval
+    ///
+    void setClearInterval(int interval);
+    ///
+    /// \brief setTTL устанавливает максимальное время жизни записи в пуле в секундах
+    /// \param time
+    ///
+    void setTTL(int time) { _ttl = time * 1000; }
 
     // ICache interface
 public:
@@ -21,8 +39,21 @@ public:
 
     MemoryCache &operator <<(IIdentifyed *value);
 
+private slots:
+    ///
+    /// \brief clearTick очистка кэша
+    ///
+    void clearTick();
+
 private:
-    QList<IIdentifyed *> _list;
+    struct MemoryCacheItem
+    {
+        QDateTime CreationDate;
+        IIdentifyed * Data;
+    };
+    QList<MemoryCacheItem> _list;
+    QTimer _timer;
+    int _ttl;
 };
 
 #endif // MEMORYCACHE_H

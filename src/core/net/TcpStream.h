@@ -26,8 +26,7 @@ public:
 public:
     void open() override;
     void close() override;
-    void read(IJsonSerializable *data) override;
-    void write(IJsonSerializable *data) override;
+    void write(JsonSerializableIdentifyedEntity *data) override;
 
 private slots:
     void readData();

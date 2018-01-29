@@ -34,12 +34,7 @@ void TcpStream::close()
     _socket->close();
 }
 
-void TcpStream::read(IJsonSerializable *data)
-{
-    Q_UNUSED(data);
-}
-
-void TcpStream::write(IJsonSerializable *data)
+void TcpStream::write(JsonSerializableIdentifyedEntity *data)
 {
     TransportDataBlock block;
     block.setTransactionId(Guid::randomGuid());
@@ -78,7 +73,6 @@ void TcpStream::readData()
         if (e)
         {
             IJsonSerializable::fromString(e, block.getData());
-            emit onEntityReady(e);
         }
     }
     else

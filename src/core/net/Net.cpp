@@ -13,7 +13,7 @@ Net::Net(QObject *parent) :
     _node.subscribe(this);
 
     QObject::connect(&_transport_provider, SIGNAL(streamCountChanged(int)), this, SLOT(onConnectionCountChanged(int)));
-    QObject::connect(&_transport_provider, SIGNAL(onEntityReady(JsonSerializableEntity*)), this, SLOT(onEntityReady(JsonSerializableEntity*)));
+    QObject::connect(&_transport_provider, SIGNAL(onEntityReady(JsonSerializableIdentifyedEntity*)), this, SLOT(onEntityReady(JsonSerializableIdentifyedEntity*)));
 }
 
 void Net::connect()
@@ -49,7 +49,7 @@ void Net::close()
     _node.close();
 }
 
-void Net::write(IJsonSerializable *data)
+void Net::write(JsonSerializableIdentifyedEntity *data)
 {
     try
     {
@@ -81,7 +81,6 @@ void Net::update(const Guid &subject, void *data)
             }
             Context::Instance().database()->write(b);
             qDebug() << "New Block!" << b->getId().toString();
-            write(b);
         }
     }
 }
@@ -95,19 +94,10 @@ void Net::onConnectionCountChanged(int count)
     }
 }
 
-void Net::onEntityReady(JsonSerializableEntity *entity)
+void Net::onEntityReady(JsonSerializableIdentifyedEntity *entity)
 {
     qDebug() << "New Entity" << entity->getEntityName();
     if (SerializableEntityFactory::IsBlock(entity))
     {
-        Block *block = static_cast<Block *>(entity),
-                *db_block = new Block();
-
-        if (!Context::Instance().database()->read(block->getId(), db_block))
-        {
-            qDebug() << block->getId().toString();
-            Context::Instance().database()->write(block);
-            _transport_provider.write(block);
-        }
     }
 }

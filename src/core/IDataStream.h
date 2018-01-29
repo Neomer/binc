@@ -5,7 +5,7 @@
 #include <QIODevice>
 #include <core/IDataBlock.h>
 #include <core/transport/TransportTransaction.h>
-#include <core/IJsonSerializable.h>
+#include <core/JsonSerializableIdentifyedEntity.h>
 
 ///
 /// \brief IDataStream интерфейс должны реализовывать классы, которые работают с потоками данных (UDP, TCP сокеты и пр.)
@@ -22,15 +22,10 @@ public:
     ///
     virtual void close() = 0;
     ///
-    /// \brief read ?
-    /// \param data
-    ///
-    virtual void read(IJsonSerializable *data) = 0;
-    ///
     /// \brief write Записывает сериализуемый объект в поток
     /// \param data
     ///
-    virtual void write(IJsonSerializable *data) = 0;
+    virtual void write(JsonSerializableIdentifyedEntity *data) = 0;
 };
 
 #endif // IDATASTREAM_H

@@ -28,7 +28,6 @@ void Chat::update(const Guid &subject, void *data)
         d.setVersion(Version(1, 0));
         d.setNonce(QString((const char *)data).toInt());
 
-        Context::Instance().network()->write(&d);
     }
 
 }

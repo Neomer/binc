@@ -30,7 +30,7 @@ void TransportProvider::add(IObservableDataStream *stream)
     emit streamCountChanged(_streams.count());
 }
 
-void TransportProvider::write(IJsonSerializable *data)
+void TransportProvider::write(JsonSerializableIdentifyedEntity *data)
 {
     foreach (auto stream, _streams)
     {
