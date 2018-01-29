@@ -13,6 +13,7 @@ private:
 
 public:
     RPCServerModel();
+    RPCServerModel(ConnectionPoint point);
 
     quint16 getPort() { return _point.getPort(); }
     void setPort(quint16 value) { _point.setPort(value); }

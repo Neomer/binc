@@ -5,6 +5,12 @@ RPCServerModel::RPCServerModel()
 
 }
 
+RPCServerModel::RPCServerModel(ConnectionPoint point) :
+    _point(point)
+{
+
+}
+
 void RPCServerModel::toJsonObject(QJsonObject &out)
 {
     out["address"] = _point.getAddress().toString();
