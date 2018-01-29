@@ -1,7 +1,6 @@
 #include "Chat.h"
 #include <QDebug>
-#include <model/Block.h>
-#include <core/SerializableEntityFactory.h>
+#include "NetMessage.h"
 
 Chat::Chat()
 {
@@ -22,8 +21,10 @@ void Chat::update(const Guid &subject, void *data)
 {
     if (Guid::isEqual(subject, Context::Instance().consoleInput()->guid()))
     {
-        Block d;
-
+        NetMessage msg;
+        msg.setId(Guid::randomGuid());
+        msg.setMessage(QString((const char *)data));
+        Context::Instance().network()->write(&msg);
     }
 
 }

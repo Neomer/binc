@@ -2,7 +2,6 @@
 #define CHAT_H
 
 #include <core/Context.h>
-#include <core/net/UdpStream.h>
 
 class Chat : public IObserver
 {
