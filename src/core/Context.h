@@ -7,6 +7,7 @@
 #include <database/Database.h>
 #include "ConsoleInput.h"
 #include "Settings.h"
+#include <core/MemoryCache.h>
 
 ///
 /// \brief The Context class хранит глобальные ресурсы используемые разными модулями программы.
@@ -49,6 +50,7 @@ private:
     ConsoleInput *_consoleInput;
     Settings _sets;
     Net _net;
+    MemoryCache _rpc_servers;
 };
 
 

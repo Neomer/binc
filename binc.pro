@@ -72,7 +72,9 @@ SOURCES += \
     src/core/net/rpc/RPCRequestThread.cpp \
     src/model/PingRequest.cpp \
     src/core/net/NodeConnectionPoint.cpp \
-    src/core/net/TcpStreamProvider.cpp
+    src/core/net/TcpStreamProvider.cpp \
+    src/model/RPCServerModel.cpp \
+    src/model/RPCServerCollectionModel.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -148,7 +150,9 @@ HEADERS += \
     src/model/PingRequest.h \
     src/core/net/NodeConnectionPoint.h \
     src/core/net/TcpStreamProvider.h \
-    src/core/ICollection.h
+    src/core/ICollection.h \
+    src/model/RPCServerModel.h \
+    src/model/RPCServerCollectionModel.h
     src/core/IFileWithStream.h
 
 
