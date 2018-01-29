@@ -4,7 +4,7 @@
 #include <QList>
 #include <QDateTime>
 
-#include <core/JsonSerializableEntity.h>
+#include <core/JsonSerializableIdentifyedEntity.h>
 #include <core/IIdentifyed.h>
 #include <core/types/Guid.h>
 #include <core/types/Version.h>
@@ -15,7 +15,7 @@
 ///
 /// \brief The Block модель данных, представляющая одиночный блок.
 ///
-class Block : public JsonSerializableEntity, public IDatabaseWritable
+class Block : public JsonSerializableIdentifyedEntity, public IDatabaseWritable
 {
 private:
     Version _version;

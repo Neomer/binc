@@ -14,6 +14,7 @@ private:
     QString _entity_name;
 
 public:
+    JsonSerializableIdentifyedEntity(QString entityName);
     JsonSerializableIdentifyedEntity();
 
     // IJsonSerializable interface

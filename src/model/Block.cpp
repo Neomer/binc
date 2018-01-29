@@ -1,7 +1,7 @@
 #include "Block.h"
 
 Block::Block() :
-    JsonSerializableEntity("Block"),
+    JsonSerializableIdentifyedEntity("Block"),
     IDatabaseWritable(),
     _creation_time(QDateTime::currentDateTime()),
     _nonce(0)
@@ -11,8 +11,7 @@ Block::Block() :
 
 void Block::toJsonObject(QJsonObject &out)
 {
-    JsonSerializableEntity::toJsonObject(out);
-    out["id"] = getId().toString();
+    JsonSerializableIdentifyedEntity::toJsonObject(out);
     out["version"] = _version.toString();
     out["prev"] = _previous_block.toString();
     out["creationTime"] = _creation_time.toString("yyyy-MM-ddThh:mm:ss");
@@ -21,8 +20,7 @@ void Block::toJsonObject(QJsonObject &out)
 
 void Block::fromJsonObject(QJsonObject &in)
 {
-    JsonSerializableEntity::fromJsonObject(in);
-    setId(Guid::fromString(in["id"].toString()));
+    JsonSerializableIdentifyedEntity::fromJsonObject(in);
     _version = Version(in["version"].toString());
     _previous_block = Guid::fromString(in["prev"].toString());
     _creation_time = QDateTime::fromString(in["creationTime"].toString(), "yyyy-MM-ddThh:mm:ss");
@@ -32,7 +30,7 @@ void Block::fromJsonObject(QJsonObject &in)
 
 void Block::toDataStream(QDataStream &out)
 {
-    out << getId();
+    out << IDatabaseWritable::getId();
     out << _version;
     out << _previous_block;
     out << _creation_time;
@@ -49,5 +47,5 @@ void Block::fromDataStream(QDataStream &in)
     in >> _creation_time;
     in >> _nonce;
 
-    setId(id);
+    IDatabaseWritable::setId(id);
 }

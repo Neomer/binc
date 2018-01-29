@@ -40,7 +40,8 @@ void Net::connect()
     auto udpStream = new UdpStream();
     udpStream->subscribe(this);
     _transport_provider.add(udpStream);
-    _tcp_provider.start();
+    _transport_provider.add(new TcpStream(ConnectionPoint(QHostAddress("127.0.0.1"), 16845)));
+    //_tcp_provider.start();
 }
 
 void Net::close()
@@ -63,26 +64,6 @@ void Net::write(JsonSerializableIdentifyedEntity *data)
 
 void Net::update(const Guid &subject, void *data)
 {
-    if (Guid::isEqual(subject, _node.guid()))
-    {
-        TcpStream *stream = static_cast<TcpStream *>(data);
-        _transport_provider.add(stream);
-    }
-    else if (Guid::isEqual(subject, _transport_provider.guid()))
-    {
-        JsonSerializableEntity *entity = static_cast<JsonSerializableEntity *>(data);
-        if (SerializableEntityFactory::IsBlock(entity))
-        {
-            Block * b = static_cast<Block *>(entity), find_block;
-            if (Context::Instance().database()->read(b->getId(), &find_block))
-            {
-                qDebug() << "Duplicate block!";
-                return;
-            }
-            Context::Instance().database()->write(b);
-            qDebug() << "New Block!" << b->getId().toString();
-        }
-    }
 }
 
 void Net::onConnectionCountChanged(int count)

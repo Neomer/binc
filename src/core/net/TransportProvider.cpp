@@ -24,7 +24,7 @@ void TransportProvider::add(IObservableDataStream *stream)
         stream->unsubscribe(this);
         return;
     }
-    connect(stream, SIGNAL(onEntityReady(JsonSerializableEntity*)), this, SLOT(entityReady(JsonSerializableIdentifyedEntity*)));
+    connect(stream, SIGNAL(onEntityReady(JsonSerializableIdentifyedEntity*)), this, SLOT(entityReady(JsonSerializableIdentifyedEntity*)));
 
     _streams << stream;
     emit streamCountChanged(_streams.count());
@@ -52,19 +52,6 @@ void TransportProvider::write(JsonSerializableIdentifyedEntity *data)
 
 void TransportProvider::update(const Guid &subject, void *data)
 {
-    Q_UNUSED(subject);
-
-    if (!data) return;
-    JsonSerializableEntity *entity = static_cast<JsonSerializableEntity *>(data);
-    if (SerializableEntityFactory::IsBlock(entity))
-    {
-        Block *b = static_cast<Block *>(entity);
-        ISubject::update(b);
-    }
-    else // Unknown format
-    {
-        return;
-    }
 }
 
 void TransportProvider::onConnectionClosed(IObservableDataStream *stream)
