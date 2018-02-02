@@ -41,10 +41,15 @@ public:
     ///
     void updateNodes(NodeCollectionModel &nodes);
     ///
-    /// \brief getRpcServers возвращает список известных RPC-серверов
+    /// \brief getRpcServers возвращает список известных RPC-серверов. Потокобезопасно.
     /// \return
     ///
-    RPCServerCollectionModel &getRpcServers() { return _rpc_servers; }
+    RPCServerCollectionModel getRpcServers();
+    ///
+    /// \brief updateRpcServers добавляет в список известных серверов сети новые. Потокобезопасно.
+    /// \param servers
+    ///
+    void updateRpcServers(RPCServerCollectionModel &servers);
     ///
     /// \brief load загружает среду выполнения приложения, настройки и пр.
     /// \param settings Файл конфигурации
@@ -64,7 +69,7 @@ private:
     Settings _sets;
     RPCServerCollectionModel _rpc_servers;
     NodeCollectionModel _nodes;
-    QMutex _mtx_lock_nodes;
+    QMutex _mtx_lock_nodes, _mtx_lock_rpc;
 };
 
 

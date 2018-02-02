@@ -52,7 +52,7 @@ NodeModel *NodeCollectionModel::last()
 
 NodeModel *NodeCollectionModel::get(int index)
 {
-    Q_ASSERT(index < _nodes.count());
+    Q_ASSERT(index >= 0 && index < _nodes.count());
     return _nodes.at(index);
 }
 
@@ -104,6 +104,7 @@ void NodeCollectionModel::add(NodeModel *item, int after)
 
 void NodeCollectionModel::remove(int index)
 {
+    Q_ASSERT(index >= 0 && index < _nodes.count());
     _nodes.removeAt(index);
 }
 
