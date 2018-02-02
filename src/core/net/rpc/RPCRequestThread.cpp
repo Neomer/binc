@@ -40,7 +40,6 @@ void RPCRequestThread::run()
             throw NetDataStreamException(NetDataStreamException::enNDSE_Timeout, "Reading timeout!");
         }
         qDebug() << (quint32) currentThreadId() << "RPCRequestThread :: Parse response...";
-
         try
         {
             _response->parse(QString::fromUtf8(socket.readAll()));
@@ -54,6 +53,11 @@ void RPCRequestThread::run()
         {
             qDebug() << "Error:" << ex.what();
             return;
+        }
+        if (_response->getStatus() != HTTP_RESPONSE_STATUS_OK)
+        {
+            qDebug() << "Response status error! Status:" << _response->getStatus() << _response->getStatusMessage();
+            throw NetDataStreamException(NetDataStreamException::enNDSE_TransferError, "Response status error!");
         }
     }
     catch (NetDataStreamException &ex)

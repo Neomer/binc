@@ -5,6 +5,8 @@
 #include <core/types/Version.h>
 #include <QStringList>
 
+#define HTTP_RESPONSE_STATUS_OK         200
+
 class HTTPResponse : public IHTTPMessage
 {
 public:
@@ -16,7 +18,7 @@ public:
     /// \brief status Статус HTTP ответа
     /// \return
     ///
-    int status() { return _status; }
+    int getStatus() { return _status; }
     ///
     /// \brief setStatus устанавливает статус ответа
     /// \param value
@@ -27,7 +29,7 @@ public:
     /// \brief statusMessage статусное сообщение
     /// \return
     ///
-    QString statusMessage() { return _statusMessage; }
+    QString getStatusMessage() { return _statusMessage; }
     ///
     /// \brief setStatusMessage устанавливает статусное сообщение
     /// \param value

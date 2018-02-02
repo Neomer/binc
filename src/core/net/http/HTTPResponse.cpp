@@ -4,7 +4,7 @@
 
 HTTPResponse::HTTPResponse(HTTPRequest *request, QByteArray reply) :
     IHTTPMessage(),
-    _status(200),
+    _status(HTTP_RESPONSE_STATUS_OK),
     _statusMessage("OK"),
     _request(request)
 {
@@ -13,7 +13,7 @@ HTTPResponse::HTTPResponse(HTTPRequest *request, QByteArray reply) :
 
 HTTPResponse::HTTPResponse(HTTPRequest *request) :
     IHTTPMessage(),
-    _status(200),
+    _status(HTTP_RESPONSE_STATUS_OK),
     _statusMessage("OK"),
     _request(request)
 {
