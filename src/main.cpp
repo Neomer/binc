@@ -22,6 +22,10 @@ int main(int argc, char ** argv)
     {
         Context::Instance().load("binc.conf");
 
+        RPCServerCollectionModel coll;
+        coll.add(new RPCServerModel(QHostAddress("127.0.0.1"), Context::Instance().settings()->getRPCport()));
+        Context::Instance().updateRpcServers(coll);
+
         Chat chat;
         chat.run();
 

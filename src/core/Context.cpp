@@ -36,6 +36,7 @@ void Context::updateRpcServers(RPCServerCollectionModel &servers)
 {
     _mtx_lock_rpc.lock();
     _rpc_servers.add(servers);
+    settings()->getRpcServers() = _rpc_servers;
     _mtx_lock_rpc.unlock();
 }
 

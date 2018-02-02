@@ -2,14 +2,16 @@
 
 RPCServerModel::RPCServerModel() :
     ConnectionPoint(),
-    _version(1, 0)
+    _version(1, 0),
+    _fails(0)
 {
 
 }
 
 RPCServerModel::RPCServerModel(QHostAddress address, quint16 port) :
     ConnectionPoint(address, port),
-    _version(1, 0)
+    _version(1, 0),
+    _fails(0)
 {
 
 }

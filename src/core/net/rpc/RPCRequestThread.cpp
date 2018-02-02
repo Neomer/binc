@@ -24,17 +24,17 @@ void RPCRequestThread::run()
         {
             throw NetDataStreamException(NetDataStreamException::enNDSE_HostNotAvailable, "Connection timeout!");
         }
-        RPCRequest req;
-        req.setMethodName("GET");
-        req.setUrl(QUrl("http://" + _point.getAddress().toString() + ":" + QString::number(_point.getPort()) + "/" + _action + "/"));
-        req.setVersion(Version(1, 0));
+        auto req = new RPCRequest();
+        req->setMethodName("GET");
+        req->setUrl(QUrl("http://" + _point.getAddress().toString() + ":" + QString::number(_point.getPort()) + "/" + _action + "/"));
+        req->setVersion(Version(1, 0));
         qDebug() << (quint32) currentThreadId() << "RPCRequestThread :: Send request...";
-        socket.write(req.compile().toUtf8());
+        socket.write(req->compile().toUtf8());
         if (!socket.waitForBytesWritten())
         {
             throw NetDataStreamException(NetDataStreamException::enNDSE_Timeout, "Writing timeout!");
         }
-        _response = new RPCResponse(&req);
+        _response = new RPCResponse(req);
         while (!socket.waitForReadyRead(10000))
         {
             throw NetDataStreamException(NetDataStreamException::enNDSE_Timeout, "Reading timeout!");

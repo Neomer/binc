@@ -13,7 +13,7 @@ void RPCClient::updateNodes()
 
     if (nodes.count() == 0)
     {
-        qDebug() << "No RPC servers has been registered in the system!";
+        qDebug() << "There were no rpc servers registered in the system!";
         return;
     }
 
