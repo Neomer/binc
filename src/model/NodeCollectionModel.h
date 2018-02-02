@@ -12,6 +12,8 @@ class NodeCollectionModel :
 {
 public:
     NodeCollectionModel();
+    NodeCollectionModel(const NodeCollectionModel &other);
+    NodeCollectionModel &operator =(const NodeCollectionModel &other);
 
     // IJsonSerializable interface
 public:

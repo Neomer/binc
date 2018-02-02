@@ -1,12 +1,14 @@
 #include "NodeModel.h"
 
-NodeModel::NodeModel()
+NodeModel::NodeModel() :
+    _last_activity()
 {
 
 }
 
 NodeModel::NodeModel(QHostAddress address, quint16 port) :
-    ConnectionPoint(address, port)
+    ConnectionPoint(address, port),
+    _last_activity()
 {
 
 }

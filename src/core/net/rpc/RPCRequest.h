@@ -15,7 +15,7 @@ public:
     /// \brief action возвращает запрошенный метод
     /// \return
     ///
-    QString action();
+    QString getAction();
 };
 
 #endif // RPCREQUEST_H

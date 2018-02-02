@@ -32,13 +32,14 @@ void Context::load(QString settings)
     _consoleInput = new ConsoleInput();
     _consoleInput->start();
 
+    _mtx_lock_nodes.lock();
+    _nodes.add(_sets.nodes());
+    _mtx_lock_nodes.unlock();
+
     Net::Instance().connect();
 
     _rpc_servers.servers().append(new RPCServerModel(ConnectionPoint(QHostAddress("127.0.0.1"), 15698)));
 
-    _mtx_lock_nodes.lock();
-    _nodes.add(_sets.nodes());
-    _mtx_lock_nodes.unlock();
 }
 
 void Context::unload()

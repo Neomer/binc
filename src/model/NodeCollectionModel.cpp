@@ -5,6 +5,17 @@ NodeCollectionModel::NodeCollectionModel()
 
 }
 
+NodeCollectionModel::NodeCollectionModel(const NodeCollectionModel &other) :
+    _nodes(other._nodes)
+{
+
+}
+
+NodeCollectionModel &NodeCollectionModel::operator =(const NodeCollectionModel &other)
+{
+    _nodes = other._nodes;
+}
+
 void NodeCollectionModel::toJsonObject(QJsonObject &out)
 {
     QJsonArray a;

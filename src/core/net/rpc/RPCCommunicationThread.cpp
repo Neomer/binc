@@ -39,7 +39,7 @@ void RPCCommunicationThread::run()
             run = false;
             continue;
         }
-        QString action = req.action();
+        QString action = req.getAction();
         RPCResponse resp(&req);
         resp.setHeader("Server", "RPC-Server");
         resp.setHeader("Connection", "close");
@@ -61,5 +61,6 @@ void RPCCommunicationThread::run()
 
 void RPCCommunicationThread::nodes(HTTPResponse *response)
 {
-    static_cast<RPCResponse *>(response)->setContent(IJsonSerializable::toString(&Context::Instance().settings()->nodes()));
+    NodeCollectionModel nodes = Context::Instance().getNodes();
+    static_cast<RPCResponse *>(response)->setContent(IJsonSerializable::toString(&nodes));
 }

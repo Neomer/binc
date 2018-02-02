@@ -9,7 +9,8 @@ Net::Net() :
     QObject(),
     ISubject(),
     _rpc_server(this),
-    _node(this)
+    _node(this),
+    _rpc_client(this)
 {
     _node.subscribe(this);
 
@@ -41,8 +42,9 @@ void Net::connect()
     auto udpStream = new UdpStream();
     udpStream->subscribe(this);
     _transport_provider.add(udpStream);
-    _transport_provider.add(new TcpStream(ConnectionPoint(QHostAddress("127.0.0.1"), 16845)));
-    //_tcp_provider.start();
+    //_transport_provider.add(new TcpStream(ConnectionPoint(QHostAddress("127.0.0.1"), 16845)));
+
+    _rpc_client.updateNodes();
 }
 
 void Net::close()

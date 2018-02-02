@@ -8,8 +8,9 @@
 #include <core/net/UdpStream.h>
 #include <core/net/TransportProvider.h>
 #include <core/net/NodeConnectionPoint.h>
-#include <model/NodeCollectionModel.h>
 #include <core/net/TcpStreamProvider.h>
+#include <core/net/rpc/RPCClient.h>
+#include <model/NodeCollectionModel.h>
 
 ///
 /// \brief The Net основной класс для подключения к p2p-сети.
@@ -69,6 +70,7 @@ private:
     Net(const Net &other);
     Net &operator =(const Net &other);
 
+    RPCClient _rpc_client;
     RPCServer _rpc_server;
     NodeCollectionModel _nodes;
     TransportProvider _transport_provider;
