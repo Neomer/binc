@@ -9,7 +9,7 @@ RPCClient::RPCClient(QObject *parent) :
 
 void RPCClient::updateNodes()
 {
-    NodeCollectionModel nodes = Context::Instance().getNodes();
+    auto nodes = Context::Instance().getRpcServers();
 
     for (auto i = 0; i < nodes.count(); i++)
     {
