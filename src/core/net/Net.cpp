@@ -67,7 +67,12 @@ void Net::write(JsonSerializableIdentifyedEntity *data)
 
 void Net::update(const Guid &subject, void *data)
 {
-    Q_UNUSED(subject); Q_UNUSED(data);
+    if (Guid::isEqual(subject, _node.guid()))
+    {
+        auto stream = static_cast<TcpStream *>(data);
+        _transport_provider.add(stream);
+        //Context::Instance().updateNodes();
+    }
 }
 
 void Net::onConnectionCountChanged(int count)

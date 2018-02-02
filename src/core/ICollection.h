@@ -4,7 +4,8 @@
 ///
 /// ICollection<T> интерфейс, представляющий коллекцию данных неопределенного типа.
 ///
-template<class T> class ICollection
+template<class  T>
+class ICollection
 {
 public:
     ///

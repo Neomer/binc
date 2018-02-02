@@ -74,7 +74,8 @@ SOURCES += \
     src/model/RPCServerModel.cpp \
     src/model/RPCServerCollectionModel.cpp \
     src/core/JsonSerializableIdentifyedEntity.cpp \
-    tests/chat/NetMessage.cpp
+    tests/chat/NetMessage.cpp \
+    src/core/CrossThreadCollection.cpp
 
 HEADERS += \
     src/core/IData.h \
@@ -152,7 +153,8 @@ HEADERS += \
     src/model/RPCServerModel.h \
     src/model/RPCServerCollectionModel.h \
     src/core/JsonSerializableIdentifyedEntity.h \
-    tests/chat/NetMessage.h
+    tests/chat/NetMessage.h \
+    src/core/CrossThreadCollection.h
     src/core/IFileWithStream.h
 
 

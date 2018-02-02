@@ -40,6 +40,7 @@ public:
     /// \param nodes
     ///
     void updateNodes(NodeCollectionModel &nodes);
+    void addNode(NodeModel *node);
     ///
     /// \brief getRpcServers возвращает список известных RPC-серверов. Потокобезопасно.
     /// \return
