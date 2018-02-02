@@ -7,6 +7,7 @@
 #include <core/ISubject.h>
 #include <core/JsonSerializableIdentifyedEntity.h>
 #include <core/MemoryCache.h>
+#include <core/net/NetDataStreamException.h>
 
 ///
 /// \brief The TransportProvider класс работающий с группой контекстов обмена данными (UdpStream, NetDataStream, TcpStream и пр)

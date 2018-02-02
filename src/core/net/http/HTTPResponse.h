@@ -35,7 +35,6 @@ public:
     void setStatusMessage(QString value) { _statusMessage = value; }
 
 private:
-
     HTTPRequest *_request;
     QString _raw, _statusMessage;
     int _status;

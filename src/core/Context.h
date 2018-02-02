@@ -1,12 +1,12 @@
 #ifndef CONTEXT_H
 #define CONTEXT_H
 
-#include "ContextException.h"
+#include <QMutex>
 
-#include <core/net/Net.h>
+#include <core/ContextException.h>
+#include <core/ConsoleInput.h>
+#include <core/Settings.h>
 #include <database/Database.h>
-#include "ConsoleInput.h"
-#include "Settings.h"
 #include <model/RPCServerCollectionModel.h>
 
 ///
@@ -30,7 +30,21 @@ public:
     ConsoleInput * consoleInput() const { return _consoleInput; }
     Settings *settings() { return &_sets; }
 
-
+    ///
+    /// \brief getNodes возвращает список известных узлов сети. Потокобезопасно.
+    /// \return
+    ///
+    NodeCollectionModel getNodes();
+    ///
+    /// \brief updateNodes добавляет в список известных узлов сети новые. Потокобезопасно.
+    /// \param nodes
+    ///
+    void updateNodes(NodeCollectionModel &nodes);
+    ///
+    /// \brief getRpcServers возвращает список известных RPC-серверов
+    /// \return
+    ///
+    RPCServerCollectionModel &getRpcServers() { return _rpc_servers; }
     ///
     /// \brief load загружает среду выполнения приложения, настройки и пр.
     /// \param settings Файл конфигурации
@@ -49,6 +63,8 @@ private:
     ConsoleInput *_consoleInput;
     Settings _sets;
     RPCServerCollectionModel _rpc_servers;
+    NodeCollectionModel _nodes;
+    QMutex _mtx_lock_nodes;
 };
 
 

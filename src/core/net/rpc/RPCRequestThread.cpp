@@ -1,10 +1,10 @@
 #include "RPCRequestThread.h"
 #include <QTcpSocket>
-#include <core/net/rpc/RPCRequest.h>
 #include <core/net/rpc/RPCResponse.h>
 
-RPCRequestThread::RPCRequestThread(ConnectionPoint point) :
-    _point(point)
+RPCRequestThread::RPCRequestThread(ConnectionPoint point, QString action) :
+    _point(point),
+    _action(action)
 {
     start();
 }
@@ -19,7 +19,7 @@ void RPCRequestThread::run()
     }
     RPCRequest req;
     req.setMethodName("GET");
-    req.setUrl(QUrl("http://" + _point.getAddress().toString() + ":" + QString::number(_point.getPort()) + "/nodes/"));
+    req.setUrl(QUrl("http://" + _point.getAddress().toString() + ":" + QString::number(_point.getPort()) + "/" + _action + "/"));
     req.setVersion(Version(1, 0));
     socket.write(req.compile().toUtf8());
     if (!socket.waitForBytesWritten())

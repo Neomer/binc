@@ -1,26 +1,28 @@
 #ifndef RPCCLIENT_H
 #define RPCCLIENT_H
 
+#include <QThread>
 #include <model/NodeCollectionModel.h>
-#include <core/ISubject.h>
 
 ///
 /// \brief RPCClient класс осуществляет запрос с удаленных нодов с помощью RPC списка известных нодов.
 /// При успешном получении списка отбрасывает ранее известные ноды. Список нодов сохраняется/читается из файла.
 ///
-class RPCClient : public ISubject
+class RPCClient : public QThread
 {
+    Q_OBJECT
+
 public:
     RPCClient();
 
-    void load(QString filename);
-    void unload();
+    ///
+    /// \brief updateNodes обновляет список известных нодов
+    ///
+    void updateNodes();
 
-    NodeCollectionModel &getNodes() { return _nodes; }
-
-private:
-    NodeCollectionModel _nodes;
-    QString _filename;
+    // QThread interface
+protected:
+    void run() override;
 };
 
 #endif // RPCCLIENT_H

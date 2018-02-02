@@ -27,6 +27,7 @@ public:
     NodeModel *last() override;
     NodeModel *get(int index) override;
     void add(NodeModel * item) override;
+    void add(ICollection<NodeModel *> &other) override;
     void add(NodeModel * item, int after) override;
     void remove(int index) override;
     int count() override;

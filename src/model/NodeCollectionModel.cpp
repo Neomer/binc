@@ -47,12 +47,45 @@ NodeModel *NodeCollectionModel::get(int index)
 
 void NodeCollectionModel::add(NodeModel *item)
 {
-    _nodes << item;
+    bool found = false;
+
+    foreach (auto it, _nodes)
+    {
+        if (item->getAddress() == it->getAddress() && item->getPort() == it->getPort())
+        {
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        _nodes << item;
+    }
+}
+
+void NodeCollectionModel::add(ICollection<NodeModel *> &other)
+{
+
 }
 
 void NodeCollectionModel::add(NodeModel *item, int after)
 {
-    _nodes.insert(after, item);
+    bool found = false;
+
+    foreach (auto it, _nodes)
+    {
+        if (item->getAddress() == it->getAddress() && item->getPort() == it->getPort())
+        {
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        _nodes.insert(after, item);
+    }
 }
 
 void NodeCollectionModel::remove(int index)

@@ -1,6 +1,7 @@
 #include "Chat.h"
 #include <QDebug>
 #include "NetMessage.h"
+#include <core/net/Net.h>
 
 Chat::Chat()
 {

@@ -5,16 +5,12 @@ RPCClient::RPCClient()
 {
 }
 
-void RPCClient::load(QString filename)
+void RPCClient::updateNodes()
 {
-    _filename = filename;
-    IJsonSerializable::fromFile(&_nodes, filename);
+
 }
 
-void RPCClient::unload()
+void RPCClient::run()
 {
-    if (!StringUtils::IsNullOrEmpty(_filename))
-    {
-        IJsonSerializable::toFile(&_nodes, _filename);
-    }
+
 }
