@@ -11,6 +11,12 @@ void RPCClient::updateNodes()
 {
     auto nodes = Context::Instance().getRpcServers();
 
+    if (nodes.count() == 0)
+    {
+        qDebug() << "No RPC servers has been registered in the system!";
+        return;
+    }
+
     for (auto i = 0; i < nodes.count(); i++)
     {
         auto thr = new RPCRequestThread(*(nodes.get(i)), "nodes");

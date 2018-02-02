@@ -54,10 +54,11 @@ void Context::load(QString settings)
     _nodes.add(_sets.nodes());
     _mtx_lock_nodes.unlock();
 
+    _mtx_lock_rpc.lock();
+    _rpc_servers.add(_sets.getRpcServers());
+    _mtx_lock_rpc.unlock();
+
     Net::Instance().connect();
-
-    //_rpc_servers.servers().append(new RPCServerModel(ConnectionPoint(QHostAddress("127.0.0.1"), 15698)));
-
 }
 
 void Context::unload()

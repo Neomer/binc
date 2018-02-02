@@ -70,6 +70,10 @@ void Settings::toJsonObject(QJsonObject &out)
     QJsonObject objNodes;
     _nodes.toJsonObject(objNodes);
     out["nodes"] = objNodes;
+
+    QJsonObject objServers;
+    _rpc_servers.toJsonObject(objServers);
+    out["rpc-servers"] = objServers;
 }
 
 void Settings::fromJsonObject(QJsonObject &in)
@@ -80,4 +84,7 @@ void Settings::fromJsonObject(QJsonObject &in)
 
     QJsonObject objNodes = in["nodes"].toObject();
     _nodes.fromJsonObject(objNodes);
+
+    QJsonObject objServers = in["rpc-servers"].toObject();
+    _rpc_servers.fromJsonObject(objServers);
 }

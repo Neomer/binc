@@ -5,6 +5,7 @@
 #include "IJsonSerializable.h"
 #include "ContextException.h"
 #include <model/NodeCollectionModel.h>
+#include <model/RPCServerCollectionModel.h>
 
 ///
 /// \brief The Settings class класс для работы с файлом настроек.
@@ -50,6 +51,11 @@ public:
     ///
     NodeCollectionModel &nodes() { return _nodes; }
     ///
+    /// \brief getRpcServers возвращает список известных RPC-серверов
+    /// \return
+    ///
+    RPCServerCollectionModel &getRpcServers() { return _rpc_servers; }
+    ///
     /// \brief getP2PConnectionPoint точка подключения для входящих подключению с помощью p2p-сети
     /// \return
     ///
@@ -80,6 +86,7 @@ private:
     QString _database_path;
     ConnectionPoint _p2p_cp;
     int _connection_limit;
+    RPCServerCollectionModel _rpc_servers;
 
 
     // IJsonSerializable interface
