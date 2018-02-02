@@ -66,7 +66,10 @@ void NodeCollectionModel::add(NodeModel *item)
 
 void NodeCollectionModel::add(ICollection<NodeModel *> &other)
 {
-
+    for (auto i = 0; i < other.count(); i++)
+    {
+        add(other.get(i));
+    }
 }
 
 void NodeCollectionModel::add(NodeModel *item, int after)
@@ -76,7 +79,7 @@ void NodeCollectionModel::add(NodeModel *item, int after)
     foreach (auto it, _nodes)
     {
         if (item->getAddress() == it->getAddress() && item->getPort() == it->getPort())
-        {
+            {
             found = true;
             break;
         }

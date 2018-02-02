@@ -17,7 +17,7 @@ NodeCollectionModel Context::getNodes()
 void Context::updateNodes(NodeCollectionModel &nodes)
 {
     _mtx_lock_nodes.lock();
-
+    _nodes.add(nodes);
     _mtx_lock_nodes.unlock();
 }
 
@@ -35,7 +35,10 @@ void Context::load(QString settings)
     Net::Instance().connect();
 
     _rpc_servers.servers().append(new RPCServerModel(ConnectionPoint(QHostAddress("127.0.0.1"), 15698)));
-    _nodes = _sets.nodes();
+
+    _mtx_lock_nodes.lock();
+    _nodes.add(_sets.nodes());
+    _mtx_lock_nodes.unlock();
 }
 
 void Context::unload()
