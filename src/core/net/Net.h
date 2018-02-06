@@ -46,6 +46,8 @@ public:
     void write(JsonSerializableIdentifyedEntity *data);
     void read();
 
+    RPCServer &getRpcServer() { return _rpc_server; }
+
     NodeCollectionModel &getNodes() { return _nodes; }
 
     // IObserver interface

@@ -31,6 +31,8 @@ public:
     ///
     void stop();
 
+    void registerController(IAbstractRpcController *controller) { _controllers << controller; }
+
 private slots:
     ///
     /// \brief acceptConnection выполняется при новом подключении
@@ -44,6 +46,7 @@ private slots:
 private:
     QTcpServer *_srv;
     QList<RPCCommunicationThread *> _threads;
+    QList<IAbstractRpcController *> _controllers;
 };
 
 #endif // RPCSERVER_H

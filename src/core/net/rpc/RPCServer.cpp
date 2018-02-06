@@ -35,6 +35,7 @@ void RPCServer::acceptConnection()
     {
         socket->setParent(0);
         auto rpc = new RPCCommunicationThread(socket, this);
+        rpc->setControllers(_controllers);
         connect(rpc, SIGNAL(finish(RPCCommunicationThread*)), this, SLOT(threadFinished(RPCCommunicationThread*)));
         rpc->start();
         socket->moveToThread(rpc);

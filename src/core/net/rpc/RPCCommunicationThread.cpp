@@ -48,10 +48,27 @@ void RPCCommunicationThread::run()
             resp.setStatus(400);
             resp.setStatusMessage("Bad request");
         }
-        else if (!QMetaObject::invokeMethod(this, action.toLatin1().constData(), Qt::DirectConnection, Q_ARG(HTTPResponse *, &resp)))
+        else
         {
-            resp.setStatus(404);
-            resp.setStatusMessage("Unknown command!");
+            IAbstractRpcController *ctrl = getController(action);
+            if (!ctrl)
+            {
+                resp.setStatus(404);
+                resp.setStatusMessage("Unknown command!");
+            }
+            else
+            {
+                ctrl->setRequest(&req);
+                try
+                {
+                    ctrl->exec(&resp);
+                }
+                catch (BaseException &)
+                {
+                    resp.setStatus(401);
+                    resp.setStatusMessage("Controller exception!");
+                }
+            }
         }
         QString r = resp.compile();
         _socket->write(r.toUtf8());
@@ -59,8 +76,8 @@ void RPCCommunicationThread::run()
     emit finish(this);
 }
 
-void RPCCommunicationThread::nodes(HTTPResponse *response)
+IAbstractRpcController *RPCCommunicationThread::getController(QString name)
 {
-    NodeCollectionModel nodes = Context::Instance().getNodes();
-    static_cast<RPCResponse *>(response)->setContent(IJsonSerializable::toString(&nodes));
+    foreach (auto c, _controllers) if (c->getControllerName() == name) return c;
+    return nullptr;
 }

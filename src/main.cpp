@@ -6,6 +6,9 @@
 
 #include <core/net/rpc/RPCRequestThread.h>
 
+#include <core/net/Net.h>
+#include <core/net/rpc/controllers/NodeListRpcController.h>
+
 #include "../tests/chat/Chat.h"
 
 int main(int argc, char ** argv)
@@ -21,6 +24,8 @@ int main(int argc, char ** argv)
     try
     {
         Context::Instance().load("binc.conf");
+
+        Net::Instance().getRpcServer().registerController(new NodeListRpcController());
 
         RPCServerCollectionModel coll;
         coll.add(new RPCServerModel(QHostAddress("127.0.0.1"), Context::Instance().settings()->getRPCport()));
