@@ -30,7 +30,10 @@ public:
     /// \brief stop останавливает сервер
     ///
     void stop();
-
+    ///
+    /// \brief registerController регистрирует контроллер для RPC-сервера
+    /// \param controller
+    ///
     void registerController(IAbstractRpcController *controller) { _controllers << controller; }
 
 private slots:
