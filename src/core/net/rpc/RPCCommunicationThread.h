@@ -28,6 +28,11 @@ protected:
     void run() override;
 
 private:
+    ///
+    /// \brief getController возвращает контроллер из коллекции по его имени <i>name</i>.
+    /// \param name Наименование контроллера
+    /// \return
+    ///
     IAbstractRpcController *getController(QString name);
 
     QTcpSocket *_socket;
