@@ -11,7 +11,6 @@ SOURCES += \
     src/main.cpp \
     src/core/IObserver.cpp \
     src/core/ISubject.cpp \
-    src/core/net/NetDataStream.cpp \
     src/core/net/PortMapping.cpp \
     src/core/IDataStream.cpp \
     src/core/net/NetDataStreamException.cpp \
@@ -54,7 +53,6 @@ SOURCES += \
     src/core/net/TransportProvider.cpp \
     src/model/IBlockData.cpp \
     src/core/net/Net.cpp \
-    src/core/net/NodeConnection.cpp \
     src/core/types/ConnectionPoint.cpp \
     src/core/net/NetDataBlock.cpp \
     src/core/transport/TransportDataBlock.cpp \
@@ -74,13 +72,16 @@ SOURCES += \
     src/core/net/NodeConnectionPoint.cpp \
     src/core/net/TcpStreamProvider.cpp \
     src/model/RPCServerModel.cpp \
-    src/model/RPCServerCollectionModel.cpp
+    src/model/RPCServerCollectionModel.cpp \
+    src/core/JsonSerializableIdentifyedEntity.cpp \
+    tests/chat/NetMessage.cpp \
+    src/core/CrossThreadCollection.cpp \
+    src/core/net/rpc/controllers/NodeListRpcController.cpp
 
 HEADERS += \
     src/core/IData.h \
     src/core/IObserver.h \
     src/core/ISubject.h \
-    src/core/net/NetDataStream.h \
     src/core/net/PortMapping.h \
     src/core/IDataStream.h \
     src/core/net/NetDataStreamException.h \
@@ -124,7 +125,6 @@ HEADERS += \
     src/core/net/TransportProvider.h \
     src/model/IBlockData.h \
     src/core/net/Net.h \
-    src/core/net/NodeConnection.h \
     src/core/types/ConnectionPoint.h \
     src/core/net/NetDataBlock.h \
     src/core/transport/TransportDataBlock.h \
@@ -152,7 +152,12 @@ HEADERS += \
     src/core/net/TcpStreamProvider.h \
     src/core/ICollection.h \
     src/model/RPCServerModel.h \
-    src/model/RPCServerCollectionModel.h
+    src/model/RPCServerCollectionModel.h \
+    src/core/JsonSerializableIdentifyedEntity.h \
+    tests/chat/NetMessage.h \
+    src/core/CrossThreadCollection.h \
+    src/core/net/rpc/controllers/IAbstractRpcController.h \
+    src/core/net/rpc/controllers/NodeListRpcController.h
     src/core/IFileWithStream.h
 
 

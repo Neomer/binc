@@ -6,6 +6,7 @@
 #include <QTcpSocket>
 #include "RPCRequest.h"
 #include "RPCResponse.h"
+#include "controllers/IAbstractRpcController.h"
 
 ///
 /// \brief The RPCCommunicationThread class
@@ -17,6 +18,8 @@ class RPCCommunicationThread : public QThread
 public:
     RPCCommunicationThread(QTcpSocket *socket, QObject *parent = 0);
 
+    void setControllers(QList<IAbstractRpcController *> &controller) { _controllers = controller; }
+
 signals:
     void finish(RPCCommunicationThread *);
 
@@ -24,15 +27,16 @@ signals:
 protected:
     void run() override;
 
-// Функции доступные для RPC вызовов
-private slots:
-    ///
-    /// \brief nodes функция возвращает список известных нодов
-    ///
-    void nodes(HTTPResponse *response);
-
 private:
+    ///
+    /// \brief getController возвращает контроллер из коллекции по его имени <i>name</i>.
+    /// \param name Наименование контроллера
+    /// \return
+    ///
+    IAbstractRpcController *getController(QString name);
+
     QTcpSocket *_socket;
+    QList<IAbstractRpcController *> _controllers;
 };
 
 #endif // RPCCOMMUNICATIONTHREAD_H

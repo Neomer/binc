@@ -6,6 +6,9 @@
 
 #include <core/net/rpc/RPCRequestThread.h>
 
+#include <core/net/Net.h>
+#include <core/net/rpc/controllers/NodeListRpcController.h>
+
 #include "../tests/chat/Chat.h"
 
 int main(int argc, char ** argv)
@@ -22,13 +25,11 @@ int main(int argc, char ** argv)
     {
         Context::Instance().load("binc.conf");
 
-//        RPCRequestThread thr(ConnectionPoint(QHostAddress("127.0.0.1"), 15698));
+        Net::Instance().getRpcServer().registerController(new NodeListRpcController());
 
-
-//    Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1564));
-//    Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1565));
-//    Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1566));
-//    Context::Instance().settings()->nodes().addNode(new NodeModel(QHostAddress("192.168.0.20"), 1567));
+        RPCServerCollectionModel coll;
+        coll.add(new RPCServerModel(QHostAddress("127.0.0.1"), Context::Instance().settings()->getRPCport()));
+        Context::Instance().updateRpcServers(coll);
 
         Chat chat;
         chat.run();

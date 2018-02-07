@@ -12,6 +12,8 @@ class NodeCollectionModel :
 {
 public:
     NodeCollectionModel();
+    NodeCollectionModel(const NodeCollectionModel &other);
+    NodeCollectionModel &operator =(const NodeCollectionModel &other);
 
     // IJsonSerializable interface
 public:
@@ -27,6 +29,7 @@ public:
     NodeModel *last() override;
     NodeModel *get(int index) override;
     void add(NodeModel * item) override;
+    void add(ICollection<NodeModel *> &other) override;
     void add(NodeModel * item, int after) override;
     void remove(int index) override;
     int count() override;

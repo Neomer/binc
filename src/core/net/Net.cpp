@@ -5,15 +5,17 @@
 #include <model/Block.h>
 #include <core/SerializableEntityFactory.h>
 
-Net::Net(QObject *parent) :
-    QObject(parent),
+Net::Net() :
+    QObject(),
+    ISubject(),
     _rpc_server(this),
-    _node(this)
+    _node(this),
+    _rpc_client(this)
 {
     _node.subscribe(this);
 
     QObject::connect(&_transport_provider, SIGNAL(streamCountChanged(int)), this, SLOT(onConnectionCountChanged(int)));
-    QObject::connect(&_transport_provider, SIGNAL(onEntityReady(JsonSerializableEntity*)), this, SLOT(onEntityReady(JsonSerializableEntity*)));
+    QObject::connect(&_transport_provider, SIGNAL(onEntityReady(JsonSerializableIdentifyedEntity*)), this, SLOT(onEntityReady(JsonSerializableIdentifyedEntity*)));
 }
 
 void Net::connect()
@@ -40,7 +42,9 @@ void Net::connect()
     auto udpStream = new UdpStream();
     udpStream->subscribe(this);
     _transport_provider.add(udpStream);
-    _tcp_provider.start();
+    //_transport_provider.add(new TcpStream(ConnectionPoint(QHostAddress("127.0.0.1"), 16845)));
+
+    _rpc_client.updateNodes();
 }
 
 void Net::close()
@@ -49,7 +53,7 @@ void Net::close()
     _node.close();
 }
 
-void Net::write(IJsonSerializable *data)
+void Net::write(JsonSerializableIdentifyedEntity *data)
 {
     try
     {
@@ -65,49 +69,18 @@ void Net::update(const Guid &subject, void *data)
 {
     if (Guid::isEqual(subject, _node.guid()))
     {
-        TcpStream *stream = static_cast<TcpStream *>(data);
+        auto stream = static_cast<TcpStream *>(data);
         _transport_provider.add(stream);
-    }
-    else if (Guid::isEqual(subject, _transport_provider.guid()))
-    {
-        JsonSerializableEntity *entity = static_cast<JsonSerializableEntity *>(data);
-        if (SerializableEntityFactory::IsBlock(entity))
-        {
-            Block * b = static_cast<Block *>(entity), find_block;
-            if (Context::Instance().database()->read(b->getId(), &find_block))
-            {
-                qDebug() << "Duplicate block!";
-                return;
-            }
-            Context::Instance().database()->write(b);
-            qDebug() << "New Block!" << b->getId().toString();
-            write(b);
-        }
+        //Context::Instance().updateNodes();
     }
 }
 
 void Net::onConnectionCountChanged(int count)
 {
     qDebug() << "Connection count" << count;
-    if (Context::Instance().settings()->getConnectionsLimit() > count)
-    {
-        //_tcp_provider.start();
-    }
 }
 
-void Net::onEntityReady(JsonSerializableEntity *entity)
+void Net::onEntityReady(JsonSerializableIdentifyedEntity *entity)
 {
-    qDebug() << "New Entity" << entity->getEntityName();
-    if (SerializableEntityFactory::IsBlock(entity))
-    {
-        Block *block = static_cast<Block *>(entity),
-                *db_block = new Block();
-
-        if (!Context::Instance().database()->read(block->getId(), db_block))
-        {
-            qDebug() << block->getId().toString();
-            Context::Instance().database()->write(block);
-            _transport_provider.write(block);
-        }
-    }
+    ISubject::update(entity);
 }

@@ -7,22 +7,33 @@
 #include <core/net/rpc/RPCServer.h>
 #include <core/net/UdpStream.h>
 #include <core/net/TransportProvider.h>
-#include <core/net/NodeConnection.h>
 #include <core/net/NodeConnectionPoint.h>
-#include <model/NodeCollectionModel.h>
 #include <core/net/TcpStreamProvider.h>
+#include <core/net/rpc/RPCClient.h>
+#include <model/NodeCollectionModel.h>
 
 ///
 /// \brief The Net основной класс для подключения к p2p-сети.
 /// Осуществляет поиск активных узлов в сети, подключение к ним, обмен системной информацией, необходимой для поддержки подключения.
 /// Содержит методы для возможности входа в сеть, отключения от сети, отправку информации по сети.
 ///
-class Net : public QObject, public IObserver
+class Net :
+        public QObject,
+        public IObserver,
+        public ISubject
 {
     Q_OBJECT
 
 public:
-    Net(QObject *parent = 0);
+    ///
+    /// \brief Instance возвращает статический экземпляр класса
+    /// \return
+    ///
+    static Net& Instance()
+    {
+        static Net s;
+        return s;
+    }
 
     ///
     /// \brief connect начинает подключение к сети. При успешном подключении хотя бы к 1му узлу сети формируется сигнал Connected.
@@ -32,8 +43,10 @@ public:
     /// \brief close закрывает все активные подключения.
     ///
     void close();
-    void write(IJsonSerializable *data);
+    void write(JsonSerializableIdentifyedEntity *data);
     void read();
+
+    RPCServer &getRpcServer() { return _rpc_server; }
 
     NodeCollectionModel &getNodes() { return _nodes; }
 
@@ -52,14 +65,20 @@ private slots:
     /// \brief ConnectionCountChanged Количество подключенных узлов изменилось
     ///
     void onConnectionCountChanged(int);
-    void onEntityReady(JsonSerializableEntity *entity);
+    void onEntityReady(JsonSerializableIdentifyedEntity *entity);
 
 private:
+    Net();
+    Net(const Net &other);
+    Net &operator =(const Net &other);
+
+    RPCClient _rpc_client;
     RPCServer _rpc_server;
     NodeCollectionModel _nodes;
     TransportProvider _transport_provider;
+    // Точка подключения для удаленных клиентов
     NodeConnectionPoint _node;
-    TcpStreamProvider _tcp_provider;
+    //TcpStreamProvider _tcp_provider;
 };
 
 #endif // NET_H

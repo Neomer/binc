@@ -12,6 +12,9 @@
 #include <core/net/NetDataStreamException.h>
 #include <core/JsonSerializableEntity.h>
 
+///
+/// \brief TcpStream класс реализующий доступ к потоку данных через интерфейс TCP сокетов.
+///
 class TcpStream :
         public IObservableDataStream
 {
@@ -26,8 +29,12 @@ public:
 public:
     void open() override;
     void close() override;
-    void read(IJsonSerializable *data) override;
-    void write(IJsonSerializable *data) override;
+    void write(JsonSerializableIdentifyedEntity *data) override;
+    ///
+    /// \brief getConnectionPoint возвращает точку подключения потока
+    /// \return
+    ///
+    const ConnectionPoint &getConnectionPoint() { return _point; }
 
 private slots:
     void readData();

@@ -5,24 +5,34 @@
 #include <core/types/ConnectionPoint.h>
 #include <core/types/Version.h>
 
-class RPCServerModel : public IJsonSerializable
+///
+/// \brief NodeModel модель данных представляющая узел P2P-сети.
+///
+class RPCServerModel :
+        public ConnectionPoint,
+        public IJsonSerializable
 {
 private:
-    ConnectionPoint _point;
     Version _version;
+    int _fails;
 
 public:
     RPCServerModel();
+    RPCServerModel(QHostAddress address, quint16 port);
     RPCServerModel(ConnectionPoint point);
-
-    quint16 getPort() { return _point.getPort(); }
-    void setPort(quint16 value) { _point.setPort(value); }
-
-    QHostAddress getAddress() { return _point.getAddress(); }
-    void setAddress(QHostAddress value) { _point.setAddress(value); }
 
     Version getVersion() { return _version; }
     void setVersion(Version value) { _version = value; }
+    ///
+    /// \brief getFailCount количество ошибок связи
+    /// \return
+    ///
+    int getFailCount() { return _fails; }
+    ///
+    /// \brief setFailCount количество ошибок связи
+    /// \param value
+    ///
+    void setFailCount(int value) { _fails = value; }
 
     // IJsonSerializable interface
 public:

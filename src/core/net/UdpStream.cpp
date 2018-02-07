@@ -32,12 +32,7 @@ void UdpStream::open()
     _transaction_cache.clear();
 }
 
-void UdpStream::read(IJsonSerializable *data)
-{
-    Q_UNUSED(data);
-}
-
-void UdpStream::write(IJsonSerializable *data)
+void UdpStream::write(JsonSerializableIdentifyedEntity *data)
 {
     QByteArray buffer;
     QDataStream stream(&buffer, QIODevice::WriteOnly);
@@ -75,9 +70,9 @@ void UdpStream::readDatagram()
     if (block.getStatus() == TransportDataBlock::enStatusLast && block.getPreviousBlockId().isEmpty())
     {
         //если блок единственный в транзакции
-        JsonSerializableEntity entity;
+        JsonSerializableIdentifyedEntity entity;
         IJsonSerializable::fromString(&entity, block.getData());
-        JsonSerializableEntity *e = static_cast<JsonSerializableEntity *>(_entity_factory.createEntity(entity.getEntityName()));
+        JsonSerializableIdentifyedEntity *e = static_cast<JsonSerializableIdentifyedEntity *>(_entity_factory.createEntity(entity.getEntityName()));
         if (e)
         {
             IJsonSerializable::fromString(e, block.getData());

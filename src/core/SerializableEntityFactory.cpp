@@ -1,5 +1,6 @@
 #include "SerializableEntityFactory.h"
 #include <model/Block.h>
+#include "../../tests/chat/NetMessage.h"
 
 SerializableEntityFactory::SerializableEntityFactory()
 {
@@ -15,6 +16,8 @@ IEntity *SerializableEntityFactory::createEntity(QString name)
 {
     if (name == "Block")
         return new Block();
+    if (name == "NetMessage")
+        return new NetMessage();
     else
         return 0;
 }

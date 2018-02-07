@@ -5,6 +5,17 @@ NodeCollectionModel::NodeCollectionModel()
 
 }
 
+NodeCollectionModel::NodeCollectionModel(const NodeCollectionModel &other) :
+    _nodes(other._nodes)
+{
+
+}
+
+NodeCollectionModel &NodeCollectionModel::operator =(const NodeCollectionModel &other)
+{
+    _nodes = other._nodes;
+}
+
 void NodeCollectionModel::toJsonObject(QJsonObject &out)
 {
     QJsonArray a;
@@ -41,22 +52,59 @@ NodeModel *NodeCollectionModel::last()
 
 NodeModel *NodeCollectionModel::get(int index)
 {
-    Q_ASSERT(index < _nodes.count());
+    Q_ASSERT(index >= 0 && index < _nodes.count());
     return _nodes.at(index);
 }
 
 void NodeCollectionModel::add(NodeModel *item)
 {
-    _nodes << item;
+    bool found = false;
+
+    foreach (auto it, _nodes)
+    {
+        if (item->getAddress() == it->getAddress() && item->getPort() == it->getPort())
+        {
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        _nodes << item;
+    }
+}
+
+void NodeCollectionModel::add(ICollection<NodeModel *> &other)
+{
+    for (auto i = 0; i < other.count(); i++)
+    {
+        add(other.get(i));
+    }
 }
 
 void NodeCollectionModel::add(NodeModel *item, int after)
 {
-    _nodes.insert(after, item);
+    bool found = false;
+
+    foreach (auto it, _nodes)
+    {
+        if (item->getAddress() == it->getAddress() && item->getPort() == it->getPort())
+            {
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        _nodes.insert(after, item);
+    }
 }
 
 void NodeCollectionModel::remove(int index)
 {
+    Q_ASSERT(index >= 0 && index < _nodes.count());
     _nodes.removeAt(index);
 }
 

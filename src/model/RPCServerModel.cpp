@@ -1,24 +1,35 @@
 #include "RPCServerModel.h"
 
-RPCServerModel::RPCServerModel()
+RPCServerModel::RPCServerModel() :
+    ConnectionPoint(),
+    _version(1, 0),
+    _fails(0)
+{
+
+}
+
+RPCServerModel::RPCServerModel(QHostAddress address, quint16 port) :
+    ConnectionPoint(address, port),
+    _version(1, 0),
+    _fails(0)
 {
 
 }
 
 RPCServerModel::RPCServerModel(ConnectionPoint point) :
-    _point(point)
+    ConnectionPoint(point)
 {
 
 }
 
 void RPCServerModel::toJsonObject(QJsonObject &out)
 {
-    out["address"] = _point.getAddress().toString();
-    out["port"] = _point.getPort();
+    out["address"] = getAddress().toString();
+    out["port"] = getPort();
 }
 
 void RPCServerModel::fromJsonObject(QJsonObject &in)
 {
-    _point.setPort(in["port"].toInt());
-    _point.setAddress(QHostAddress(in["address"].toString()));
+    setPort(in["port"].toInt());
+    setAddress(QHostAddress(in["address"].toString()));
 }

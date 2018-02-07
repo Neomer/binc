@@ -6,7 +6,7 @@ RPCRequest::RPCRequest()
 
 }
 
-QString RPCRequest::action()
+QString RPCRequest::getAction()
 {
     QString path = getUrl().path();
     if (StringUtils::IsNullOrEmpty(path))

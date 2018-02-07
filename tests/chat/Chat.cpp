@@ -1,11 +1,12 @@
 #include "Chat.h"
 #include <QDebug>
-#include <model/Block.h>
-#include <core/SerializableEntityFactory.h>
+#include "NetMessage.h"
+#include <core/net/Net.h>
 
 Chat::Chat()
 {
     Context::Instance().consoleInput()->subscribe(this);
+    Net::Instance().subscribe(this);
 }
 
 Chat::~Chat()
@@ -22,13 +23,15 @@ void Chat::update(const Guid &subject, void *data)
 {
     if (Guid::isEqual(subject, Context::Instance().consoleInput()->guid()))
     {
-        Block d;
-        d.setId(Guid::randomGuid());
-        d.setPreviousBlock(Guid::randomGuid());
-        d.setVersion(Version(1, 0));
-        d.setNonce(QString((const char *)data).toInt());
-
-        Context::Instance().network()->write(&d);
+        NetMessage msg;
+        msg.setId(Guid::randomGuid());
+        msg.setMessage(QString((const char *)data));
+        Net::Instance().write(&msg);
+    }
+    else if (Guid::isEqual(subject, Net::Instance().guid()))
+    {
+        NetMessage *msg = static_cast<NetMessage *>(data);
+        qDebug() << "receive: " << msg->getMessage();
     }
 
 }

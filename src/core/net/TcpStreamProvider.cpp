@@ -1,6 +1,7 @@
 #include "TcpStreamProvider.h"
 #include <QTcpSocket>
 #include <core/Context.h>
+#include <core/net/TcpStream.h>
 
 TcpStreamProvider::TcpStreamProvider()
 {
